@@ -1,0 +1,10 @@
+{
+  "index.html": {
+    "href": "index.html",
+    "resources": [
+      "js/index.js"
+    ],
+    "refer": [],
+    "priority": 0
+  }
+}
