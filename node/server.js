@@ -1,12 +1,6 @@
 var restify = require('restify');
-var router = require('./router');
-router.addRoute('/login', require('./routers/login'));
-router.addRoute('/reg', require('./routers/reg'));
-router.addRoute('/changepwd', require('./routers/changepwd'));
-//以下非跳蚤
-router.addRoute('/index', require('./routers/index'));
-router.addRoute('/shop', require('./routers/shop'));
-router.addRoute('/person', require('./routers/person'));
+//添加路由表
+var router = require("./routerList.js");
 function onListened(){
   console.log('Node server starts at 3900.');
 }

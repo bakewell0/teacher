@@ -1,8 +1,8 @@
-//var uuid = require('node-uuid');
+var uuid = require('node-uuid');
 function RouterData(route,handler){
      this.route = route||'';
      this.handler = handler||{};
-     //this.id = uuid.v4();
+     this.id = uuid.v4();
  }
  
  function Router(){ 
@@ -20,6 +20,7 @@ function RouterData(route,handler){
          if(!handler){
              return;
          }
+         res.setHeader('Access-Control-Allow-Origin','*');     
          handler.exec(route, req, res);
      };
  
