@@ -8,12 +8,7 @@ function productList(){
 
 function list(params,callback){
 	var product=require("../model.js").product;    
-	product.findAll({
-        where:{
-        	Status:params.Status,
-            IsBook:params.IsBook
-        }
-    }).then(function(result){	
+	product.findAll().then(function(result){	
             callback({isSuccess:true,result:result});	
     });	
 }
