@@ -1,12 +1,10 @@
 function Reg(){
 	this.exec = function(route, req, res){   
-		register(req.body,function(json){
-			res.send(json);
-		});  
+		register(req,res);  
 	}
 }
 
-function register(params,callback){
+function register(req,res){
 	var user=require("../model.js").user;   
 	/*user.sync({force: true}).then(() => {
 		  return user.create({
@@ -16,13 +14,13 @@ function register(params,callback){
 		  })
     });*/
     user.create({
-	  		phone:params.phone,
-		    email:params.email,
-		    password:params.password
+	  		phone:req.body.phone,
+		    email:req.body.email,
+		    password:req.body.password
     }).then(function(){
-   			callback({isSuccess:true,des:"注册成功"});
+   			res.send({isSuccess:true,des:"注册成功"});
     },function(){
-			callback({isSuccess:false,des:"注册失败"});
+			res.send({isSuccess:false,des:"注册失败"});
     })
 }
 module.exports=new Reg();

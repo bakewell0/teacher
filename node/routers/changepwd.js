@@ -1,27 +1,25 @@
 function ChangePwd() {
 	this.exec = function(route, req, res) {
-		change(req.body, function(json) {
-			res.send(json);
-		})
+		change(req,res)
 	}
 }
 
-function change(params, callback) {
+function change(req, res) {
 	var user = require("../model.js").user;
 	    user.update({
-				password: params.password
+				password: req.body.password
 			}, 
 			{
 			where: {
-				phone: params.phone
+				phone: req.body.phone
 			}
 			})
 			.then(function(result) {
 				if(result[0]) {
-					callback({ isChange: true });
+					res.send({ isChange: true });
 				}
 				else {
-					callback({ isChange: false });
+					res.send({ isChange: false });
 				}
 		});
 }

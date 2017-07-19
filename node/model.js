@@ -15,7 +15,8 @@ var product = sequelize.define('product', {
   		Status:Sequelize.STRING,
   		CurPrice:Sequelize.STRING,
   		OldPrice:Sequelize.STRING,
-  		IsBook:Sequelize.STRING			
+  		IsBook:Sequelize.STRING,
+  		Des:Sequelize.STRING
 });
 
 var models={

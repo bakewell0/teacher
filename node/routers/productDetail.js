@@ -1,19 +1,17 @@
 function productDetail(){
-	this.exec = function(route, req, res){   
-		detail(req.body,function(json){
-			res.send(json);
-		});
+	this.exec = function(route, req, res){		
+		detail(req,res);
 	}
 }
 
-function detail(params,callback){
+function detail(req,res){
 	var product=require("../model.js").product;  		    
 	product.findAll({
         where:{
-        	id:params.id
+        	id:req.body.id
         }
-    }).then(function(result){	
-        callback({isSuccess:true,result:result});	
+    }).then(function(result){
+    	res.send({isSuccess:true,result:result});
     });	
 }
 

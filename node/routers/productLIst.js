@@ -1,15 +1,13 @@
 function productList(){
 	this.exec = function(route, req, res){		
-		list(req.body,function(json){
-			res.send(json);
-		});
+		list(res);
 	}
 }
 
-function list(params,callback){
+function list(res){
 	var product=require("../model.js").product;    
-	product.findAll().then(function(result){	
-            callback({isSuccess:true,result:result});	
+	product.findAll().then(function(result){
+		res.send({isSuccess:true,result:result});	
     });	
 }
 

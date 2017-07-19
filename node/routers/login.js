@@ -1,27 +1,25 @@
 function Login(){
 	this.exec = function(route, req, res){		
-	    login(req.body,function(json){			
-				res.send(json);
-		});
+	    login(req,res);
 	}
 }
 
-function login(params,callback){
+function login(req,res){
 	var user=require("../model.js").user;	
 	user.findAll({
         where:{
-            phone:params.phone,
-            password:params.password
+            phone:req.body.phone,
+            password:req.body.password
         }
     }).then(function(result){
 	    var islogin=false;
 	    if(result[0]){
 	    	islogin=true;
 	    }
-        callback({islogin:islogin,result:result});	
+        res.send({islogin:islogin,result:result});	
     },
     function(error) {
-    	callback({islogin:false});
+    	res.send({islogin:false});
     	console.log(error); // 堆栈跟踪
 	})
 }
