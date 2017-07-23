@@ -4,6 +4,9 @@ router.addRoute('/reg', require('./routers/reg'));
 router.addRoute('/changepwd', require('./routers/changepwd'));
 router.addRoute('/productList', require('./routers/productList'));
 router.addRoute('/productDetail', require('./routers/productDetail'));
+router.addRoute('/addShopCar', require('./routers/shopCar').addShopCar);
+router.addRoute('/getShopCar', require('./routers/shopCar').getShopCar);
+router.addRoute('/delShopCar', require('./routers/shopCar').delShopCar);
 //以下非跳蚤
 router.addRoute('/index', require('./routers/index'));
 router.addRoute('/shop', require('./routers/shop'));

@@ -16,12 +16,26 @@ var product = sequelize.define('product', {
   		CurPrice:Sequelize.STRING,
   		OldPrice:Sequelize.STRING,
   		IsBook:Sequelize.STRING,
+  		Des:Sequelize.STRING,
+  		ScanNum:Sequelize.BIGINT(11)
+});
+//购物车
+var shopCar = sequelize.define('shopCar', {
+		Image:Sequelize.STRING,
+  	    Name:Sequelize.STRING,
+  		Carriage:Sequelize.STRING,
+  		Destination:Sequelize.STRING,
+  		Status:Sequelize.STRING,
+  		CurPrice:Sequelize.STRING,
+  		OldPrice:Sequelize.STRING,
+  		IsBook:Sequelize.STRING,
   		Des:Sequelize.STRING
 });
 
 var models={
 	user:user,
-	product:product
+	product:product,
+	shopCar:shopCar
 }
 
 module.exports=models;
