@@ -5,23 +5,31 @@ function addShopCar(){
 	}	
 }
 
-function add(req,res){
+async function add(req,res){
+	var product=require("../model.js").product; 
 	var shopCar=require("../model.js").shopCar;     
-    shopCar.create({
-    	Image:req.body.Image,
-  	    Name:req.body.Name,
-  		Carriage:req.body.Carriage,
-  		Destination:req.body.Destination,
-  		Status:req.body.Status,
-  		CurPrice:req.body.CurPrice,
-  		OldPrice:req.body.OldPrice,
-  		IsBook:req.body.IsBook,
-  		Des:req.body.Des
+	//查询产品id
+	var p = await product.findAll({
+		where:{
+			id:req.body.id
+		}
+	});
+	//插入购物车
+	shopCar.create({
+    	Image:p[0].Image,
+  	    Name:p[0].Name,
+  		Carriage:p[0].Carriage,
+  		Destination:p[0].Destination,
+  		Status:p[0].Status,
+  		CurPrice:p[0].CurPrice,
+  		OldPrice:p[0].OldPrice,
+  		IsBook:p[0].IsBook,
+  		Des:p[0].Des
     })
-    .then(function(result){
+	.then(function(result){
     	res.send({isSuccess:true,result:result});
-    })
-}
+   })
+};	
 
 //获取购物车信息
 function getShopCar(){
