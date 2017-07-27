@@ -4,24 +4,26 @@ function Login(){
 	}
 }
 
-function login(req,res){
+async function login(req,res){
 	var user=require("../model.js").user;	
-	user.findAll({
+	var userinfo=await user.findAll({
         where:{
             phone:req.body.phone,
             password:req.body.password
-        }
-    }).then(function(result){
-	    var islogin=false;
-	    if(result[0]){
-	    	islogin=true;
-	    }
-        res.send({islogin:islogin,result:result});	
-    },
-    function(error) {
-    	res.send({islogin:false});
-    	console.log(error); // 堆栈跟踪
-	})
+        }   
+  	});   
+  	sendToken(userinfo,res);
+}
+
+function sendToken(userinfo,res){
+	var encodeToken=require("../token").encodeToken
+    if(userinfo[0]){
+    	var token=encodeToken(userinfo);
+    	res.send({islogin:true,token:token});	
+    }
+    else{
+    	res.send({islogin:false});	
+    }
 }
 
 module.exports=new Login();

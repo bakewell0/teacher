@@ -7,7 +7,9 @@ function addShopCar(){
 
 async function add(req,res){
 	var product=require("../model.js").product; 
-	var shopCar=require("../model.js").shopCar;     
+	var shopCar=require("../model.js").shopCar;   
+	var decodeToken=require("../token.js").decodeToken;
+	var user=decodeToken(req.body.token);
 	//查询产品id
 	var p = await product.findAll({
 		where:{
@@ -24,7 +26,8 @@ async function add(req,res){
   		CurPrice:p[0].CurPrice,
   		OldPrice:p[0].OldPrice,
   		IsBook:p[0].IsBook,
-  		Des:p[0].Des
+  		Des:p[0].Des,
+  		UserId:user[0].id
     })
 	.then(function(result){
     	res.send({isSuccess:true,result:result});
@@ -34,13 +37,17 @@ async function add(req,res){
 //获取购物车信息
 function getShopCar(){
 	this.exec = function(route, req, res){		
-		get(res);
+		get(req,res);
 	}
 }
 
-function get(res){
-	var shopCar=require("../model.js").shopCar;    
-	shopCar.findAll().then(function(result){
+function get(req,res){
+	var shopCar=require("../model.js").shopCar;  
+	var decodeToken=require("../token.js").decodeToken;
+	var user=decodeToken(req.body.token);
+	shopCar.findAll({
+		where:{UserId:user[0].id}
+	}).then(function(result){
 		res.send({isSuccess:true,result:result});	
     });	
 }
