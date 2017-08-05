@@ -9,7 +9,7 @@ router.addRoute('/getShopCar', require('./routers/shopCar').getShopCar);
 router.addRoute('/delShopCar', require('./routers/shopCar').delShopCar);
 router.addRoute('/getPerson', require('./routers/person').getPerson);
 router.addRoute('/setPerson', require('./routers/person').setPerson);
-router.addRoute('/uploadHead', require('./routers/uploadHead'));
+router.addRoute('/setHeadImage', require('./routers/person').setHeadImage);
 //以下非跳蚤
 router.addRoute('/index', require('./routers/index'));
 router.addRoute('/shop', require('./routers/shop'));
