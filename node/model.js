@@ -5,6 +5,8 @@ var user = sequelize.define('user', {
 		phone:Sequelize.STRING,
 		email:Sequelize.STRING,
 		password:Sequelize.STRING,
+		headImage:Sequelize.STRING,
+    	name:Sequelize.STRING
 });	
 //产品列表接口
 var product = sequelize.define('product', {
