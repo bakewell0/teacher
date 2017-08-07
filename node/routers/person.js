@@ -6,8 +6,13 @@ function GetPerson(){
 
 function get(req,res){
 	var decodeToken=require("../token.js").decodeToken;
-	var user=decodeToken(req.body.token);
-    res.send({isSuccess:true,result:user})
+	var user=require("../model.js").user;
+	var token=decodeToken(req.body.token);	
+	user.findAll({
+		where:{id:token[0].id}
+	}).then(function(result){
+		res.send({isSuccess:true,result:result});	
+   });
 }
 //设置个人中心
 function SetPerson(){
@@ -36,12 +41,13 @@ function SetHeadImage(){
 	var upload = require("../upload.js").upload;
 	var user=require("../model.js").user;   
 	this.exec = function(route, req, res){  
+		var url="http://192.168.0.109:8020/node/img/upload/";
 		var token=decodeToken(req.body.token);		
 		//上传头像
 		upload(req.files.file.path,'./img/upload/'+token[0].id+"headImage.jpg");  
 	    //更新头像url
 	    user.update({
-			headImage:token[0].id+"headImage.jpg"
+			headImage:url+token[0].id+"headImage.jpg"
 		}, 
 		{
 			where: {
@@ -49,7 +55,8 @@ function SetHeadImage(){
 			}
 		})
 		.then(function(result) {
-			res.send({isSuccess:true,des:"设置头像成功",headImage:"http://192.168.0.109:8020/node/img/upload/"+token[0].id+"headImage.jpg"});
+			res.send({isSuccess:true,des:"设置头像成功",
+			headImage:url+token[0].id+"headImage.jpg"});
 		});
 	}
 }
