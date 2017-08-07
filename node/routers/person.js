@@ -56,7 +56,7 @@ function SetHeadImage(){
 		})
 		.then(function(result) {
 			res.send({isSuccess:true,des:"设置头像成功",
-			headImage:url+token[0].id+"headImage.jpg"});
+			headImage:url+token[0].id+"headImage.jpg?ver="+Math.random()});
 		});
 	}
 }
