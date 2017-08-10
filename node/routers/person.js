@@ -22,13 +22,17 @@ function SetPerson(){
 }
 
 function set(req,res){
-	var user=require("../model.js").user;   
+	var user=require("../model.js").user; 
+	var decodeToken=require("../token.js").decodeToken;
+	var token=decodeToken(req.body.token);
     user.update({
-			name: req.body.name
+			name: req.body.name,
+			gender:req.body.gender,
+			address:req.body.address
 		}, 
 		{
 			where: {
-				id: req.body.id
+				id:token[0].id
 			}
 		})
 		.then(function(result) {
@@ -40,8 +44,8 @@ function SetHeadImage(){
 	var decodeToken=require("../token.js").decodeToken;
 	var upload = require("../upload.js").upload;
 	var user=require("../model.js").user;   
-	this.exec = function(route, req, res){  
-		var url="http://192.168.0.109:8020/node/img/upload/";
+	var url="http://192.168.0.109:8020/node/img/upload/";
+	this.exec = function(route, req, res){  		
 		var token=decodeToken(req.body.token);		
 		//上传头像
 		upload(req.files.file.path,'./img/upload/'+token[0].id+"headImage.jpg");  
