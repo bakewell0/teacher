@@ -5,42 +5,42 @@ function Shop(){
           roundList:[
           {
           	imageUrl:prefix+'img/shop/tb1.png',
-          	roundBg:'#ffb20c;',
+          	roundBg:'#ffb20c',
           	des:'中西药'
           },
           {
           	imageUrl:prefix+'img/shop/tb2.png',
-          	roundBg:'#ff4400;',
+          	roundBg:'#ff4400',
           	des:'儿童用药'
           },
           {
           	imageUrl:prefix+'img/shop/tb3.png',
-          	roundBg:'#22a6f9;',
+          	roundBg:'#22a6f9',
           	des:'医疗用药'
           },
           {
           	imageUrl:prefix+'img/shop/tb4.png',
-          	roundBg:'#e45734;',
+          	roundBg:'#e45734',
           	des:'医疗器械'
           },
           {
           	imageUrl:prefix+'img/shop/tb5.png',
-          	roundBg:'#e2000c;',
+          	roundBg:'#e2000c',
           	des:'养生保健'
           },
           {
           	imageUrl:prefix+'img/shop/tb6.png',
-          	roundBg:'#ff7e00;',
+          	roundBg:'#ff7e00',
           	des:'隐形眼镜'
           },
           {
           	imageUrl:prefix+'img/shop/tb7.png',
-          	roundBg:'#ff4d49;',
+          	roundBg:'#ff4d49',
           	des:'美容护肤'
           },
           {
           	imageUrl:prefix+'img/shop/tb8.png',
-          	roundBg:'#eb3c78;',
+          	roundBg:'#eb3c78',
           	des:'成人用品'
           }
           ],

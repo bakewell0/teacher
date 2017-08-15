@@ -10,6 +10,10 @@ router.addRoute('/delShopCar', require('./routers/shopCar').delShopCar);
 router.addRoute('/getPerson', require('./routers/person').getPerson);
 router.addRoute('/setPerson', require('./routers/person').setPerson);
 router.addRoute('/setHeadImage', require('./routers/person').setHeadImage);
+
+router.addRoute('/addOrder', require('./routers/order').addOrder);
+router.addRoute('/orderList', require('./routers/order').getOrder);
+
 //以下非跳蚤
 router.addRoute('/index', require('./routers/index'));
 router.addRoute('/shop', require('./routers/shop'));

@@ -18,7 +18,7 @@ async function add(req,res){
 	});
 	//插入购物车
 	shopCar.create({
-    	Image:p[0].Image,
+    		Image:p[0].Image,
   	    Name:p[0].Name,
   		Carriage:p[0].Carriage,
   		Destination:p[0].Destination,
