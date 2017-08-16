@@ -1,9 +1,7 @@
-const Sequelize=require("sequelize");
-const sequelize=require("../connect.js");
 const decodeToken=require("../token.js").decodeToken;
 const user=require("../model.js").user;
 const order=require("../model.js").order;
-const orderDetail=require("../model.js").orderDetail;
+const product=require("../model.js").product;
 
 function GetOrder(){
 	this.exec = function(route, req, res){		
@@ -12,19 +10,49 @@ function GetOrder(){
 }
 
 function get(req,res){
-
-	
+	//验证user
+	checkUser(req,res);
+	var token=decodeToken(req.body.token);
+	var userId = token[0].id;
+	order.findAll({
+		where:{
+			userId:userId
+		}
+	}).then(
+		function(result){
+			res.send({isSuccess:true, result: result});
+		}
+	);
 }
 
 function GetOrderDetail(){
 	this.exec = function(route, req, res){		
-	    getDetail(req,res);
+	    getOrderDetail(req,res);
 	}
 }
 
-function getDetail(req,res){
-
-	
+async function getOrderDetail(req,res){
+	//验证user
+	checkUser(req,res);
+	var token=decodeToken(req.body.token);
+	var userId = token[0].id;	
+	var orderDetail = await order.findAll({
+		where:{
+			userId: userId,
+			id: req.body.orderId
+		}
+	})
+	orderDetail = orderDetail[0].dataValues;
+	var productIds = eval(orderDetail.productId);
+	product.findAll({
+		where:{
+			id: productIds
+		}
+	}).then(function(result) {
+		orderDetail.products = result;
+		res.send({isSuccess:true, result: orderDetail})
+		
+	});
 }
 
 function AddOrder(){
@@ -44,46 +72,23 @@ async function checkUser(req,res) {
 	}
 }
 
-async function add(req,res){
+function add(req,res){
 	var data = req.body;
 	var token=decodeToken(data.token);
 	//验证user
 	checkUser(req,res);
 	
-	var _order = await order.create({
+	order.create({
 		userId: token[0].id,
 		totalCost: data.totalCost,
 		totalNum: data.totalNum,
 		isInvoice: data.isInvoice,
 		message: data.message,
-		state: data.state
+		state: data.state,
+		productId: data.productId
+	}).then(function(result){
+		res.send({isSuccess:true, result: result})
 	});
-	
-	//获取新插入的orderid
-	var orderid = await sequelize.query('select last_insert_id() FROM orders');
-	orderid = orderid[0].length;
-	
-	var productId = data.productId;
-	var orderDetails = [];
-	
-	if(typeof(productId) != 'object') {
-		productId = eval(productId);
-	}
-	
-	productId.map(function (item){
-		var _orderDetail = {
-			orderId: orderid,
-			productId: item,
-			userId: 1
-		}
-		orderDetails.push(_orderDetail);
-	})
-	
-	orderDetail.bulkCreate(orderDetails)
-    .then(function (result) {
-   		res.send({isSuccess:true});
-    })
-	
 }
 
 module.exports={

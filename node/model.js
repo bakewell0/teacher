@@ -47,22 +47,17 @@ var order = sequelize.define('order', {
 	totalNum: Sequelize.STRING,
 	isInvoice: Sequelize.STRING,
 	message: Sequelize.STRING,
-	state: Sequelize.STRING
+	state: Sequelize.STRING,
+	productId: Sequelize.STRING
 });
 
-var orderDetail = sequelize.define('orderDetail', {
-    orderId: Sequelize.INTEGER,
-	productId: Sequelize.INTEGER,
-	userId: Sequelize.INTEGER
-});
 
 var models={
 		user:user,
 		product:product,
 		shopCar:shopCar,
 		person:person,
-		order:order,
-		orderDetail: orderDetail
+		order:order
 }
 
 module.exports=models;
