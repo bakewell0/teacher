@@ -11,7 +11,8 @@ function detail(req,res){
         	id:req.body.id
         }
     }).then(function(result){
-    	res.send({isSuccess:true,result:result});
+    		result[0].dataValues.productId = result[0].dataValues.id;
+    		res.send({isSuccess:true,result:result});
     });	
 }
 

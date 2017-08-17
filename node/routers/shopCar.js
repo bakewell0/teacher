@@ -1,3 +1,9 @@
+const shopCar=require("../model.js").shopCar;   
+const decodeToken=require("../token.js").decodeToken;
+const product=require("../model.js").product; 
+var Sequelize=require("sequelize");
+var sequelize=require("../connect.js");
+
 //添加到购物车
 function addShopCar(){
 	this.exec = function(route, req, res){		
@@ -6,52 +12,65 @@ function addShopCar(){
 }
 
 async function add(req,res){
-	var product=require("../model.js").product; 
-	var shopCar=require("../model.js").shopCar;   
-	var decodeToken=require("../token.js").decodeToken;
-	var user=decodeToken(req.body.token);
-	//查询产品id
-	var p = await product.findAll({
-		where:{
-			id:req.body.id
-		}
-	});
+  var user=decodeToken(req.body.token);
 	//插入购物车
-	shopCar.create({
-    		Image:p[0].Image,
-  	    Name:p[0].Name,
-  		Carriage:p[0].Carriage,
-  		Destination:p[0].Destination,
-  		Status:p[0].Status,
-  		CurPrice:p[0].CurPrice,
-  		OldPrice:p[0].OldPrice,
-  		IsBook:p[0].IsBook,
-  		Des:p[0].Des,
+  var _shopCar = await shopCar.findOrCreate({
+	where: {
+    		ProductId: req.body.id,
   		UserId:user[0].id
-    })
-	.then(function(result){
-    	res.send({isSuccess:true,result:result});
-   })
+    },
+    defaults: {
+        ProductId: req.body.id,
+  		UserId:user[0].id,
+  		ProductNumber: 1
+    }
+  });
+  
+  if (!_shopCar[1]) {
+  	var data = _shopCar[0].dataValues;
+  	var num = parseInt(data.ProductNumber) + 1;
+	shopCar.update(
+		{ ProductNumber: num },
+		{ where: { id: data.id }
+	}).then(function(result) {
+	    res.send({isSuccess: true, result:'购物车更新成功'})
+	});
+  }else {
+  	res.send({isSuccess: true, result:'购物车添加成功'})
+  }
 };	
 
-//获取购物车信息
+//获取购物车信息 todo
 function getShopCar(){
 	this.exec = function(route, req, res){		
 		get(req,res);
 	}
 }
 
-function get(req,res){
-	var shopCar=require("../model.js").shopCar;  
-	var decodeToken=require("../token.js").decodeToken;
+async function get(req,res){
 	var user=decodeToken(req.body.token);
-	shopCar.findAll({
-		where:{UserId:user[0].id}
-	}).then(function(result){
-		res.send({isSuccess:true,result:result});	
-    });	
+	var shopCarData = [];
+	var productIds = [];
+	var shopCars = await shopCar.findAll({
+		where:{UserId:user[0].id},
+		order:sequelize.col("ProductId")
+	});
+	
+	shopCars.map(function(item) {
+		productIds.push(item.dataValues.ProductId);
+	})
+	
+	product.findAll({
+		where:{id:productIds}
+	}).then(function(result) {
+		for(let i = 0; i<shopCars.length; i++) {
+			let data = shopCars[i].dataValues;					
+			data.product=result[i];			
+			shopCarData.push(data);
+		}
+		res.send({isSuccess: true, result: shopCarData})			
+	});
 }
-
 //删除购物车
 function delShopCar(){
 	this.exec = function(route, req, res){		
@@ -60,7 +79,6 @@ function delShopCar(){
 }
 
 function del(req,res){
-	var shopCar=require("../model.js").shopCar;    
 	shopCar.destroy({
 		where:{
 			id:req.body.id

@@ -24,16 +24,9 @@ var product = sequelize.define('product', {
 });
 //购物车
 var shopCar = sequelize.define('shopCar', {
-		Image:Sequelize.STRING,
-    	Name:Sequelize.STRING,
-  		Carriage:Sequelize.STRING,
-  		Destination:Sequelize.STRING,
-  		Status:Sequelize.STRING,
-  		CurPrice:Sequelize.STRING,
-  		OldPrice:Sequelize.STRING,
-  		IsBook:Sequelize.STRING,
-  		Des:Sequelize.STRING,
-  		UserId:Sequelize.STRING
+    		ProductId: Sequelize.INTEGER,
+  		UserId:Sequelize.STRING,
+  		ProductNumber:Sequelize.STRING,
 });
 //个人中心
 var person = sequelize.define('person', {
