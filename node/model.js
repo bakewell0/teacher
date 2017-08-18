@@ -6,14 +6,14 @@ var user = sequelize.define('user', {
 		email:Sequelize.STRING,
 		password:Sequelize.STRING,
 		headImage:Sequelize.STRING,
-    	name:Sequelize.STRING,
-    	gender:Sequelize.STRING,
-    	address:Sequelize.STRING
+	    	name:Sequelize.STRING,
+	    	gender:Sequelize.STRING,
+	    	address:Sequelize.STRING
 });	
 //产品列表接口
 var product = sequelize.define('product', {
 		Image:Sequelize.STRING,
-    	Name:Sequelize.STRING,
+    		Name:Sequelize.STRING,
   		Carriage:Sequelize.STRING,
   		Destination:Sequelize.STRING,
   		Status:Sequelize.STRING,
@@ -41,7 +41,8 @@ var order = sequelize.define('order', {
 	isInvoice: Sequelize.STRING,
 	message: Sequelize.STRING,
 	state: Sequelize.STRING,
-	productId: Sequelize.STRING
+	productId: Sequelize.STRING,
+	productNum: Sequelize.STRING
 });
 
 
