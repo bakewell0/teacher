@@ -1,5 +1,5 @@
 var Sequelize=require("sequelize");
-var sequelize = new Sequelize('tiaozao', 'root', '292211', {
+var sequelize = new Sequelize('tiaozao', 'root', '1234', {
 	host: 'localhost',
 	dialect: 'mysql'
 });
