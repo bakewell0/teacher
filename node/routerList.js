@@ -14,6 +14,7 @@ router.addRoute('/setHeadImage', require('./routers/person').setHeadImage);
 router.addRoute('/addOrder', require('./routers/order').addOrder);
 router.addRoute('/getOrder', require('./routers/order').getOrder);
 router.addRoute('/getOrderDetail', require('./routers/order').getOrderDetail);
+router.addRoute('/delOrder', require('./routers/order').delOrder);
 
 //以下非跳蚤
 router.addRoute('/index', require('./routers/index'));
