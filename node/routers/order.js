@@ -52,6 +52,10 @@ async function getOrderDetail(req,res){
 			id: req.body.orderId
 		}
 	})
+	if(!orderDetail[0]){
+		res.send({isSuccess:false, result:"当前登录者无法查看此订单"});
+		return;
+	}
 	orderDetail = orderDetail[0].dataValues;
 	var productIds = eval(orderDetail.productId);
 	product.findAll({
@@ -102,7 +106,7 @@ function del(req,res){
 	var token=decodeToken(data.token);
 	order.destroy({
 		where:{
-			id: data.id,
+			id: data.orderId,
 			userId: token[0].id,
 		}
 	}).then(function(result){

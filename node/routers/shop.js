@@ -1,6 +1,6 @@
 function Shop(){
     this.exec = function(route, req, res){
-    var prefix="http://192.168.0.106:8020/node/"
+    var prefix="http://192.168.0.142:8020/node/"
 	var json= {
           roundList:[
           {
