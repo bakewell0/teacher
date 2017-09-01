@@ -13,11 +13,16 @@ async function register(req,res){
 		    password:params.password
 		  })
     });*/
-     
+   var params = [];
+   if(req.body.phone) {
+   	 params.push({phone: req.body.phone});
+   }
+   if(req.body.email) {
+   	 params.push({email: req.body.email});
+   }
    var _user = await user.findOrCreate({
 	    	where: {
-	    		$or: [{phone: req.body.phone}, 
-	    			  {email: req.body.email}]
+	    		$or: params
 	    	},
 	    	defaults: {
 	    		phone:req.body.phone,
