@@ -2,7 +2,7 @@ const decodeToken=require("../token.js").decodeToken;
 const user=require("../model.js").user;
 const order=require("../model.js").order;
 const product=require("../model.js").product;
-const checkUser=require("../auth.js");
+const userId = require("../common.js");
 
 function GetOrder(){
 	this.exec = function(route, req, res){		
@@ -10,29 +10,42 @@ function GetOrder(){
 	}
 }
 
-async function get(req,res){
-	//验证user
-	checkUser(req,res);
-	var token=decodeToken(req.body.token);
-	var userId = token[0].id;
-	var ordersData = [];
-	var orders = await order.findAll({
-		where:{
-			userId:userId
-		}
-	});
-	for(let i = 0; i<orders.length; i++) {
-		product.findAll({
-			where:{id:eval(orders[i].productId)}
-		}).then(function(result) {
-			let data = orders[i].dataValues;					
-			data.products=result;	
-			ordersData.push(data);
-			if(i == orders.length-1) {
-				res.send({isSuccess: true, result: ordersData})
-			}
-	});
+async function getProductById(productId) {
+	var products = await product.findAll({
+		where: {id: productId}
+	})
+	return products;
+}
+
+async function findUserOrders(req) {
+	var params = {userId: userId.getUserId(req)};
+	if (req.body.id) {
+		params.id = orderId;
 	}
+	var orders = await order.findAll({
+		where:params
+	}); 
+	return orders;
+}
+
+async function get(req,res){
+	try {
+		var ordersData = [];
+		//获取所有订单信息
+		var orders = await findUserOrders(req);
+		for(let i = 0; i<orders.length; i++) {
+			var productId = eval(orders[i].productId);
+			//获取产品信息
+			var products = await getProductById(productId);
+			var data = orders[i].dataValues;
+			data.products = products;
+			ordersData.push(data);
+		}
+		res.send({isSuccess: true, result: ordersData});
+	}catch(e) {
+		res.send({isSuccess: false, result: "请重新登陆"});
+	}
+	
 }
 
 function GetOrderDetail(){
@@ -42,30 +55,20 @@ function GetOrderDetail(){
 }
 
 async function getOrderDetail(req,res){
-	//验证user
-	checkUser(req,res);
-	var token=decodeToken(req.body.token);
-	var userId = token[0].id;	
-	var orderDetail = await order.findAll({
-		where:{
-			userId: userId,
-			id: req.body.orderId
-		}
-	})
-	if(!orderDetail[0]){
-		res.send({isSuccess:false, result:"当前登录者无法查看此订单"});
+	try {
+		//获取某个订单信息
+		var orderDetail = await findUserOrders(req);
+		orderDetail = orderDetail[0].dataValues;
+		
+		//获取订单中的产品信息
+		var productIds = eval(orderDetail.productId);
+		orderDetail.products = await getProductById(productIds);
+		
+		res.send({isSuccess:true, result: orderDetail})
+	}catch(e) {
+		res.send({isSuccess:false, result: "订单信息不存在"});
 		return;
 	}
-	orderDetail = orderDetail[0].dataValues;
-	var productIds = eval(orderDetail.productId);
-	product.findAll({
-		where:{
-			id: productIds
-		}
-	}).then(function(result) {
-		orderDetail.products = result;
-		res.send({isSuccess:true, result: orderDetail})
-	});
 }
 
 function AddOrder(){
@@ -75,13 +78,8 @@ function AddOrder(){
 }
 
 function add(req,res){
-	var data = req.body;
-	var token=decodeToken(data.token);
-	//验证user
-	checkUser(req,res);
-	
 	order.create({
-		userId: token[0].id,
+		userId: userId.getUserId(),
 		totalCost: data.totalCost,
 		totalNum: data.totalNum,
 		isInvoice: data.isInvoice,
@@ -102,12 +100,10 @@ function DelOrder(){
 
 
 function del(req,res){
-	var data = req.body;
-	var token=decodeToken(data.token);
 	order.destroy({
 		where:{
-			id: data.orderId,
-			userId: token[0].id,
+			id: data.id,
+			userId: userId.getUserId(),
 		}
 	}).then(function(result){
 		res.send({isSuccess:true,result:result});	
