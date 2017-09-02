@@ -2,7 +2,7 @@ const decodeToken=require("../token.js").decodeToken;
 const user=require("../model.js").user;
 const order=require("../model.js").order;
 const product=require("../model.js").product;
-const userId = require("../common.js");
+const common = require("../common.js");
 
 function GetOrder(){
 	this.exec = function(route, req, res){		
@@ -10,35 +10,15 @@ function GetOrder(){
 	}
 }
 
-async function getProductById(productId) {
-	var products = await product.findAll({
-		where: {id: productId}
-	})
-	return products;
-}
-
-async function findUserOrders(req) {
-	var params = {userId: userId.getUserId(req)};
-	if (req.body.id) {
-		params.id = orderId;
-	}
-	var orders = await order.findAll({
-		where:params
-	}); 
-	return orders;
-}
-
 async function get(req,res){
 	try {
 		var ordersData = [];
 		//获取所有订单信息
-		var orders = await findUserOrders(req);
+		var orders = await common.findUserOrders(req);
 		for(let i = 0; i<orders.length; i++) {
-			var productId = eval(orders[i].productId);
 			//获取产品信息
-			var products = await getProductById(productId);
 			var data = orders[i].dataValues;
-			data.products = products;
+			data.products = await common.getProductById(orders[i].productId);
 			ordersData.push(data);
 		}
 		res.send({isSuccess: true, result: ordersData});
@@ -57,13 +37,10 @@ function GetOrderDetail(){
 async function getOrderDetail(req,res){
 	try {
 		//获取某个订单信息
-		var orderDetail = await findUserOrders(req);
+		var orderDetail = await common.findUserOrders(req);
 		orderDetail = orderDetail[0].dataValues;
-		
 		//获取订单中的产品信息
-		var productIds = eval(orderDetail.productId);
-		orderDetail.products = await getProductById(productIds);
-		
+		orderDetail.products = await common.getProductById(orderDetail.productId);
 		res.send({isSuccess:true, result: orderDetail})
 	}catch(e) {
 		res.send({isSuccess:false, result: "订单信息不存在"});
@@ -78,8 +55,9 @@ function AddOrder(){
 }
 
 function add(req,res){
+	var data = req.body;
 	order.create({
-		userId: userId.getUserId(),
+		userId: common.getUserId(req),
 		totalCost: data.totalCost,
 		totalNum: data.totalNum,
 		isInvoice: data.isInvoice,
@@ -98,18 +76,16 @@ function DelOrder(){
 	}
 }
 
-
 function del(req,res){
 	order.destroy({
 		where:{
-			id: data.id,
-			userId: userId.getUserId(),
+			id: req.body.id,
+			userId: common.getUserId(req),
 		}
 	}).then(function(result){
 		res.send({isSuccess:true,result:result});	
 	});
 }
-
 
 module.exports={
 	getOrder:new GetOrder(),
