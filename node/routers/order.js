@@ -14,7 +14,7 @@ async function get(req,res){
 	try {
 		var ordersData = [];
 		//获取所有订单信息
-		var orders = await common.findUserOrders(req);
+		var orders = await common.findUserOrders(req.body.token, req.body.orderId);
 		for(let i = 0; i<orders.length; i++) {
 			//获取产品信息
 			var data = orders[i].dataValues;
@@ -37,7 +37,7 @@ function GetOrderDetail(){
 async function getOrderDetail(req,res){
 	try {
 		//获取某个订单信息
-		var orderDetail = await common.findUserOrders(req);
+		var orderDetail = await common.findUserOrders(req.body.token, req.body.orderId);
 		orderDetail = orderDetail[0].dataValues;
 		//获取订单中的产品信息
 		orderDetail.products = await common.getProductById(orderDetail.productId);
@@ -57,7 +57,7 @@ function AddOrder(){
 function add(req,res){
 	var data = req.body;
 	order.create({
-		userId: common.getUserId(req),
+		userId: common.getUserId(data.token),
 		totalCost: data.totalCost,
 		totalNum: data.totalNum,
 		isInvoice: data.isInvoice,
@@ -77,10 +77,11 @@ function DelOrder(){
 }
 
 function del(req,res){
+	var data = req.body;
 	order.destroy({
 		where:{
-			id: req.body.id,
-			userId: common.getUserId(req),
+			id: data.orderId,
+			userId: common.getUserId(data.token)
 		}
 	}).then(function(result){
 		res.send({isSuccess:true,result:result});	
