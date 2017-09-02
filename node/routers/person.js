@@ -48,7 +48,7 @@ function SetHeadImage(){
 	this.exec = function(route, req, res){  		
 		var token=decodeToken(req.body.token);		
 		//上传头像
-		upload(req.files.file.path,'./img/upload/'+token[0].id+"headImage.jpg");  
+		upload(req.files.file.path,'../data/img/upload/'+token[0].id+"headImage.jpg");  
 	    //更新头像url
 	    user.update({
 			headImage:url+token[0].id+"headImage.jpg"
