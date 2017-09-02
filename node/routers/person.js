@@ -44,7 +44,7 @@ function SetHeadImage(){
 	var decodeToken=require("../token.js").decodeToken;
 	var upload = require("../upload.js").upload;
 	var user=require("../model.js").user;   
-	var url="http://192.168.0.109:8020/node/img/upload/";
+	var url="http://39.108.219.59:8080/img/upload/";
 	this.exec = function(route, req, res){  		
 		var token=decodeToken(req.body.token);		
 		//上传头像
