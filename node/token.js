@@ -10,7 +10,15 @@ function decodeToken(token){
 	return user;
 }
 
+function getUserId(token){
+	var token=decodeToken(token);
+	var userId = token[0].id;	
+	return userId;
+}
+
+
 module.exports={
 	encodeToken:encodeToken,
-	decodeToken:decodeToken
+	decodeToken:decodeToken,
+	getUserId: getUserId
 }

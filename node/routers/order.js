@@ -1,8 +1,6 @@
-const decodeToken=require("../token.js").decodeToken;
-const user=require("../model.js").user;
+const tokenUtil=require("../token.js");
 const order=require("../model.js").order;
-const product=require("../model.js").product;
-const common = require("../common.js");
+const productUtil = require("./product.js");
 
 function GetOrder(){
 	this.exec = function(route, req, res){		
@@ -14,18 +12,17 @@ async function get(req,res){
 	try {
 		var ordersData = [];
 		//获取所有订单信息
-		var orders = await common.findUserOrders(req.body.token, req.body.orderId);
+		var orders = await findUserOrders(req.body.token, req.body.orderId);
 		for(let i = 0; i<orders.length; i++) {
 			//获取产品信息
 			var data = orders[i].dataValues;
-			data.products = await common.getProductById(orders[i].productId);
+			data.products = await productUtil.getProductById(orders[i].productId);
 			ordersData.push(data);
 		}
 		res.send({isSuccess: true, result: ordersData});
 	}catch(e) {
 		res.send({isSuccess: false, result: "请重新登陆"});
 	}
-	
 }
 
 function GetOrderDetail(){
@@ -37,10 +34,10 @@ function GetOrderDetail(){
 async function getOrderDetail(req,res){
 	try {
 		//获取某个订单信息
-		var orderDetail = await common.findUserOrders(req.body.token, req.body.orderId);
+		var orderDetail = await findUserOrders(req.body.token, req.body.orderId);
 		orderDetail = orderDetail[0].dataValues;
 		//获取订单中的产品信息
-		orderDetail.products = await common.getProductById(orderDetail.productId);
+		orderDetail.products = await productUtil.getProductById(orderDetail.productId);
 		res.send({isSuccess:true, result: orderDetail})
 	}catch(e) {
 		res.send({isSuccess:false, result: "订单信息不存在"});
@@ -57,7 +54,7 @@ function AddOrder(){
 function add(req,res){
 	var data = req.body;
 	order.create({
-		userId: common.getUserId(data.token),
+		userId: tokenUtil.getUserId(data.token),
 		totalCost: data.totalCost,
 		totalNum: data.totalNum,
 		isInvoice: data.isInvoice,
@@ -81,11 +78,22 @@ function del(req,res){
 	order.destroy({
 		where:{
 			id: data.orderId,
-			userId: common.getUserId(data.token)
+			userId: tokenUtil.getUserId(data.token)
 		}
 	}).then(function(result){
 		res.send({isSuccess:true,result:result});	
 	});
+}
+
+async function findUserOrders(token, orderId) {
+	var params = {userId: tokenUtil.getUserId(token)};
+	if (orderId) {
+		params.id = orderId;
+	}
+	var orders = await order.findAll({
+		where:params
+	}); 
+	return orders;
 }
 
 module.exports={
@@ -93,4 +101,5 @@ module.exports={
 	addOrder:new AddOrder(),
 	getOrderDetail: new GetOrderDetail(),
 	delOrder: new DelOrder(),
+	findUserOrders: findUserOrders
 }
