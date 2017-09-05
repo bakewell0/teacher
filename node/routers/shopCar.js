@@ -1,7 +1,6 @@
 const shopCar=require("../model.js").shopCar;   
-const decodeToken=require("../token.js").decodeToken;
+const tokenUtil=require("../token.js");
 const product=require("../model.js").product; 
-var Sequelize=require("sequelize");
 var sequelize=require("../connect.js");
 
 //添加到购物车
@@ -12,35 +11,35 @@ function addShopCar(){
 }
 
 async function add(req,res){
-  var user=decodeToken(req.body.token);
-	//插入购物车
+  //插入购物车
+  if(!req.body.id) {
+  	res.send({isSuccess: false, result:'商品ID不能为空'})
+  	return;
+  }
   var _shopCar = await shopCar.findOrCreate({
 	where: {
     		ProductId: req.body.id,
-  		UserId:user[0].id
+  		UserId:tokenUtil.getUserId(req.body.token)
     },
     defaults: {
         ProductId: req.body.id,
-  		UserId:user[0].id,
+  		UserId:tokenUtil.getUserId(req.body.token),
   		ProductNumber: 1
     }
   });
   
   if (!_shopCar[1]) {
   	var data = _shopCar[0].dataValues;
-  	var num = parseInt(data.ProductNumber) + 1;
-	shopCar.update(
-		{ ProductNumber: num },
-		{ where: { id: data.id }
-	}).then(function(result) {
-	    res.send({isSuccess: true, result:'购物车更新成功'})
-	});
+  	data.ProductNumber = parseInt(data.ProductNumber) + 1;
+  	// 更新shopcar
+  	await updateNum(data, req.body.token);
+	res.send({isSuccess: true, result:'购物车更新成功'});
   }else {
   	res.send({isSuccess: true, result:'购物车添加成功'})
   }
-};	
+};
 
-//获取购物车信息 todo
+//获取购物车信息
 function getShopCar(){
 	this.exec = function(route, req, res){		
 		get(req,res);
@@ -48,11 +47,10 @@ function getShopCar(){
 }
 
 async function get(req,res){
-	var user=decodeToken(req.body.token);
 	var shopCarData = [];
 	var productIds = [];
 	var shopCars = await shopCar.findAll({
-		where:{UserId:user[0].id},
+		where:{UserId:tokenUtil.getUserId(req.body.token)},
 		order:sequelize.col("ProductId")
 	});
 	
@@ -75,13 +73,14 @@ async function get(req,res){
 function delShopCar(){
 	this.exec = function(route, req, res){		
 		del(req,res);
-	}		
+	}
 }
 
 function del(req,res){
 	shopCar.destroy({
 		where:{
-			id:req.body.id
+			id:req.body.id,
+			UserId:tokenUtil.getUserId(req.body.token)
 		}
 	})
 	.then(function(result){
@@ -89,8 +88,35 @@ function del(req,res){
 	});
 }
 
+function updateShopCar() {
+	this.exec = function(route, req, res) {
+		update(req, res);
+	}
+}
+
+async function update(req, res) {
+	var products = req.body.products;
+	for(var i = 0; i < products.length; i++) {
+		await updateNum(products[i], req.body.token);
+	}
+	res.send({isSuccess: true, result: "购物车数量更新成功"})
+}
+
+async function updateNum(data, token) {
+	var result = await shopCar.update(
+		{ ProductNumber: data.ProductNumber },
+		{ where: { 
+			id: data.id,
+			UserId:tokenUtil.getUserId(token)
+		}
+	})
+	return result;
+}
+
+
 module.exports={
 	addShopCar:new addShopCar(),
 	getShopCar:new getShopCar(),
-	delShopCar:new delShopCar()
+	delShopCar:new delShopCar(),
+	updateShopCar: new updateShopCar()
 };
