@@ -51,7 +51,7 @@ function SetHeadImage(){
 		upload(req.files.file.path,'../data/img/upload/'+token[0].id+"headImage.jpg");  
 	    //更新头像url
 	    user.update({
-			headImage:url+token[0].id+"headImage.jpg"
+			headImage:url+token[0].id+"headImage.jpg?ver="+Math.random()
 		}, 
 		{
 			where: {
