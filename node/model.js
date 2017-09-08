@@ -42,7 +42,8 @@ var order = sequelize.define('order', {
 	message: Sequelize.STRING,
 	state: Sequelize.STRING,
 	productId: Sequelize.STRING,
-	productNum: Sequelize.STRING
+	productNum: Sequelize.STRING,
+	orderTitle: Sequelize.STRING
 });
 
 

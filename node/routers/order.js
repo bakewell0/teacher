@@ -9,10 +9,10 @@ function GetOrder(){
 }
 
 async function get(req,res){
-	try {
+//	try {
 		var ordersData = [];
 		//获取所有订单信息
-		var orders = await findUserOrders(req.body.token, req.body.orderId);
+		var orders = await findUserOrders(req.body.token, req.body.orderId, req.body.orderTitle);
 		for(let i = 0; i<orders.length; i++) {
 			//获取产品信息
 			var data = orders[i].dataValues;
@@ -20,9 +20,9 @@ async function get(req,res){
 			ordersData.push(data);
 		}
 		res.send({isSuccess: true, result: ordersData});
-	}catch(e) {
-		res.send({isSuccess: false, result: "请重新登陆"});
-	}
+//	}catch(e) {
+//		res.send({isSuccess: false, result: "请重新登陆"});
+//	}
 }
 
 function GetOrderDetail(){
@@ -61,7 +61,8 @@ function add(req,res){
 		message: data.message,
 		state: data.state,
 		productId: data.productId,
-		productNum: data.productNum
+		productNum: data.productNum,
+		orderTitle: data.orderTitle
 	}).then(function(result){
 		res.send({isSuccess:true, result: result})
 	});
@@ -85,16 +86,21 @@ function del(req,res){
 	});
 }
 
-async function findUserOrders(token, orderId) {
+async function findUserOrders(token, orderId, orderTitle) {
 	var params = {userId: tokenUtil.getUserId(token)};
 	if (orderId) {
 		params.id = orderId;
+	}
+	if (orderTitle) {
+		params.orderTitle = {$like: '%'+orderTitle+'%'};
 	}
 	var orders = await order.findAll({
 		where:params
 	}); 
 	return orders;
 }
+
+
 
 module.exports={
 	getOrder:new GetOrder(),
