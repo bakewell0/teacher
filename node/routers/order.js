@@ -9,20 +9,23 @@ function GetOrder(){
 }
 
 async function get(req,res){
-//	try {
+	try {
 		var ordersData = [];
 		//获取所有订单信息
-		var orders = await findUserOrders(req.body.token, req.body.orderId, req.body.orderTitle);
+		var orders = await findUserOrders(req.body.token);
 		for(let i = 0; i<orders.length; i++) {
 			//获取产品信息
 			var data = orders[i].dataValues;
-			data.products = await productUtil.getProductById(orders[i].productId);
-			ordersData.push(data);
+			var products = await productUtil.getProduct(orders[i].productId, req.body.productName);
+			if (products.length) {
+				data.products = await productUtil.getProduct(orders[i].productId);
+				ordersData.push(data);
+			}
 		}
 		res.send({isSuccess: true, result: ordersData});
-//	}catch(e) {
-//		res.send({isSuccess: false, result: "请重新登陆"});
-//	}
+	}catch(e) {
+		res.send({isSuccess: false, result: "请重新登陆"});
+	}
 }
 
 function GetOrderDetail(){
@@ -37,7 +40,7 @@ async function getOrderDetail(req,res){
 		var orderDetail = await findUserOrders(req.body.token, req.body.orderId);
 		orderDetail = orderDetail[0].dataValues;
 		//获取订单中的产品信息
-		orderDetail.products = await productUtil.getProductById(orderDetail.productId);
+		orderDetail.products = await productUtil.getProduct(orderDetail.productId);
 		res.send({isSuccess:true, result: orderDetail})
 	}catch(e) {
 		res.send({isSuccess:false, result: "订单信息不存在"});
@@ -86,13 +89,10 @@ function del(req,res){
 	});
 }
 
-async function findUserOrders(token, orderId, orderTitle) {
+async function findUserOrders(token, orderId) {
 	var params = {userId: tokenUtil.getUserId(token)};
 	if (orderId) {
 		params.id = orderId;
-	}
-	if (orderTitle) {
-		params.orderTitle = {$like: '%'+orderTitle+'%'};
 	}
 	var orders = await order.findAll({
 		where:params

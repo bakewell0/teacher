@@ -1,12 +1,20 @@
 const product=require("../model.js").product;
 
-async function getProductById(productId) {
+async function getProduct(productId, productName) {
+	var params = {};
+	if (productId) {
+		params.id = eval(productId);
+	}
+	if (productName) {
+		params.Name = {$like: '%'+productName+'%'};
+	}
+
 	var products = await product.findAll({
-		where: {id: eval(productId)}
-	})
+		where:params
+	});
 	return products;
 }
 
 module.exports={
-	getProductById: getProductById
+	getProduct: getProduct
 }
