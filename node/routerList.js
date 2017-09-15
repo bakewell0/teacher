@@ -22,6 +22,8 @@ router.addRoute('/getComment', require('./routers/comment').getComment);
 
 router.addRoute('/getBrowseLog', require('./routers/browselog').getBrowseLog);
 router.addRoute('/getCollectionLog', require('./routers/collectionLog').getCollectionLog);
+router.addRoute('/addCollectionLog', require('./routers/collectionLog').addCollectionLog);
+router.addRoute('/delCollectionLog', require('./routers/collectionLog').delCollectionLog);
 
 //以下非跳蚤
 router.addRoute('/index', require('./routers/index'));
