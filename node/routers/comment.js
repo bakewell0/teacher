@@ -1,5 +1,7 @@
 const comments = require("../model.js").comments;
 const getUserId = require("../token.js").getUserId;
+const findUserOrders=require("./order.js").findUserOrders;
+const productUtil = require("./product.js");
 
 function addComment() {
 	this.exec = function(route, req, res) {
@@ -41,14 +43,21 @@ function add(req, res) {
 	});
 };
 
-function get(req, res) {
-	comments.findAll({
+async function get(req, res) {
+	var _comments=await comments.findAll({
 		where: {
 			userId: getUserId(req.body.token)
 		}
-	}).then(function(result) {
-		res.send({ isSuccess: true, result: result });
-	})
+	})	
+	for(var i=0;i<_comments.length;i++){
+		var orderId=_comments[i].orderId;		
+		var orderDetail = await findUserOrders(req.body.token,orderId);
+		orderDetail = orderDetail[0].dataValues;
+		//获取订单中的产品信息
+		orderDetail.products = await productUtil.getProduct(orderDetail.productId);
+		_comments[i].dataValues.order=orderDetail;		
+	}	
+	res.send(_comments);
 }
 
 module.exports = {
