@@ -34,6 +34,7 @@ var person = sequelize.define('person', {
     	Name:Sequelize.STRING
 });
 
+//订单
 var order = sequelize.define('order', {
 	userId: Sequelize.INTEGER,
 	totalCost: Sequelize.STRING,
@@ -56,13 +57,27 @@ var comments = sequelize.define('comment', {
 		serviceScore:Sequelize.STRING
 });
 
+//浏览记录
+var browselog = sequelize.define('browselog', {
+	userId: Sequelize.INTEGER,
+	productId: Sequelize.INTEGER
+});
+
+//浏览记录
+var collectionlog = sequelize.define('collectionlog', {
+	userId: Sequelize.INTEGER,
+	productId: Sequelize.INTEGER
+});
+
 var models={
 		user:user,
 		product:product,
 		shopCar:shopCar,
 		person:person,
 		order:order,
-		comments:comments
+		comments:comments,
+		browselog:browselog,
+		collectionlog:collectionlog
 }
 
 module.exports=models;
