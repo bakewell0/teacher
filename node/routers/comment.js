@@ -1,6 +1,4 @@
 const comments = require("../model.js").comments;
-console.log(333);
-console.log(comments);
 const getUserId = require("../token.js").getUserId;
 
 function addComment() {
