@@ -10,7 +10,7 @@ function GetCollectionLog(){
 }
 
 function AddCollectionLog() {
-	this.exec = function(route, req, res){		
+	this.exec = function(route, req, res){
 	    add(req,res);
 	}
 }
@@ -18,6 +18,12 @@ function AddCollectionLog() {
 function DelCollectionLog() {
 	this.exec = function(route, req, res){		
 	    del(req,res);
+	}
+}
+
+function GetIsCollection() {
+	this.exec = function(route, req, res){		
+	    isCollection(req,res);
 	}
 }
 
@@ -77,9 +83,24 @@ function del(req,res) {
 	});
 }
 
+function isCollection(req,res) {
+	collectionlog.findAll({
+		where: {
+			userId: getUserId(req.body.token),
+			productId:req.body.productId
+		}
+	}).then(function(result) {
+		var isCollection = false;
+		if(result.length){
+			isCollection = true;
+		}
+		res.send({isSuccess:true,isCollection:isCollection});
+	})
+}
 
 module.exports={
 	getCollectionLog:new GetCollectionLog(),
 	addCollectionLog:new AddCollectionLog(),
-	delCollectionLog:new DelCollectionLog()
+	delCollectionLog:new DelCollectionLog(),
+	getIsCollection:new GetIsCollection()
 }
