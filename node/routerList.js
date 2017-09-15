@@ -16,7 +16,8 @@ router.addRoute('/addOrder', require('./routers/order').addOrder);
 router.addRoute('/getOrder', require('./routers/order').getOrder);
 router.addRoute('/getOrderDetail', require('./routers/order').getOrderDetail);
 router.addRoute('/delOrder', require('./routers/order').delOrder);
-
+router.addRoute('/addComment', require('./routers/comment').addComment);
+router.addRoute('/getComment', require('./routers/comment').getComment);
 //以下非跳蚤
 router.addRoute('/index', require('./routers/index'));
 router.addRoute('/shop', require('./routers/shop'));

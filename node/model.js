@@ -46,13 +46,23 @@ var order = sequelize.define('order', {
 	orderTitle: Sequelize.STRING
 });
 
+//评论
+var comments = sequelize.define('comment', {
+		orderId:Sequelize.INTEGER,
+		userId:Sequelize.INTEGER,
+		content:Sequelize.STRING,
+		describeScore:Sequelize.STRING,
+		logisticsScore:Sequelize.STRING,
+		serviceScore:Sequelize.STRING
+});
 
 var models={
 		user:user,
 		product:product,
 		shopCar:shopCar,
 		person:person,
-		order:order
+		order:order,
+		comments:comments
 }
 
 module.exports=models;
