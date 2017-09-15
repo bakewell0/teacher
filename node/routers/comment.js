@@ -13,17 +13,17 @@ function getComment() {
 	}
 }
 
-async function add(req, res) {
+function add(req, res) {
 	//插入购物车
 	if(!req.body.orderId) {
 		res.send({ isSuccess: false, result: '订单ID不能为空' })
 		return;
 	}
-	if(!req.body.userId) {
+	if(!req.body.token) {
 		res.send({ isSuccess: false, result: '登录信息不能为空' })
 		return;
 	}
-	var comments = await comments.findOrCreate({
+	comments.findOrCreate({
 		where: {
 			orderId: req.body.orderId,
 			userId: getUserId(req.body.token)
@@ -32,10 +32,12 @@ async function add(req, res) {
 			orderId: req.body.orderId,
 			userId: getUserId(req.body.token),
 			content: req.body.content,
-			describeScore: req.body,
-			logisticsScore: req.body,
-			serviceScore: req.body
+			describeScore: req.body.describeScore,
+			logisticsScore: req.body.logisticsScore,
+			serviceScore: req.body.serviceScore
 		}
+	}).then(function(result){
+		res.send({"isSuccess":true,result:result})
 	});
 };
 
