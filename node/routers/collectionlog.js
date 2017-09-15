@@ -28,6 +28,10 @@ function GetIsCollection() {
 }
 
 async function get(req,res){
+	if(!req.body.token) {
+		res.send({ isSuccess: false, result: '登录信息不能为空' })
+		return;
+	}
 	var collectionLogsData = [];
 	var collectionLogs = await collectionlog.findAll({
 		where: {
@@ -41,18 +45,18 @@ async function get(req,res){
 		collectionLogsData.push(data);
 	}
 	
-	product.update(
-		{ ProductNumber: data.ProductNumber },
-		{ where: { 
-			id: data.id,
-			UserId:tokenUtil.getUserId(token)
-		}
-	})
-	
 	res.send({isSuccess: true, result: collectionLogsData});
 }
 
 async function add(req,res) {
+	if(!req.body.token) {
+		res.send({ isSuccess: false, result: '登录信息不能为空' })
+		return;
+	}
+	if(!req.body.productId) {
+		res.send({ isSuccess: false, result: '商品ID不能为空' })
+		return;
+	}
 	var _collectionlog = await collectionlog.findOrCreate({
 	where: {
   		userId:getUserId(req.body.token),
@@ -72,6 +76,14 @@ async function add(req,res) {
 }
 
 function del(req,res) {
+	if(!req.body.token) {
+		res.send({ isSuccess: false, result: '登录信息不能为空' })
+		return;
+	}
+	if(!req.body.productId) {
+		res.send({ isSuccess: false, result: '商品ID不能为空' })
+		return;
+	}
 	collectionlog.destroy({
 		where:{
 			userId:getUserId(req.body.token),
@@ -84,6 +96,14 @@ function del(req,res) {
 }
 
 function isCollection(req,res) {
+	if(!req.body.token) {
+		res.send({ isSuccess: false, result: '登录信息不能为空' })
+		return;
+	}
+	if(!req.body.productId) {
+		res.send({ isSuccess: false, result: '商品ID不能为空' })
+		return;
+	}
 	collectionlog.findAll({
 		where: {
 			userId: getUserId(req.body.token),
