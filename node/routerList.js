@@ -21,6 +21,8 @@ router.addRoute('/addComment', require('./routers/comment').addComment);
 router.addRoute('/getComment', require('./routers/comment').getComment);
 
 router.addRoute('/getBrowseLog', require('./routers/browselog').getBrowseLog);
+router.addRoute('/addBrowseLog', require('./routers/browselog').addBrowseLog);
+router.addRoute('/delBrowseLog', require('./routers/browselog').delBrowseLog);
 
 router.addRoute('/getCollectionLog', require('./routers/collectionLog').getCollectionLog);
 router.addRoute('/addCollectionLog', require('./routers/collectionLog').addCollectionLog);
