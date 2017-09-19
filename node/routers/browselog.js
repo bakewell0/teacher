@@ -34,8 +34,13 @@ async function get(req,res){
 		order:sequelize.col("updatedAt")
 	})
 	
-	var browselogData = [];
+	var browselogData = await setBrowselogData(browselogs);
 	
+	res.send({ isSuccess: true, result: browselogData})
+}
+
+async function setBrowselogData(browselogs) {
+	var browselogData = [];
 	if(browselogs.length) {
 		var preTime = browselogs[0].dataValues.updatedAt.toLocaleDateString();
 		var browse = {};
@@ -43,24 +48,25 @@ async function get(req,res){
 	}
 	
 	for(var i = 0; i < browselogs.length; ) {
-		var curTime = browselogs[i].dataValues.updatedAt.toLocaleDateString();
+		var _data = browselogs[i].dataValues;
+		var curTime = _data.updatedAt.toLocaleDateString();
 		if (curTime == preTime) {
 			browse.dateTime = curTime;
-			var productId = browselogs[i].dataValues.productId;
-			browselogs[i].dataValues.product = await productUtil.getProduct(productId);
-			browse.browselogs.push(browselogs[i].dataValues);	
+			_data.product = await productUtil.getProduct(_data.productId);
+			browse.browselogs.push(_data);	
 			i++;	
 		}else {
-			preTime = browselogs[i].dataValues.updatedAt.toLocaleDateString();
+			preTime = _data.updatedAt.toLocaleDateString();
 			browselogData.push(browse);
 			browse = {};
 			browse.browselogs = [];
 		}
 	}
 	
-	browselogData.push(browse);
-	
-	res.send({ isSuccess: true, result: browselogData})
+	if(browselogs.length) {
+		browselogData.push(browse);
+	}
+	return browselogData;
 }
 
 async function add(req,res){
@@ -91,9 +97,9 @@ async function add(req,res){
   			productId:req.body.productId
 		}
 	})
-  	res.send({isSuccess: true, result:'商品已浏览'});
+  	res.send({isSuccess: true, result:'更新商品浏览'});
   }else {
-  	res.send({isSuccess: true, result:'商品浏览'});
+  	res.send({isSuccess: true, result:'添加商品浏览'});
   }
 }
 

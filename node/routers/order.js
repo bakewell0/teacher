@@ -56,6 +56,14 @@ function AddOrder(){
 
 function add(req,res){
 	var data = req.body;
+	if(!data.productId){
+		res.send({isSuccess:true, result: "商品ID不能为空"});
+		return;
+	}
+	if(!data.productNum){
+		res.send({isSuccess:true, result: "商品数量不能为空"});
+		return;
+	}
 	order.create({
 		userId: tokenUtil.getUserId(data.token),
 		totalCost: data.totalCost,
