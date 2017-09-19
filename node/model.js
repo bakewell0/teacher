@@ -20,7 +20,8 @@ var product = sequelize.define('product', {
   		CurPrice:Sequelize.STRING,
   		OldPrice:Sequelize.STRING,
   		IsBook:Sequelize.STRING,
-  		Des:Sequelize.STRING
+  		Des:Sequelize.STRING,
+  		ShopName:Sequelize.STRING
 });
 //购物车
 var shopCar = sequelize.define('shopCar', {
@@ -43,8 +44,7 @@ var order = sequelize.define('order', {
 	message: Sequelize.STRING,
 	state: Sequelize.STRING,
 	productId: Sequelize.STRING,
-	productNum: Sequelize.STRING,
-	orderTitle: Sequelize.STRING
+	productNum: Sequelize.STRING
 });
 
 //评论
