@@ -1,6 +1,7 @@
 const tokenUtil=require("../token.js");
 const order=require("../model.js").order;
 const productUtil = require("./product.js");
+const delComment=require("./comment.js").delComment;
 
 function GetOrder(){
 	this.exec = function(route, req, res){		
@@ -95,6 +96,13 @@ function del(req,res){
 	}).then(function(result){
 		res.send({isSuccess:true,result:result});	
 	});
+	//订单有评价，则删除评价
+	try{
+		delComment(req,res);
+	}
+	catch(e){
+		console.log(e);
+	}	
 }
 
 async function findUserOrders(token, orderId) {

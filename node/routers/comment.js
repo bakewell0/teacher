@@ -60,7 +60,20 @@ async function get(req, res) {
 	res.send(_comments);
 }
 
+function delComment(req, res){
+	comments.destroy({
+		where:{
+			orderId: req.body.orderId,
+			userId: getUserId(req.body.token)
+		}
+	})
+	.then(function(result){
+		res.send({isSuccess:true,result:result});	
+	});	
+}
+
 module.exports = {
 	getComment: new getComment(),
-	addComment: new addComment()
+	addComment: new addComment(),
+	delComment:	delComment
 }
