@@ -2,6 +2,7 @@ const tokenUtil=require("../token.js");
 const order=require("../model.js").order;
 const productUtil = require("./product.js");
 const delComment=require("./comment.js").delComment;
+const findUserOrders = require("./orderUtil.js").findUserOrders;
 
 function GetOrder(){
 	this.exec = function(route, req, res){		
@@ -105,23 +106,10 @@ function del(req,res){
 	}	
 }
 
-async function findUserOrders(token, orderId) {
-	var params = {userId: tokenUtil.getUserId(token)};
-	if (orderId) {
-		params.id = orderId;
-	}
-	var orders = await order.findAll({
-		where:params
-	}); 
-	return orders;
-}
-
-
 
 module.exports={
 	getOrder:new GetOrder(),
 	addOrder:new AddOrder(),
 	getOrderDetail: new GetOrderDetail(),
-	delOrder: new DelOrder(),
-	findUserOrders: findUserOrders
+	delOrder: new DelOrder()
 }

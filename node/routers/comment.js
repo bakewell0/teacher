@@ -1,6 +1,6 @@
 const comments = require("../model.js").comments;
 const getUserId = require("../token.js").getUserId;
-const findUserOrders=require("./order.js").findUserOrders;
+const findUserOrders = require("./orderUtil.js").findUserOrders;
 const productUtil = require("./product.js");
 
 function addComment() {
@@ -54,6 +54,7 @@ async function get(req, res) {
 		var orderDetail = await findUserOrders(req.body.token,orderId);
 		orderDetail = orderDetail[0].dataValues;
 		//获取订单中的产品信息
+		
 		orderDetail.products = await productUtil.getProduct(orderDetail.productId);
 		_comments[i].dataValues.order=orderDetail;		
 	}	
