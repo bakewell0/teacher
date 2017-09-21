@@ -89,6 +89,13 @@ function DelOrder(){
 
 function del(req,res){
 	var data = req.body;
+	//订单有评价，则删除评价
+	try{
+		delComment(req,res);
+	}
+	catch(e){
+		console.log(e);
+	}	
 	order.destroy({
 		where:{
 			id: data.orderId,
@@ -97,13 +104,7 @@ function del(req,res){
 	}).then(function(result){
 		res.send({isSuccess:true,result:result});	
 	});
-	//订单有评价，则删除评价
-	try{
-		delComment(req,res);
-	}
-	catch(e){
-		console.log(e);
-	}	
+	
 }
 
 

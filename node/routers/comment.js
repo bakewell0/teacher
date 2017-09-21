@@ -68,9 +68,6 @@ function delComment(req, res){
 			userId: getUserId(req.body.token)
 		}
 	})
-	.then(function(result){
-		res.send({isSuccess:true,result:result});	
-	});	
 }
 
 module.exports = {
