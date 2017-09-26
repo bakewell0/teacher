@@ -12,6 +12,8 @@ router.addRoute('/getPerson', require('./routers/person').getPerson);
 router.addRoute('/setPerson', require('./routers/person').setPerson);
 router.addRoute('/setHeadImage', require('./routers/person').setHeadImage);
 
+router.addRoute('/productBrowseTimes', require('./routers/productBrowseTimes'));
+
 router.addRoute('/addOrder', require('./routers/order').addOrder);
 router.addRoute('/getOrder', require('./routers/order').getOrder);
 router.addRoute('/getOrderDetail', require('./routers/order').getOrderDetail);
