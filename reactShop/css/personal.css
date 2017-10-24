@@ -1,0 +1,223 @@
+html {
+	background: #efefef;
+	
+}
+
+header {
+	position: relative;
+	height: 0.88rem;
+	background: #33ccff;
+}
+
+header p {
+	position: absolute;
+	left: 0.32rem;
+	top: 50%;
+	display: inline-block;
+	height: 0.2rem;
+	width: 0.2rem;
+	border-bottom: 0.04rem solid white;
+	border-left: 0.04rem solid white;
+	transform: translateY(-50%) scaleY(1) rotate(45deg);
+	cursor: pointer;
+}
+
+header span {
+	font-size: 0.32rem;
+	color: white;
+	text-align: center;
+	line-height: 0.88rem;
+	display: block;
+}
+
+header i {
+	position: absolute;
+	font-size: 0.26rem;
+	color: white;
+	right: 0.3rem;
+	height: 0.88rem;
+	display: block;
+	line-height: 0.88rem;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+}
+
+.banner {
+	box-sizing: border-box;
+	position: relative;
+	margin: 0 auto;
+	height: 3.2rem;
+	background: url(../img/grzx/gz_02.png) no-repeat;
+	background-size: 100% 100%;
+	padding-top: 0.4rem;
+}
+
+.banner .headportrait {
+	display: block;
+	height: 1.2rem;
+	width: 1.2rem;
+	margin: 0 auto;
+	border: 0.01rem solid #fff;
+	border-radius: 50%;
+	cursor: pointer;
+	background: white;
+}
+
+.banner strong {
+	display: block;
+	color: white;
+	font-size: 0.21rem;
+	line-height: 0.63rem;
+	padding-bottom: 0.21rem;
+	text-align: center;
+}
+
+.banner p {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	height: 0.88rem;
+	background: url(../img/grzx/per_bkg.png) no-repeat;
+	background-size: 100%;
+}
+
+.banner p span {
+	flex: 1;
+	cursor: pointer;
+}
+
+.banner p img {
+	height: 0.5rem;
+}
+
+.banner p span i {
+	display: block;
+	line-height: 0.44rem;
+	font-size: 0.24rem;
+	color: white;
+	text-align: center;
+}
+
+.banner p span strong {
+	display: block;
+	padding: 0;
+	line-height: 0.44rem;
+	font-size: 0.24rem;
+	color: white;
+	text-align: center;
+}
+
+.my {
+	padding-top: 0.08rem;
+	margin-bottom: 0.2rem;
+	background: #fff;
+	display: flex;
+	height: 1.08rem;
+}
+
+.my span {
+	cursor: pointer;
+	position: relative;
+	display: block;
+	width: 25%;
+}
+
+.my span strong {
+	display: block;
+	height: 0.3rem;
+	width: 0.3rem;
+	border-radius: 50%;
+	border: 0.01rem solid red;
+	position: absolute;
+	top: 0.05rem;
+	left: 50%;
+	background: white;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.my span strong em {
+	color: red;
+	width: 0.29rem;
+	line-height: 0.3rem;
+	font-weight: bold;
+}
+
+.my span img {
+	padding-top: 0.2rem;
+	display: block;
+	height: 0.32rem;
+	margin: 0 auto;
+}
+
+.my span i {
+	padding-top: 0.2rem;
+	font-size: 0.18rem;
+	display: block;
+	text-align: center;
+}
+
+.goods {}
+
+.goods p {
+	background: white;
+	line-height: 0.8rem;
+	position: relative;
+}
+
+.goods p i {
+	background-size: 0.32rem 0.32rem!important;
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 0.2rem;
+	transform: translateY(-50%);
+	width: 0.32rem;
+	height: 0.32rem;
+}
+
+.goods .p_one {
+	cursor: pointer;
+}
+
+.goods .p_one i {
+	background: url(../img/grzx/gz_05.png) no-repeat left;
+}
+
+.goods .p_two {
+	display: none;
+}
+
+.goods .p_two i {
+	background: url(../img/grzx/gz_08.png) no-repeat left;
+}
+
+.goods .p_three {
+	margin-top: 0.2rem;
+	cursor: pointer;
+}
+
+.goods .p_three i {
+	background: url(../img/grzx/gz_10.png) no-repeat left;
+}
+
+.goods p strong {
+	margin-left: 0.7rem;
+	font-size: 0.27rem;
+	color: #666666;
+}
+
+.goods .p_one strong {
+	border-bottom: 0.01rem solid #efefef;
+	display: block;
+}
+
+
+/*yaoyin*/
+.collection{
+	cursor: pointer;
+}
+

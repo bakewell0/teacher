@@ -1,0 +1,175 @@
+	html {
+		background: #f5f5f5;
+	}
+	/*头部公共样式CSS*/
+	
+	header {
+		position: relative;
+		height: 0.88rem;
+		border-bottom: 0.01rem solid #33CCFF;
+		background: #33CCFF;
+	}
+	
+	header p {
+		position: absolute;
+		left: 0.32rem;
+		top: 50%;
+		display: inline-block;
+		height: 0.2rem;
+		width: 0.2rem;
+		border-bottom: 0.04rem solid #FFFFFF;
+		border-left: 0.04rem solid #FFFFFF;
+		transform: translateY(-50%) rotate(45deg);
+		cursor: pointer;
+	}
+	
+	header span {
+		font-size: 0.32rem;
+		color: #FFFFFF;
+		text-align: center;
+		line-height: .88rem;
+		display: block;
+		color: #fff;
+	}
+	/*写评价模块CSS*/
+	
+	.write {
+		height: 1.06rem;
+		line-height: 1.06rem;
+		background: #ffffff;
+		position: relative;
+		padding-left: 0.32rem;
+		margin-bottom: 0.18rem;
+	}
+	/*头像*/
+	
+	.circle {
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: 0.25rem;
+		display: inline-block;
+		vertical-align: middle;
+		margin-right: 0.1rem;
+	}
+	
+	.user {
+		color: #0a151b;
+		font-size: 0.24rem;
+	}
+	
+	.write_btn {
+		font-size: 0.22rem;
+		height: 0.5rem;
+		border-radius: 0.2rem;
+		background: #FFFFFF;
+		border: 1px solid #e35d28;
+		color: #e35d28;
+		position: absolute;
+		top: 50%;
+		right: 0.25rem;
+		transform: translate(0, -50%);
+		cursor: pointer;
+		outline: none;
+	}
+	/*追评模块CSS*/
+	
+	.chase_ratings {
+		height: 2.16rem;
+		background: #FFFFFF;
+		color: #a0a0a0;
+		margin-bottom: 0.18rem;
+	}
+	
+	.chase_title {
+		font-size: 0.24rem;
+		display: inline-block;
+		margin: 0.26rem 0 0.2rem 0;
+	}
+	
+	.chase_ratings li {
+		padding: 0 0.25rem 0 0.32rem;
+	}
+	
+	.chase_img {
+		overflow: hidden;
+	}
+	
+	.chase_img img {
+		width: 1.14rem;
+		height: 1.14rem;
+		float: left;
+	}
+	/*全部浏览模块CSS*/
+	
+	.browse {
+		height: 0.78rem;
+		line-height: 0.78rem;
+		border-bottom: 0.03rem solid #ff5300;
+		background: #FFFFFF;
+		color: #ff5300;
+		text-align: center;
+		font-size: 0.3rem;
+	}
+	
+	.all li {
+		background: #FFFFFF;
+	}
+	
+	.all li div {
+		position: relative;
+		padding-left: 0.32rem;
+	}
+	
+	.all_list {
+		margin-bottom: 0.18rem;
+	}	
+	.color p:nth-child(1) {
+		color: #989898;
+		font-size: 0.22rem;
+	}
+	
+	.color p:nth-child(2) {
+		font-size: 0.26rem;
+		margin: 0.3rem 0;
+	}
+	
+	.user_information {
+		height: 1.06rem;
+		line-height: 1.06rem;
+	}
+	
+	.information {
+		overflow: hidden;
+		background: #f9f9f9;
+		font-size: 0.24rem;
+	}
+	
+	.information p {
+		margin: 0.18rem 0;
+		color: #555555;
+	}
+	
+	.information img {
+		width: 1.26rem;
+		height: 1.26rem;
+		float: left;
+	}
+	
+	.information div {
+		float: left;
+	}
+	
+	.number {
+		height: 0.9rem;
+		line-height: 0.9rem;
+		font-size: 0.22rem;
+		color: #989898;
+	}
+	
+	div.information {
+		padding-left: 0 !important;
+	}
+	
+	.evaluate {
+		padding-left: 0.32rem;
+	}

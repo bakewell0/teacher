@@ -1,0 +1,35 @@
+body{margin:0;padding:0; font:"微软雅黑"; font-size:11px;font-family:"微软雅黑", Arial;-webkit-tap-highlight-color:transparent;}
+li{list-style-type:none; padding:0; margin:0;}
+img{ vertical-align:top;}
+ul,dl,dt,dd{padding:0; margin:0;}
+p,h1,h2,h3,h4,h5,h6{padding:0; margin:0; font-weight:normal;}
+a{text-decoration: none;}
+input{border: 0; padding: 0; outline: none;-webkit-appearance : none ;}
+html{border: none; padding: none;}
+body{padding: 0;margin: 0;}
+i,em{font-style: normal;}
+strong{font-weight: normal;}
+
+@media only screen and (max-device-width: 360px) {
+	html{
+			font-size: 50px;	
+	}
+}
+
+@media only screen and  (min-device-width: 360px) and (max-device-width: 400px) {
+	html{
+			font-size: 56.25px;	
+	}
+}
+
+@media only screen and (min-device-width: 400px) and (max-device-width: 500px) {
+	html{
+			font-size: 64.6px;	
+	}
+}
+
+@media only screen and (min-device-width: 500px) {
+	html{
+			font-size: 78.1px;	
+	}
+}

@@ -1,0 +1,152 @@
+html{
+	background: #fff;
+}
+header{
+	position: relative;
+	height: 0.88rem;
+	background: #33ccff;
+	border-bottom: 0.01rem solid #a9a9a9;
+}
+header p{
+	position: absolute;
+	left: 0.32rem;
+	top:50%;
+	display: inline-block;
+    height: 0.2rem;
+    width: 0.2rem;
+    border-bottom: 0.04rem solid white;
+    border-left: 0.04rem solid white;
+    transform:translateY(-50%) scaleY(1) rotate(45deg);
+    cursor: pointer;
+}
+header span{
+	font-size: 0.3rem;
+	color: white;
+	text-align: center;
+	line-height: 1rem;
+	display: block;
+}
+header div{
+	position: absolute;
+	bottom: 0.4rem;
+	right: 0.25rem;
+	overflow: hidden;
+}
+header div a{
+	height: 0.09rem;
+	width: 0.09rem;
+	display: block;
+	background: #FFFFFF;
+	border: 0.01rem solid #FFFFFF;
+	border-radius: 50%;
+	float: left;
+	margin-right: 0.04rem;
+}
+header div a:last-child{
+	margin-right: 0;
+}
+.install{
+	background: white;
+}
+.install p{
+	border-bottom:0.01rem solid #eeeeee ;
+	overflow: hidden;
+	height: 0.81rem;
+	line-height: 0.81rem;
+	text-align: left;
+	font-size: 0.28rem;
+	color: #000000;
+	margin-left: 0.24rem;
+	box-sizing: border-box;
+	position: relative;
+}
+.install p:first-child{
+	line-height: 1.59rem;
+	height: 1.59rem;
+}
+.install p img{
+	position: absolute;
+	right: 0.67rem;
+	top: 50%;
+	transform: translateY(-50%);
+	display: inline-block;
+	border: 0.01rem solid #fff;
+    border-radius: 50%;
+    height: 0.92rem;
+    width: 0.92rem;
+}
+.install p input{
+	text-align: right;
+	line-height: 0.81rem;
+	float: right;
+	display: block;
+	margin-right: 0.7rem;
+	color: #787878;
+	font-size: 0.28rem;
+}
+.install p .file{
+	opacity: 0;
+	position: absolute;
+	right: 0.67rem;
+	top: 50%;
+	transform: translateY(-50%);
+	display: inline-block;
+	height: 0.92rem;
+	width: 0.92rem;
+	margin-right: 0;
+}
+
+.install p i{
+	float: right;
+	display: block;
+	margin-right: 0.7rem;
+	color: #787878;
+}
+.install p strong{
+	position: absolute;
+	right: 0.22rem;
+	top:50%;
+	display: inline-block;
+    height: 0.2rem;
+    width: 0.2rem;
+    border-bottom: 0.02rem solid #999999;
+    border-right: 0.02rem solid #999999;
+    transform:translateY(-50%) scaleY(1) rotate(-45deg)
+}
+.botton{
+	margin: 1rem 0.22rem;
+	margin-bottom: 0;
+}
+.botton input{
+	background: #33ccff;
+	width: 100%;
+	height: 0.6rem;
+	line-height: 0.6rem;
+	color: white;
+	font-size: 0.3rem;
+	text-align: center;
+	border-radius: 0.3rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

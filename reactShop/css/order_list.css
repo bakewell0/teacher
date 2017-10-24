@@ -1,0 +1,212 @@
+html{
+	background: #eeeeee;
+}
+header{
+	position: relative;
+	height: 0.95rem;
+	background: #33ccff;
+}
+header p{
+	position: absolute;
+	left: 0.32rem;
+	top:50%;
+	display: inline-block;
+    height: 0.2rem;
+    width: 0.2rem;
+    border-bottom: 0.04rem solid white;
+    border-left: 0.04rem solid white;
+    transform:translateY(-50%) scaleY(1) rotate(45deg);
+    cursor: pointer;
+}
+header span{
+	font-size: 0.32rem;
+	color: white;
+	text-align: center;
+	line-height: 1rem;
+	display: block;
+}
+.headNav{
+	background: #fff;
+	width:1.5rem;
+	height: 1.3rem;
+	text-align: center;
+	position: absolute;
+    right: 0;
+    top: .94rem;
+    border-radius: 5px;
+    border: 1px solid #eeeeee;
+    z-index:2
+}
+.headNav:before {
+    display: block;
+    content: "";
+    width: .3rem;
+    height: .3rem;
+    border-left: 2px solid #eee;
+    border-bottom: 2px solid #eee;
+    transform: scale(.7) rotate(134deg);
+    position: absolute;
+    top: -.18rem;
+    right: .45rem;
+    background: #fff;
+}
+.headNav a{
+	display: block;
+	font-size: .3rem;
+	line-height: .7rem;
+	border-bottom: 1px solid #eee;
+	margin: 0 .2rem;
+}
+.headNav a:nth-child(2){
+	border: 0;
+}
+header .car{
+	position: absolute;
+	height: 0.36rem;
+	right: 0.32rem;
+	top: 0.35rem;
+}
+header .car img{
+	display: inline-block;
+	height: 0.36rem;
+}
+header .car i{
+	background: white;
+	height: 0.06rem;
+	width: 0.06rem;
+	display: inline-block;
+	border: 0.01rem solid white;
+	margin-left: 0.04rem;
+	border-radius: 50%;
+	margin-top: 0.14rem;
+}
+
+.searchback {
+	width: 100%;
+}
+
+.search {
+	width: 100%;
+	background: white;
+	height: 0.88rem;
+	opacity: 1 !important;
+	display: flex;
+	box-sizing: border-box;
+	border: 0.16rem solid #eeeeee;
+}
+
+.search input{
+	flex: 1;
+	line-height: 0.56rem;
+	background: url(../img/ddlb_bkg.png) no-repeat left;
+	margin-left: 2.1rem;
+	background-size: 0.34rem 0.34rem;
+	box-sizing: border-box;
+	font-size: 0.26rem;
+	padding-left: 0.4rem;
+}
+.recharge{
+	overflow: hidden;
+	font-size: 0.24rem;
+	background: white;
+}
+.recharge p{
+	float: left;
+	height: 0.8rem;
+	line-height: 0.8rem;
+	background: url(../img/tm.png) no-repeat left;
+	background-size: 0.34rem auto;
+	margin-left:0.34rem ;
+	padding-left: 0.6rem;
+}
+.recharge p i{
+	transform: scaleY(1) rotate(-45deg);
+	width: 0.15rem;
+	height: 0.15rem;
+	display: inline-block;
+	border-bottom: 0.01rem solid #8c8c8c;
+	border-right: 0.01rem solid #8c8c8c;
+	margin-left: 0.1rem;
+}
+.recharge span{
+	float: right;
+	color: #c6163c;
+	line-height: 0.8rem;
+	display: block;
+	margin-right: 0.26rem;
+}
+.goods{
+	overflow: hidden;
+	background: white;
+}
+.goods .good{
+	background: #eeeeee;
+	overflow: hidden;
+	padding: 0.2rem 0;
+}
+.goods .good img{
+	margin-left: 0.24rem;
+	width: 2rem;
+	height: 2rem;
+	display: block;
+	float: left;
+}
+.goods .good p{
+	margin-left: 0.25rem;
+	float: left;
+	font-size: 0.25rem;
+	width: 2.2rem;
+}
+.goods .good .cash{
+	font-size: 0.2rem;
+	float: right;
+	margin-right: 0.26rem;
+}
+
+.goods .cash em{
+	margin: 0.2rem 0;
+	display: block;
+	color: #9a9a9a;
+	text-decoration:line-through;
+}
+.goods .cash strong{
+	display: block;
+	text-align: right;
+	color: #9a9a9a;
+}
+.money{
+	line-height: 0.8rem;
+	border-bottom: 0.01rem solid #e5e5e5;
+	text-align: right;
+	font-size: 0.22rem;
+	padding-right: 0.26rem;
+}
+.money i{
+	font-size: 0.24rem;
+}
+
+.evaluate{
+	height: 1rem;
+	overflow: hidden;
+	border-bottom: 0.2rem solid #eeeeee;
+}
+.evaluate a{
+	float: right;
+	text-align: center;
+	margin: 0.22rem 0.2rem 0 0;
+	display: block;
+	font-size: 0.26rem;
+	height: 0.56rem;
+	width: 1.5rem;
+	border: 0.01rem solid #c3c3c3;
+	line-height: 0.56rem;
+	box-sizing: border-box;
+	border-radius: 0.05rem;
+}
+.evaluate a:first-child{
+	color: #913a5d;
+	border: 0.01rem solid #913a5d;
+}	
+.orderi{
+	cursor: pointer;
+}
