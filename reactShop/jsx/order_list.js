@@ -20,18 +20,21 @@ class search extends React.Component {
 		return(
 			<div className="searchback" style={{background: "none",position: "relative"}}>
 			<div className="search">
-			<input placeholder="搜索所有订单" className="input" style={{marginLeft:"0px"}} />
+			<input placeholder="搜索所有订单" className="input" style={{marginLeft:"0px"}} onFocus={ this.searchText }/>
 			</div>
 			</div>
 		)
+	}
+	searchText(e) {
+		alert(6666);
 	}
 }
 
 class orderList extends React.Component {
 	render() {
-		var products = this.props.order.products.map(function(product) {
+		var products = this.props.order.products.map(function(product, index) {
 			return(
-				<order product={product}/>
+				<order product={product} key={index}/>
 			)
 		})
 		return(
@@ -75,12 +78,11 @@ class order extends React.Component {
 
 axios.post('http://39.108.219.59:8080/getOrder', { 'token': localStorage.getItem("token") })
 	.then(function(result) {
-		var orders = result.data.result.map(function(order) {
-			return(<orderList order={order}/>);
+		var orders = result.data.result.map(function(order, index) {
+			return(<orderList order={order} key={index}/>);
 		})
 		var _orderList = (
 			<div className="content">
-			<search/>
 		    {orders}
 		  	</div>
 		);
@@ -90,3 +92,4 @@ axios.post('http://39.108.219.59:8080/getOrder', { 'token': localStorage.getItem
 	})
 
 ReactDOM.render(<header/>, document.getElementById("head"));
+ReactDOM.render(<search/>, document.getElementById("search"));
