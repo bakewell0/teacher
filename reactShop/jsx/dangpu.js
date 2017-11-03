@@ -1,3 +1,7 @@
+import React from "react";
+import ReactDOM from "react-dom";
+import axios from "axios"
+
 class product extends React.Component {
 	render() {
 		return(
@@ -19,9 +23,9 @@ class product extends React.Component {
 
 axios.post('http://39.108.219.59:8080/productList')
 	.then(function(response) {
-		var pros = response.data.result.map(function(res) {
+		var pros = response.data.result.map(function(res,index) {
 			return(
-				<product res={res}/>
+				<product res={res} key={index}/>
 			);
 		});
 		var content = (
