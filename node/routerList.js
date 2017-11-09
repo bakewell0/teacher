@@ -7,6 +7,7 @@ router.addRoute('/productDetail', require('./routers/productDetail'));
 router.addRoute('/addShopCar', require('./routers/shopCar').addShopCar);
 router.addRoute('/getShopCar', require('./routers/shopCar').getShopCar);
 router.addRoute('/delShopCar', require('./routers/shopCar').delShopCar);
+router.addRoute('/delAllShopCar', require('./routers/shopCar').delAllShopCar);
 router.addRoute('/updateShopCar', require('./routers/shopCar').updateShopCar);
 router.addRoute('/getPerson', require('./routers/person').getPerson);
 router.addRoute('/setPerson', require('./routers/person').setPerson);

@@ -88,6 +88,24 @@ function del(req,res){
 	});
 }
 
+//删除购物车
+function delAllShopCar(){
+	this.exec = function(route, req, res){		
+		delAll(req,res);
+	}
+}
+
+function delAll(req,res){
+	shopCar.destroy({
+		where:{
+			UserId:tokenUtil.getUserId(req.body.token)
+		}
+	})
+	.then(function(result){
+		res.send({isSuccess:true,result:result});	
+	});
+}
+
 function updateShopCar() {
 	this.exec = function(route, req, res) {
 		update(req, res);
@@ -118,5 +136,6 @@ module.exports={
 	addShopCar:new addShopCar(),
 	getShopCar:new getShopCar(),
 	delShopCar:new delShopCar(),
+	delAllShopCar: new delAllShopCar(),
 	updateShopCar: new updateShopCar()
 };
