@@ -1,0 +1,13 @@
+{
+  "name": "cscainiao",
+  "version": "0.0.1",
+  "description": "",
+  "devDependencies": {
+    "mysql": "^2.0.0",
+    "mysql2": "^1.0.0",
+    "node-uuid": "^1.4.8",
+    "restify": "^5.0.0",
+    "sequelize": "^4.0.0"
+  },
+  "license": "ISC"
+}
