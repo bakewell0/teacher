@@ -1,8 +1,12 @@
 var webpack = require('webpack');
 module.exports = {
-	entry: './jsx/dangpu.js',
+	devtool: 'source-map',
+	entry:{
+		dangpu: './jsx/dangpu.js',
+    	order_list: './jsx/order_list.js'
+	},
 	output: {
-		filename: 'dangpu.js',
+		filename: '[name].js',
 		path: __dirname + "/build"
 	},
 	module: {

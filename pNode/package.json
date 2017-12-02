@@ -1,0 +1,19 @@
+{
+  "name": "wscainiao",
+  "version": "1.0.0",
+  "description": "",
+  "main": "connect.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "restify": "4.3.0",
+    "jwt-simple": "^0.5.1",
+    "mysql2": "^1.5.1",
+    "node-uuid": "^1.4.8",
+    "sequelize": "^4.23.4"
+  }
+}
