@@ -11,7 +11,8 @@ function add(req,res){
 	user.create({
 		name: data.name,
 		phone: data.phone,
-		qq: data.qq
+		qq: data.qq,
+		type: data.type
 	}).then(function(result){
 		res.send({isSuccess:true, result: result})
 	});
@@ -36,17 +37,38 @@ function checkPhone() {
 }
 
 function check(req,res) {
+	var data = req.body;
 	user.findAll({
 		where:{
-			phone: req.body.phone
+			phone: data.phone,
+			type: data.type
 		}
 	}).then(function(result) {
 		res.send({isSuccess:true, result: result})
 	});
 }
 
+function delUser(){
+	this.exec = function(route, req, res){		
+	    del(req,res);
+	}
+}
+
+function del(req,res){
+	var data = req.body;
+	user.destroy({
+		where:{
+			id: req.body.id,
+		}
+	}).then(function(result) {
+		res.send({isSuccess:true, result: result})
+	});
+}
+
+
 module.exports={
 	addUser:new addUser(),
 	getUser:new getUser(),
-	checkPhone:new checkPhone
+	checkPhone:new checkPhone(),
+	delUser:new delUser()
 }

@@ -4,7 +4,8 @@ var sequelize=require("./connect.js");
 var user = sequelize.define('user', {
 	name:Sequelize.STRING,
 	phone:Sequelize.STRING,
-	qq:Sequelize.STRING
+	qq:Sequelize.STRING,
+	type:Sequelize.STRING
 });	
 
 var result = sequelize.define('result', {
