@@ -66,6 +66,8 @@ function add(req, res) {
 		CurPrice: data.CurPrice,
 		OldPrice: data.OldPrice,
 		Des: data.Des,
+		Carriage: data.Carriage,
+		Destination: data.Destination,
 		Image: imgUrl,
 		BrowseTimes: 0
 	}).then(function(result) {
@@ -111,6 +113,8 @@ function update(req, res) {
 		CurPrice: data.CurPrice,
 		OldPrice: data.OldPrice,
 		Des: data.Des,
+		Carriage: data.Carriage,
+		Destination: data.Destination,
 		Image: imgUrl,
 	}, {
 		where: {
