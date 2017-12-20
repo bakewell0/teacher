@@ -1,6 +1,6 @@
 const collectionlog = require("../model.js").collectionlog;
 const getUserId = require("../token.js").getUserId;
-const productUtil = require("./product.js");
+const productUtil = require("./productUtil.js");
 const product=require("../model.js").product;
 
 function GetCollectionLog(){

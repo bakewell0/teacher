@@ -1,6 +1,6 @@
 const browselog = require("../model.js").browselog;
 const getUserId = require("../token.js").getUserId;
-const productUtil = require("./product.js");
+const productUtil = require("./productUtil.js");
 var sequelize=require("../connect.js");
 
 function GetBrowseLog(){

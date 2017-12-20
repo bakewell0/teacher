@@ -1,6 +1,6 @@
 const tokenUtil=require("../token.js");
 const order=require("../model.js").order;
-const productUtil = require("./product.js");
+const productUtil = require("./productUtil.js");
 const delComment=require("./comment.js").delComment;
 const findUserOrders = require("./orderUtil.js").findUserOrders;
 

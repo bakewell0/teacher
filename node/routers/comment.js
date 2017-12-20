@@ -1,7 +1,7 @@
 const comments = require("../model.js").comments;
 const getUserId = require("../token.js").getUserId;
 const findUserOrders = require("./orderUtil.js").findUserOrders;
-const productUtil = require("./product.js");
+const productUtil = require("./productUtil.js");
 
 function addComment() {
 	this.exec = function(route, req, res) {
