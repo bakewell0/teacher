@@ -21,7 +21,8 @@ var product = sequelize.define('product', {
   		OldPrice:Sequelize.STRING,
   		Des:Sequelize.STRING,
   		ShopName:Sequelize.STRING,
-  		BrowseTimes:Sequelize.STRING
+  		BrowseTimes:Sequelize.INTEGER,
+  		isDelete: Sequelize.INTEGER
 });
 //购物车
 var shopCar = sequelize.define('shopCar', {

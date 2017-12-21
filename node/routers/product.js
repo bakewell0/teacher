@@ -68,8 +68,7 @@ function add(req, res) {
 		Des: data.Des,
 		Carriage: data.Carriage,
 		Destination: data.Destination,
-		Image: imgUrl,
-		BrowseTimes: 0
+		Image: imgUrl
 	}).then(function(result) {
 		res.send({
 			isSuccess: true,
@@ -78,15 +77,17 @@ function add(req, res) {
 	});
 }
 
-//删除产品
-function delProduct() {
+//上架产品
+function onProduct() {
 	this.exec = function(route, req, res) {
-		del(req, res);
+		on(req, res);
 	}
 }
 
-function del(req, res) {
-	product.destroy({
+function on(req, res) {
+	product.update({
+		isDelete: 0
+	}, {
 		where: {
 			id: req.body.id
 		}
@@ -98,6 +99,30 @@ function del(req, res) {
 	});
 }
 
+//下架产品
+function offProduct() {
+	this.exec = function(route, req, res) {
+		off(req, res);
+	}
+}
+
+function off(req, res) {
+	//软删除商品
+	product.update({
+		isDelete: 1
+	}, {
+		where: {
+			id: req.body.id
+		}
+	}).then(function(result) {
+		res.send({
+			isSuccess: true,
+			result: result
+		});
+	});
+	
+}
+
 //修改产品
 function updateProduct() {
 	this.exec = function(route, req, res) {
@@ -107,16 +132,29 @@ function updateProduct() {
 
 function update(req, res) {
 	var data = req.body;
-	var imgUrl = setProductImage(req);
-	product.update({
-		Name: data.Name,
-		CurPrice: data.CurPrice,
-		OldPrice: data.OldPrice,
-		Des: data.Des,
-		Carriage: data.Carriage,
-		Destination: data.Destination,
-		Image: imgUrl,
-	}, {
+	var dataobj = {};
+	if(req.files.Image) {
+		var imgUrl = setProductImage(req);
+		dataobj = {
+			Name: data.Name,
+			CurPrice: data.CurPrice,
+			OldPrice: data.OldPrice,
+			Des: data.Des,
+			Carriage: data.Carriage,
+			Destination: data.Destination,
+			Image: imgUrl
+		};
+	} else {
+		dataobj = {
+			Name: data.Name,
+			CurPrice: data.CurPrice,
+			OldPrice: data.OldPrice,
+			Des: data.Des,
+			Carriage: data.Carriage,
+			Destination: data.Destination
+		}
+	}
+	product.update(dataobj, {
 		where: {
 			id: data.id
 		}
@@ -132,15 +170,43 @@ function update(req, res) {
 function setProductImage(req) {
 	var url = "http://39.108.219.59/img/productList/";
 	var timestamp = new Date().getTime();
-	upload(req.files.Image.path, '../data/img/productList/' + timestamp + "productImage.jpg");
-	var imgUrl = url + timestamp + "productImage.jpg?ver=" + Math.random();
-	return imgUrl;	
+	if(req.files.Image) {
+		upload(req.files.Image.path, '../data/img/productList/' + timestamp + "productImage.jpg");
+		var imgUrl = url + timestamp + "productImage.jpg?ver=" + Math.random();
+		return imgUrl;
+	}
+	return "";
+}
+
+//增加商品浏览次数
+function productBrowseTimes() {
+	this.exec = function(route, req, res) {
+		times(req, res);
+	}
+}
+
+function times(req, res) {
+	var data = req.body;
+	product.update({
+		BrowseTimes: data.BrowseTimes
+	}, {
+		where: {
+			id: data.id
+		}
+	}).then(function(result) {
+		res.send({
+			isSuccess: true,
+			result: result
+		});
+	});
 }
 
 module.exports = {
 	productList: new productList(),
 	productDetail: new productDetail(),
 	addProduct: new addProduct(),
-	delProduct: new delProduct(),
-	updateProduct: new updateProduct()
+	offProduct: new offProduct(),
+	onProduct: new onProduct(),
+	updateProduct: new updateProduct(),
+	productBrowseTimes: new productBrowseTimes()
 }

@@ -7,7 +7,9 @@ router.addRoute('/productList', require('./routers/product').productList);
 router.addRoute('/productDetail', require('./routers/product').productDetail);
 router.addRoute('/addProduct', require('./routers/product').addProduct);
 router.addRoute('/updateProduct', require('./routers/product').updateProduct);
-router.addRoute('/delProduct', require('./routers/product').delProduct);
+router.addRoute('/offProduct', require('./routers/product').offProduct);
+router.addRoute('/onProduct', require('./routers/product').onProduct);
+router.addRoute('/productBrowseTimes', require('./routers/product').productBrowseTimes);
 
 router.addRoute('/addShopCar', require('./routers/shopCar').addShopCar);
 router.addRoute('/getShopCar', require('./routers/shopCar').getShopCar);
@@ -18,8 +20,6 @@ router.addRoute('/updateShopCar', require('./routers/shopCar').updateShopCar);
 router.addRoute('/getPerson', require('./routers/person').getPerson);
 router.addRoute('/setPerson', require('./routers/person').setPerson);
 router.addRoute('/setHeadImage', require('./routers/person').setHeadImage);
-
-router.addRoute('/productBrowseTimes', require('./routers/productBrowseTimes'));
 
 router.addRoute('/addOrder', require('./routers/order').addOrder);
 router.addRoute('/getOrder', require('./routers/order').getOrder);

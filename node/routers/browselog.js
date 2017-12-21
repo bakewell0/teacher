@@ -78,29 +78,13 @@ async function add(req,res){
 		res.send({ isSuccess: false, result: '商品ID不能为空' })
 		return;
 	}
-	var _browselog = await browselog.findOrCreate({
-	where: {
-  		userId:getUserId(req.body.token),
+	
+	browselog.create({
+		userId:getUserId(req.body.token),
   		productId:req.body.productId
-    },
-    defaults: {
-        userId:getUserId(req.body.token),
-  		productId:req.body.productId
-    }
-  });
-  
-  if (!_browselog[1]) {
-  	browselog.update(
-		{ updatedAt: new Date()},
-		{ where: { 
-			userId:getUserId(req.body.token),
-  			productId:req.body.productId
-		}
-	})
-  	res.send({isSuccess: true, result:'更新商品浏览'});
-  }else {
-  	res.send({isSuccess: true, result:'添加商品浏览'});
-  }
+	}).then(function(result){
+		res.send({isSuccess:true, result: result})
+	});
 }
 
 function del(req,res) {
