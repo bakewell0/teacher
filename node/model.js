@@ -22,7 +22,10 @@ var product = sequelize.define('product', {
   		Des:Sequelize.STRING,
   		ShopName:Sequelize.STRING,
   		BrowseTimes:Sequelize.INTEGER,
-  		isDelete: Sequelize.INTEGER
+  		isDelete: Sequelize.INTEGER,
+  		isHot: Sequelize.INTEGER,
+  		isRecommend: Sequelize.INTEGER,
+  		typeId: Sequelize.INTEGER
 });
 //购物车
 var shopCar = sequelize.define('shopCar', {

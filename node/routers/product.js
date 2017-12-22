@@ -1,5 +1,5 @@
 const product = require("../model.js").product;
-const upload = require("../upload.js").upload;
+const productUtil = require("./productUtil.js");
 
 //产品列表
 function productList() {
@@ -60,7 +60,7 @@ function addProduct() {
 
 function add(req, res) {
 	var data = req.body;
-	var imgUrl = setProductImage(req);
+	var imgUrl = productUtil.setProductImage(req.files.Image);
 	product.create({
 		Name: data.Name,
 		CurPrice: data.CurPrice,
@@ -68,7 +68,10 @@ function add(req, res) {
 		Des: data.Des,
 		Carriage: data.Carriage,
 		Destination: data.Destination,
-		Image: imgUrl
+		Image: imgUrl,
+		isHot: data.isHot,
+		isRecommend: data.isRecommend,
+		typeId: data.typeId
 	}).then(function(result) {
 		res.send({
 			isSuccess: true,
@@ -134,7 +137,7 @@ function update(req, res) {
 	var data = req.body;
 	var dataobj = {};
 	if(req.files.Image) {
-		var imgUrl = setProductImage(req);
+		var imgUrl = productUtil.setProductImage(req.files.Image);
 		dataobj = {
 			Name: data.Name,
 			CurPrice: data.CurPrice,
@@ -142,7 +145,10 @@ function update(req, res) {
 			Des: data.Des,
 			Carriage: data.Carriage,
 			Destination: data.Destination,
-			Image: imgUrl
+			Image: imgUrl,
+			isHot: data.isHot,
+			isRecommend: data.isRecommend,
+			typeId: data.typeId
 		};
 	} else {
 		dataobj = {
@@ -151,7 +157,10 @@ function update(req, res) {
 			OldPrice: data.OldPrice,
 			Des: data.Des,
 			Carriage: data.Carriage,
-			Destination: data.Destination
+			Destination: data.Destination,
+			isHot: data.isHot,
+			isRecommend: data.isRecommend,
+			typeId: data.typeId
 		}
 	}
 	product.update(dataobj, {
@@ -164,18 +173,6 @@ function update(req, res) {
 			result: result
 		});
 	});
-}
-
-//上传产品图片
-function setProductImage(req) {
-	var url = "http://39.108.219.59/img/productList/";
-	var timestamp = new Date().getTime();
-	if(req.files.Image) {
-		upload(req.files.Image.path, '../data/img/productList/' + timestamp + "productImage.jpg");
-		var imgUrl = url + timestamp + "productImage.jpg?ver=" + Math.random();
-		return imgUrl;
-	}
-	return "";
 }
 
 //增加商品浏览次数
@@ -201,6 +198,58 @@ function times(req, res) {
 	});
 }
 
+//获取三个热卖或推荐产品
+function getHotRecommend() {
+	this.exec = function(route, req, res) {
+		hotOrRecommend(req, res);
+	}
+}
+
+function hotOrRecommend(req, res) {
+	var type = req.body.type.toUpperCase;
+	var params = {};
+	
+	if(type == 'H') {
+		params = {
+			isHot: 1
+		}
+	}else if (type == 'R'){
+		params = {
+			isRecommend: 1
+		}
+	}
+	
+	product.findAll({
+		where: params,
+		limit: 3
+	}).then(function(result) {
+		res.send({
+			isSuccess: true,
+			result: result
+		});
+	});
+}
+
+//按产品类别获取产品
+function getProductByType() {
+	this.exec = function(route, req, res) {
+		byType(req, res);
+	}
+}
+
+function byType(req, res) {
+	product.findAll({
+		where: {
+			typeId: req.body.typeId
+		}
+	}).then(function(result) {
+		res.send({
+			isSuccess: true,
+			result: result
+		});
+	});
+}
+
 module.exports = {
 	productList: new productList(),
 	productDetail: new productDetail(),
@@ -208,5 +257,7 @@ module.exports = {
 	offProduct: new offProduct(),
 	onProduct: new onProduct(),
 	updateProduct: new updateProduct(),
-	productBrowseTimes: new productBrowseTimes()
+	productBrowseTimes: new productBrowseTimes(),
+	getHotRecommend: new getHotRecommend(),
+	getProductByType: new getProductByType()
 }

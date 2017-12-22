@@ -10,6 +10,8 @@ router.addRoute('/updateProduct', require('./routers/product').updateProduct);
 router.addRoute('/offProduct', require('./routers/product').offProduct);
 router.addRoute('/onProduct', require('./routers/product').onProduct);
 router.addRoute('/productBrowseTimes', require('./routers/product').productBrowseTimes);
+router.addRoute('/getHotRecommend', require('./routers/product').getHotRecommend);
+router.addRoute('/getProductByType', require('./routers/product').getProductByType);
 
 router.addRoute('/addShopCar', require('./routers/shopCar').addShopCar);
 router.addRoute('/getShopCar', require('./routers/shopCar').getShopCar);
