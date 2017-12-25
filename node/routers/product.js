@@ -10,13 +10,24 @@ function productList() {
 
 function list(req, res) {
 	var params = {};
-	if(req.body && req.body.productName) {
-		params = {
-			Name: {
-				$like: '%' + req.body.productName + '%'
-			}
+	if (req.body && req.body.productName) {
+		params.name = {
+			$like: '%' + req.body.productName + '%'
 		}
 	}
+	if (req.body && req.body.typeId) {
+		params.typeId = req.body.typeId;
+	}
+	if(req.body && req.body.isRecommend) {
+		params.isRecommend = req.body.isRecommend;
+	}
+	if(req.body && req.body.isHot) {
+		params.isHot = req.body.isHot;
+	}
+	if(req.body && req.body.isDelete) {
+		params.isDelete = req.body.isDelete;
+	}
+	
 	product.findAll({
 		where: params
 	}).then(function(result) {
@@ -78,52 +89,6 @@ function add(req, res) {
 			result: result
 		})
 	});
-}
-
-//上架产品
-function onProduct() {
-	this.exec = function(route, req, res) {
-		on(req, res);
-	}
-}
-
-function on(req, res) {
-	product.update({
-		isDelete: 0
-	}, {
-		where: {
-			id: req.body.id
-		}
-	}).then(function(result) {
-		res.send({
-			isSuccess: true,
-			result: result
-		});
-	});
-}
-
-//下架产品
-function offProduct() {
-	this.exec = function(route, req, res) {
-		off(req, res);
-	}
-}
-
-function off(req, res) {
-	//软删除商品
-	product.update({
-		isDelete: 1
-	}, {
-		where: {
-			id: req.body.id
-		}
-	}).then(function(result) {
-		res.send({
-			isSuccess: true,
-			result: result
-		});
-	});
-	
 }
 
 //修改产品
@@ -206,23 +171,29 @@ function getHotRecommend() {
 }
 
 function hotOrRecommend(req, res) {
-	var type = req.body.type.toUpperCase;
+	var type = req.body.type.toUpperCase();
 	var params = {};
 	
 	if(type == 'H') {
 		params = {
-			isHot: 1
+			where: {
+				isHot: 1,
+				isDelete: 0
+			},
+			limit: 3
 		}
+		
 	}else if (type == 'R'){
 		params = {
-			isRecommend: 1
+			where: {
+				isRecommend: 1,
+				isDelete: 0
+			},
+			limit: 15
 		}
 	}
 	
-	product.findAll({
-		where: params,
-		limit: 3
-	}).then(function(result) {
+	product.findAll(params).then(function(result) {
 		res.send({
 			isSuccess: true,
 			result: result
@@ -230,17 +201,28 @@ function hotOrRecommend(req, res) {
 	});
 }
 
-//按产品类别获取产品
-function getProductByType() {
+//上架产品
+function changeState() {
 	this.exec = function(route, req, res) {
-		byType(req, res);
+		state(req, res);
 	}
 }
 
-function byType(req, res) {
-	product.findAll({
+function state(req, res) {
+	var type = req.body.type.toUpperCase();
+	var params = {};
+	if (type == "D") {
+		params.isDelete = req.body.value;
+	}
+	if (type == "R") {
+		params.isRecommend = req.body.value;
+	}
+	if (type == "H") {
+		params.isHot = req.body.value;
+	}
+	product.update(params, {
 		where: {
-			typeId: req.body.typeId
+			id: req.body.id
 		}
 	}).then(function(result) {
 		res.send({
@@ -254,10 +236,8 @@ module.exports = {
 	productList: new productList(),
 	productDetail: new productDetail(),
 	addProduct: new addProduct(),
-	offProduct: new offProduct(),
-	onProduct: new onProduct(),
+	changeState: new changeState(),
 	updateProduct: new updateProduct(),
 	productBrowseTimes: new productBrowseTimes(),
-	getHotRecommend: new getHotRecommend(),
-	getProductByType: new getProductByType()
+	getHotRecommend: new getHotRecommend()
 }

@@ -7,11 +7,9 @@ router.addRoute('/productList', require('./routers/product').productList);
 router.addRoute('/productDetail', require('./routers/product').productDetail);
 router.addRoute('/addProduct', require('./routers/product').addProduct);
 router.addRoute('/updateProduct', require('./routers/product').updateProduct);
-router.addRoute('/offProduct', require('./routers/product').offProduct);
-router.addRoute('/onProduct', require('./routers/product').onProduct);
+router.addRoute('/changeState', require('./routers/product').changeState);
 router.addRoute('/productBrowseTimes', require('./routers/product').productBrowseTimes);
 router.addRoute('/getHotRecommend', require('./routers/product').getHotRecommend);
-router.addRoute('/getProductByType', require('./routers/product').getProductByType);
 
 router.addRoute('/addShopCar', require('./routers/shopCar').addShopCar);
 router.addRoute('/getShopCar', require('./routers/shopCar').getShopCar);
