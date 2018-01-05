@@ -1,6 +1,21 @@
 const product = require("../model.js").product;
 const productUtil = require("./productUtil.js");
 
+//获取产品结构体
+function getProductObj(data) {
+	return {
+		Name: data.Name,
+		CurPrice: data.CurPrice,
+		OldPrice: data.OldPrice,
+		Des: data.Des,
+		Carriage: data.Carriage,
+		Destination: data.Destination,
+		isHot: data.isHot,
+		isRecommend: data.isRecommend,
+		typeId: data.typeId
+	}
+}
+
 //产品列表
 function productList() {
 	this.exec = function(route, req, res) {
@@ -10,24 +25,27 @@ function productList() {
 
 function list(req, res) {
 	var params = {};
-	if (req.body && req.body.productName) {
-		params.name = {
-			$like: '%' + req.body.productName + '%'
+	var data = req.body;
+	if(data) {
+		if(data.productName) {
+			params.name = {
+				$like: '%' + data.productName + '%'
+			}
+		}
+		if(data.typeId) {
+			params.typeId = data.typeId;
+		}
+		if(data.isRecommend) {
+			params.isRecommend = data.isRecommend;
+		}
+		if(data.isHot) {
+			params.isHot = data.isHot;
+		}
+		if(data.isDelete) {
+			params.isDelete = data.isDelete;
 		}
 	}
-	if (req.body && req.body.typeId) {
-		params.typeId = req.body.typeId;
-	}
-	if(req.body && req.body.isRecommend) {
-		params.isRecommend = req.body.isRecommend;
-	}
-	if(req.body && req.body.isHot) {
-		params.isHot = req.body.isHot;
-	}
-	if(req.body && req.body.isDelete) {
-		params.isDelete = req.body.isDelete;
-	}
-	
+
 	product.findAll({
 		where: params
 	}).then(function(result) {
@@ -71,19 +89,12 @@ function addProduct() {
 
 function add(req, res) {
 	var data = req.body;
+	var productObj = getProductObj(data);
 	var imgUrl = productUtil.setProductImage(req.files.Image);
-	product.create({
-		Name: data.Name,
-		CurPrice: data.CurPrice,
-		OldPrice: data.OldPrice,
-		Des: data.Des,
-		Carriage: data.Carriage,
-		Destination: data.Destination,
-		Image: imgUrl,
-		isHot: data.isHot,
-		isRecommend: data.isRecommend,
-		typeId: data.typeId
-	}).then(function(result) {
+	if(imgUrl) {
+		productObj.Image = imgUrl;
+	}
+	product.create(productObj).then(function(result) {
 		res.send({
 			isSuccess: true,
 			result: result
@@ -100,35 +111,12 @@ function updateProduct() {
 
 function update(req, res) {
 	var data = req.body;
-	var dataobj = {};
+	var productObj = getProductObj(data);
 	if(req.files.Image) {
 		var imgUrl = productUtil.setProductImage(req.files.Image);
-		dataobj = {
-			Name: data.Name,
-			CurPrice: data.CurPrice,
-			OldPrice: data.OldPrice,
-			Des: data.Des,
-			Carriage: data.Carriage,
-			Destination: data.Destination,
-			Image: imgUrl,
-			isHot: data.isHot,
-			isRecommend: data.isRecommend,
-			typeId: data.typeId
-		};
-	} else {
-		dataobj = {
-			Name: data.Name,
-			CurPrice: data.CurPrice,
-			OldPrice: data.OldPrice,
-			Des: data.Des,
-			Carriage: data.Carriage,
-			Destination: data.Destination,
-			isHot: data.isHot,
-			isRecommend: data.isRecommend,
-			typeId: data.typeId
-		}
+		productObj.Image = imgUrl;
 	}
-	product.update(dataobj, {
+	product.update(productObj, {
 		where: {
 			id: data.id
 		}
