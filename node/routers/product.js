@@ -1,5 +1,5 @@
 const product = require("../model.js").product;
-const productUtil = require("./productUtil.js");
+const productUtil = require("../services/productUtil.js");
 
 //获取产品结构体
 function getProductObj(data) {
