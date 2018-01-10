@@ -73,6 +73,25 @@ var collectionlog = sequelize.define('collectionlog', {
 	productId: Sequelize.INTEGER
 });
 
+//订单用户视图
+var orderUser = sequelize.define('orderUser', {
+	phone:Sequelize.STRING,
+	email:Sequelize.STRING,
+	password:Sequelize.STRING,
+	headImage:Sequelize.STRING,
+	username:Sequelize.STRING,
+	gender:Sequelize.STRING,
+	address:Sequelize.STRING,
+	userId: Sequelize.INTEGER,
+	totalCost: Sequelize.STRING,
+	totalNum: Sequelize.STRING,
+	isInvoice: Sequelize.STRING,
+	message: Sequelize.STRING,
+	state: Sequelize.STRING,
+	productId: Sequelize.STRING,
+	productNum: Sequelize.STRING
+});
+
 var models={
 		user:user,
 		product:product,
@@ -81,7 +100,8 @@ var models={
 		order:order,
 		comments:comments,
 		browselog:browselog,
-		collectionlog:collectionlog
+		collectionlog:collectionlog,
+		orderUser: orderUser
 }
 
 module.exports=models;

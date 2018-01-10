@@ -25,6 +25,7 @@ router.addRoute('/addOrder', require('./routers/order').addOrder);
 router.addRoute('/getOrder', require('./routers/order').getOrder);
 router.addRoute('/getOrderDetail', require('./routers/order').getOrderDetail);
 router.addRoute('/delOrder', require('./routers/order').delOrder);
+router.addRoute('/getAllOrder', require('./routers/order').getAllOrder);
 
 router.addRoute('/addComment', require('./routers/comment').addComment);
 router.addRoute('/getComment', require('./routers/comment').getComment);
