@@ -1,7 +1,7 @@
-const tokenUtil=require("../token.js");
-const order=require("../model.js").order;
+const tokenUtil = require("../token.js");
+const order = require("../model.js").order;
 const productUtil = require("../services/productUtil.js");
-const delComment=require("./comment.js").delComment;
+const delComment = require("./comment.js").delComment;
 const findUserOrders = require("../services/orderUtil.js").findUserOrders;
 const orderUser = require("../model.js").orderUser;
 
@@ -122,37 +122,42 @@ async function getAll(req, res) {
 		if(data.id) {
 			params.id = data.id
 		}
-		if(data.userId) {
-			params.userId = data.userId;
+		if(data.userName) {
+			params.username = {
+				$like: '%' + data.userName + '%'
+			};
 		}
 		if(data.startTime || data.endTime) {
 			params.updatedAt = {
-		    	$lt: data.endTime ? new Date(data.endTime) : new Date(),
-		    	$gt: data.startTime ? new Date(data.startTime) : new Date(1970, 0, 1, 8)
+				$lt: data.endTime ? new Date(data.endTime) : new Date(),
+				$gt: data.startTime ? new Date(data.startTime) : new Date(1970, 0, 1, 8)
 			}
 		}
 	}
-	
-	var orders = await orderUser.findAll({
-		where: params
-	});
-	var ordersData = [];
-	for(let i = 0; i < orders.length; i++) {
-		//获取产品信息
-		var data = orders[i].dataValues;
-		data.products = await productUtil.getProduct(orders[i].productId);
-		ordersData.push(data);
-	}
-	res.send({
-		isSuccess: true,
-		result: ordersData
-	});
-}
 
-module.exports = {
-	getOrder: new GetOrder(),
-	addOrder: new AddOrder(),
-	getOrderDetail: new GetOrderDetail(),
-	delOrder: new DelOrder(),
-	getAllOrder: new getAllOrder()
-}
+	var orders = await orderUser.findAll({
+			where: params,
+			order: [
+				['updatedAt', 'DESC']
+			]
+			});
+		var ordersData = [];
+		for(let i = 0; i < orders.length; i++) {
+			//获取产品信息
+			var data = orders[i].dataValues;
+			data.products = await productUtil.getProduct(orders[i].productId);
+			ordersData.push(data);
+		}
+		res.send({
+			isSuccess: true,
+			result: ordersData
+		});
+	}
+
+	module.exports = {
+		getOrder: new GetOrder(),
+		addOrder: new AddOrder(),
+		getOrderDetail: new GetOrderDetail(),
+		delOrder: new DelOrder(),
+		getAllOrder: new getAllOrder()
+	}
