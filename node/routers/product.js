@@ -47,11 +47,15 @@ async function list(req, res) {
 			params.isDelete = data.isDelete;
 		}
 	}
-	if(!allProducts) {
+
+	var searchFlag = data.productName || data.typeId || data.isRecommend || data.isHot || data.isDelete;
+	if(searchFlag || !allProducts) {
 		var allProducts = await product.findAll({
 			where: params
 		})
-		cache.put("allProducts", allProducts);
+		if(!searchFlag) {
+			cache.put("allProducts", allProducts);
+		}
 	}
 	res.send({
 		isSuccess: true,

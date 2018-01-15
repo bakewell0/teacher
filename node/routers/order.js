@@ -159,7 +159,8 @@ async function getAll(req, res) {
 			}
 		}
 	}
-	if(data.id || data.userName || data.startTime || data.endTime || !ordersData) {
+	var searchFlag = data.id || data.userName || data.startTime || data.endTime;
+	if(searchFlag || !ordersData) {
 		var orders = await orderUser.findAll({
 			where: params,
 			order: [
@@ -173,7 +174,7 @@ async function getAll(req, res) {
 			data.products = await productUtil.getProduct(orders[i].productId);
 			ordersData.push(data);
 		}
-		if(!data.id&&!data.userName&&!data.startTime&&!data.endTime){
+		if(!searchFlag) {
 			cache.put('allOrder', ordersData);
 		}
 	}
