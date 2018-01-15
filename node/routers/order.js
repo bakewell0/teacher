@@ -4,67 +4,86 @@ const productUtil = require("../services/productUtil.js");
 const delComment = require("./comment.js").delComment;
 const findUserOrders = require("../services/orderUtil.js").findUserOrders;
 const orderUser = require("../model.js").orderUser;
+const cache = require("../cache.js");
 
-function GetOrder(){
-	this.exec = function(route, req, res){		
-	    get(req,res);
+function GetOrder() {
+	this.exec = function(route, req, res) {
+		get(req, res);
 	}
 }
 
-async function get(req,res){
+async function get(req, res) {
 	try {
 		var ordersData = [];
 		//获取所有订单信息
 		var orders = await findUserOrders(req.body.token);
-		for(let i = 0; i<orders.length; i++) {
+		for(let i = 0; i < orders.length; i++) {
 			//获取产品信息
 			var data = orders[i].dataValues;
 			var products = await productUtil.getProduct(orders[i].productId, req.body.productName);
-			if (products.length) {
+			if(products.length) {
 				data.products = await productUtil.getProduct(orders[i].productId);
 				ordersData.push(data);
 			}
 		}
-		res.send({isSuccess: true, result: ordersData});
-	}catch(e) {
-		res.send({isSuccess: false, result: "请重新登陆"});
+		res.send({
+			isSuccess: true,
+			result: ordersData
+		});
+	} catch(e) {
+		res.send({
+			isSuccess: false,
+			result: "请重新登陆"
+		});
 	}
 }
 
-function GetOrderDetail(){
-	this.exec = function(route, req, res){		
-	    getOrderDetail(req,res);
+function GetOrderDetail() {
+	this.exec = function(route, req, res) {
+		getOrderDetail(req, res);
 	}
 }
 
-async function getOrderDetail(req,res){
+async function getOrderDetail(req, res) {
 	try {
 		//获取某个订单信息
 		var orderDetail = await findUserOrders(req.body.token, req.body.orderId);
 		orderDetail = orderDetail[0].dataValues;
 		//获取订单中的产品信息
 		orderDetail.products = await productUtil.getProduct(orderDetail.productId);
-		res.send({isSuccess:true, result: orderDetail})
-	}catch(e) {
-		res.send({isSuccess:false, result: "订单信息不存在"});
+		res.send({
+			isSuccess: true,
+			result: orderDetail
+		})
+	} catch(e) {
+		res.send({
+			isSuccess: false,
+			result: "订单信息不存在"
+		});
 		return;
 	}
 }
 
-function AddOrder(){
-	this.exec = function(route, req, res){   
-		add(req,res);  
+function AddOrder() {
+	this.exec = function(route, req, res) {
+		add(req, res);
 	}
 }
 
-function add(req,res){
+function add(req, res) {
 	var data = req.body;
-	if(!data.productId){
-		res.send({isSuccess:true, result: "商品ID不能为空"});
+	if(!data.productId) {
+		res.send({
+			isSuccess: true,
+			result: "商品ID不能为空"
+		});
 		return;
 	}
-	if(!data.productNum){
-		res.send({isSuccess:true, result: "商品数量不能为空"});
+	if(!data.productNum) {
+		res.send({
+			isSuccess: true,
+			result: "商品数量不能为空"
+		});
 		return;
 	}
 	order.create({
@@ -77,35 +96,40 @@ function add(req,res){
 		productId: data.productId,
 		productNum: data.productNum,
 		orderTitle: data.orderTitle
-	}).then(function(result){
-		res.send({isSuccess:true, result: result})
+	}).then(function(result) {
+		res.send({
+			isSuccess: true,
+			result: result
+		})
 	});
 }
 
-function DelOrder(){
-	this.exec = function(route, req, res){   
-		del(req,res);  
+function DelOrder() {
+	this.exec = function(route, req, res) {
+		del(req, res);
 	}
 }
 
-function del(req,res){
+function del(req, res) {
 	var data = req.body;
 	//订单有评价，则删除评价
-	try{
-		delComment(req,res);
-	}
-	catch(e){
+	try {
+		delComment(req, res);
+	} catch(e) {
 		console.log(e);
-	}	
+	}
 	order.destroy({
-		where:{
+		where: {
 			id: data.orderId,
 			userId: tokenUtil.getUserId(data.token)
 		}
-	}).then(function(result){
-		res.send({isSuccess:true,result:result});	
+	}).then(function(result) {
+		res.send({
+			isSuccess: true,
+			result: result
+		});
 	});
-	
+
 }
 
 //全部订单信息
@@ -118,6 +142,7 @@ function getAllOrder() {
 async function getAll(req, res) {
 	var params = {};
 	var data = req.body;
+	var ordersData = cache.get("allOrder")
 	if(data) {
 		if(data.id) {
 			params.id = data.id
@@ -134,13 +159,13 @@ async function getAll(req, res) {
 			}
 		}
 	}
-
-	var orders = await orderUser.findAll({
+	if(!ordersData) {
+		var orders = await orderUser.findAll({
 			where: params,
 			order: [
 				['updatedAt', 'DESC']
 			]
-			});
+		});
 		var ordersData = [];
 		for(let i = 0; i < orders.length; i++) {
 			//获取产品信息
@@ -148,16 +173,18 @@ async function getAll(req, res) {
 			data.products = await productUtil.getProduct(orders[i].productId);
 			ordersData.push(data);
 		}
-		res.send({
-			isSuccess: true,
-			result: ordersData
-		});
+		cache.put('allOrder', ordersData);
 	}
+	res.send({
+		isSuccess: true,
+		result: ordersData
+	});
+}
 
-	module.exports = {
-		getOrder: new GetOrder(),
-		addOrder: new AddOrder(),
-		getOrderDetail: new GetOrderDetail(),
-		delOrder: new DelOrder(),
-		getAllOrder: new getAllOrder()
-	}
+module.exports = {
+	getOrder: new GetOrder(),
+	addOrder: new AddOrder(),
+	getOrderDetail: new GetOrderDetail(),
+	delOrder: new DelOrder(),
+	getAllOrder: new getAllOrder()
+}

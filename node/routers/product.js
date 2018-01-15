@@ -1,5 +1,6 @@
 const product = require("../model.js").product;
 const productUtil = require("../services/productUtil.js");
+const cache = require("../cache.js");
 
 //获取产品结构体
 function getProductObj(data) {
@@ -23,9 +24,10 @@ function productList() {
 	}
 }
 
-function list(req, res) {
+async function list(req, res) {
 	var params = {};
 	var data = req.body;
+	var allProducts = cache.get("allProducts");
 	if(data) {
 		if(data.productName) {
 			params.name = {
@@ -45,14 +47,15 @@ function list(req, res) {
 			params.isDelete = data.isDelete;
 		}
 	}
-
-	product.findAll({
-		where: params
-	}).then(function(result) {
-		res.send({
-			isSuccess: true,
-			result: result
-		});
+	if(!allProducts) {
+		var allProducts = await product.findAll({
+			where: params
+		})
+		cache.put("allProducts", allProducts);
+	}
+	res.send({
+		isSuccess: true,
+		result: allProducts
 	});
 }
 
@@ -161,7 +164,7 @@ function getHotRecommend() {
 function hotOrRecommend(req, res) {
 	var type = req.body.type.toUpperCase();
 	var params = {};
-	
+
 	if(type == 'H') {
 		params = {
 			where: {
@@ -170,8 +173,8 @@ function hotOrRecommend(req, res) {
 			},
 			limit: 3
 		}
-		
-	}else if (type == 'R'){
+
+	} else if(type == 'R') {
 		params = {
 			where: {
 				isRecommend: 1,
@@ -180,7 +183,7 @@ function hotOrRecommend(req, res) {
 			limit: 15
 		}
 	}
-	
+
 	product.findAll(params).then(function(result) {
 		res.send({
 			isSuccess: true,
@@ -199,13 +202,13 @@ function changeState() {
 function state(req, res) {
 	var type = req.body.type.toUpperCase();
 	var params = {};
-	if (type == "D") {
+	if(type == "D") {
 		params.isDelete = req.body.value;
 	}
-	if (type == "R") {
+	if(type == "R") {
 		params.isRecommend = req.body.value;
 	}
-	if (type == "H") {
+	if(type == "H") {
 		params.isHot = req.body.value;
 	}
 	product.update(params, {

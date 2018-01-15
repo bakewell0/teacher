@@ -39,9 +39,4 @@ router.addRoute('/addCollectionLog', require('./routers/collectionLog').addColle
 router.addRoute('/delCollectionLog', require('./routers/collectionLog').delCollectionLog);
 router.addRoute('/getIsCollection', require('./routers/collectionLog').getIsCollection);
 
-
-//以下非跳蚤
-router.addRoute('/index', require('./routers/index'));
-router.addRoute('/shop', require('./routers/shop'));
-router.addRoute('/individual', require('./routers/individual'));
 module.exports=router;
