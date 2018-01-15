@@ -159,7 +159,7 @@ async function getAll(req, res) {
 			}
 		}
 	}
-	if(!ordersData) {
+	if(data.id || data.userName || data.startTime || data.endTime || !ordersData) {
 		var orders = await orderUser.findAll({
 			where: params,
 			order: [
@@ -173,7 +173,9 @@ async function getAll(req, res) {
 			data.products = await productUtil.getProduct(orders[i].productId);
 			ordersData.push(data);
 		}
-		cache.put('allOrder', ordersData);
+		if(!data.id&&!data.userName&&!data.startTime&&!data.endTime){
+			cache.put('allOrder', ordersData);
+		}
 	}
 	res.send({
 		isSuccess: true,
