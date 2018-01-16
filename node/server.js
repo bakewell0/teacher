@@ -14,4 +14,5 @@ var server = restify.createServer();
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
 server.post('/:name', onConnected);
+server.get('/:name', onConnected);
 server.listen(8080, onListened);

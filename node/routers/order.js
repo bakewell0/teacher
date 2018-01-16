@@ -142,7 +142,8 @@ function getAllOrder() {
 async function getAll(req, res) {
 	var params = {};
 	var data = req.body;
-	var ordersData = cache.get("allOrder")
+	var ordersData = cache.get("allOrder");
+	var searchFlag = "";
 	if(data) {
 		if(data.id) {
 			params.id = data.id
@@ -158,8 +159,8 @@ async function getAll(req, res) {
 				$gt: data.startTime ? new Date(data.startTime) : new Date(1970, 0, 1, 8)
 			}
 		}
+		searchFlag = data.id || data.userName || data.startTime || data.endTime;
 	}
-	var searchFlag = data.id || data.userName || data.startTime || data.endTime;
 	if(searchFlag || !ordersData) {
 		var orders = await orderUser.findAll({
 			where: params,

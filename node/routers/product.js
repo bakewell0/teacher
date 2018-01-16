@@ -28,6 +28,7 @@ async function list(req, res) {
 	var params = {};
 	var data = req.body;
 	var allProducts = cache.get("allProducts");
+	var searchFlag = "";
 	if(data) {
 		if(data.productName) {
 			params.name = {
@@ -46,9 +47,8 @@ async function list(req, res) {
 		if(data.isDelete) {
 			params.isDelete = data.isDelete;
 		}
+		searchFlag = data.productName || data.typeId || data.isRecommend || data.isHot || data.isDelete;
 	}
-
-	var searchFlag = data.productName || data.typeId || data.isRecommend || data.isHot || data.isDelete;
 	if(searchFlag || !allProducts) {
 		var allProducts = await product.findAll({
 			where: params
