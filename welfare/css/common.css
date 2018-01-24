@@ -70,7 +70,7 @@ a * { *cursor: pointer }
 .friend2 li{ border-bottom: 1px solid #cdcdcd;}
 .friend2 li a span{ font-size: 16px; color: #17222a; line-height: 80px; margin: 0 5px;}
 .friend2 li a img{ width: 50px; height: auto; margin-top: 15px; margin-right: 10px;}
-.friend_name{ width: 68%; border-bottom: 2px solid #fa951e; padding-bottom: 10px; margin-top: 23px;}
+.friend_name{ width: 62%; border-bottom: 2px solid #fa951e; padding-bottom: 10px; margin-top: 23px;}
 .friend_name em,.friend_name i{ font-size: 14px; color: #7f7f7f;}
 .friend_name i{ color: #df3121;}
 

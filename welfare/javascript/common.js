@@ -4,9 +4,15 @@ $(document).ready(function() {
 		$(".tckdy_nr_two").fadeIn();
 	});
 	$("#open").click(function() {
-		$(".tckdy_nr_two").fadeOut();
-		$(".tckdy_nr").fadeIn();
-		robRedPacket();
+		$(".new-year-but1").addClass("main_jb2");
+		setTimeout(function() {
+			$(".new-year-but1").removeClass("main_jb2");
+		}, 1000);
+		setTimeout(function() {
+			$(".tckdy_nr_two").fadeOut();
+			$(".tckdy_nr").fadeIn();
+			robRedPacket();
+		}, 1200);
 	});
 	$(".red").click(function() {
 		$(".red").fadeOut();
@@ -59,8 +65,10 @@ function robRedPacket() {
 
 function renderRedPacket(result) {
 	if(!result.isSuccess) {
+		$(".congratulate").html("");
 		$(".money").html(result.result);
 	} else {
+		$(".congratulate").html("恭喜你，为您的好友抢到");
 		$(".money").html(result.result.money + "元");
 	}
 }

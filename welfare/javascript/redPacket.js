@@ -23,7 +23,7 @@ function renderList(data) {
 	for(var i = 0; i < redpackets.length; i++) {
 		list += '<li class="cf">' +
 			'<a href = "#" >' +
-			'<span class = "lf" >' + (i+1) + '</span>' +
+			'<span class = "lf" >' + (i + 1) + '</span>' +
 			'<img src = ' + redpackets[i].headimage + ' class = "t2 lf" / >' +
 			'<div class = "cf lf friend_name" >' +
 			'<em class = "lf" >' + redpackets[i].nickname + ' </em>' +
