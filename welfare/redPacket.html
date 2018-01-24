@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<title>菜鸟基地，助学金红包</title>
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css" />
+	</head>
+
+	<body>
+		<!--顶部 首-->
+		<div class="top">
+			<a href="#" class="fa fa-chevron-left"> 微信</a>
+			<h1>红包管理</h1>
+			<span class="fa fa-user"></span>
+		</div>
+		<!--顶部 尾-->
+		<!--用户 首-->
+		<div class="use">
+			<!--头像名字-->
+			<div class="name cf">
+				<div class="name_left lf"><img src="img/t1.jpg" class="t1 photo"/></div>
+				<div class="name_right lf">
+					<h1 class="userName">姓名：</h1>
+					<h2>红包总额：<span><i class="amount">0</i>元</span></h2>
+					<h3>已有  <i class="visitorNum">0</i>  位好友抢过红包</h3>
+				</div>
+			</div>
+			<!--为 Ta 抢过红包的好友-->
+			<div class="friend">
+				<h1>为 Ta 抢过红包的好友</h1>
+				<ul class="friend2">
+					<!--<li class="cf">
+						<a href="#">
+							<span class="lf">7</span>
+							<img src="img/t2.png" class="t2 lf" />
+							<div class="cf lf friend_name"><em class="lf">tangmou***</em><i class="rf">15.90元</i></div>
+						</a>
+					</li>
+					<li class="cf">
+						<a href="#">
+							<span class="lf">6</span>
+							<img src="img/t2.png" class="t2 lf" />
+							<div class="cf lf friend_name"><em class="lf">唐若岚</em><i class="rf">60.00元</i></div>
+						</a>
+					</li>
+					<li class="cf">
+						<a href="#">
+							<span class="lf">5</span>
+							<img src="img/t2.png" class="t2 lf" />
+							<div class="cf lf friend_name"><em class="lf">说的就是你</em><i class="rf">55.90元</i></div>
+						</a>
+					</li>
+					<li class="cf">
+						<a href="#">
+							<span class="lf">4</span>
+							<img src="img/t2.png" class="t2 lf" />
+							<div class="cf lf friend_name"><em class="lf">在线客服唐山风</em><i class="rf">2.90元</i></div>
+						</a>
+					</li>
+					<li class="cf">
+						<a href="#">
+							<span class="lf">3</span>
+							<img src="img/t2.png" class="t2 lf" />
+							<div class="cf lf friend_name"><em class="lf">不知道</em><i class="rf">43.90元</i></div>
+						</a>
+					</li>
+					<li class="cf">
+						<a href="#">
+							<span class="lf">2</span>
+							<img src="img/t2.png" class="t2 lf" />
+							<div class="cf lf friend_name"><em class="lf">tangmou***</em><i class="rf">32.90元</i></div>
+						</a>
+					</li>
+					<li class="cf" style="border-bottom: none;">
+						<a href="#">
+							<span class="lf">1</span>
+							<img src="img/t2.png" class="t2 lf" />
+							<div class="cf lf friend_name"><em class="lf">tangmou***</em><i class="rf">19.90元</i></div>
+						</a>
+					</li>-->
+				</ul>
+			</div>
+		</div>
+		<!--用户 尾-->
+		<!--查看红包 首-->
+		<div class="see">
+			<span>
+		        <a href="#" class="sub1">查看红包</a>
+		        <a id="rob">抢红包</a>
+		        <a href="javascript:void(0)" class="sub2 share">分享</a>  
+    		</span>
+		</div>
+		<!--查看红包 尾-->
+
+		<!--红包弹框 首-->
+		<div class="red"></div>
+		<div class="tckdy_nr_two">
+			<h1>菜鸟基地，助学金红包</h1>
+			<h2>叫上你的小伙伴，一起抢红包</h2>
+			<h3><a id="open">開</a></h3>
+		</div>
+		<div class="tckdy_nr">
+			<h1 class="congratulate">恭喜你，为您的好友抢到</h1>
+			<h2 class="money">0元</h2>
+			<a href="javascript:void(0)" class="share">帮他分享</a>
+		</div>
+		<!--红包弹框 尾-->
+		<script src="javascript/jquery-1.9.1.min.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script src="javascript/wechatUtil.js"></script>
+		<script src="javascript/common.js"></script>
+		<script src="javascript/redPacket.js"></script>
+	</body>
+
+</html>

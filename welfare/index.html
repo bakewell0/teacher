@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<title>菜鸟基地，助学金红包</title>
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css" />
+	</head>
+
+	<body>
+		<!--顶部 首-->
+		<div class="top">
+			<a href="#" class="fa fa-chevron-left"> 返回</a>
+			<h1>逻辑思维</h1>
+			<span class="fa fa-ellipsis-h"></span>
+		</div>
+		<!--顶部 尾-->
+		<div class="thinking">
+			<h1>罗胖60秒：为啥互联网公司注重自由，传统企业强调等级？</h1>
+			<div>
+				<span>2018-01-02</span>
+				<span>尹业思</span>
+				<a href="#">菜鸟基地</a>
+			</div>
+			<p>
+				<i>1.</i>为啥互联网公司注重自由
+				<br/> 为啥互联网公司注重自由为啥互联网公司注重自由为啥互联网公司注重自由为啥互联网公司注重自由为啥互联网公司注重自由为啥互联网公司注重自由为啥互联网公司注重自由
+			</p>
+			<p>
+				<i>2.</i>为啥互联网公司注重自由
+				<br/> 为啥互联网公司注重自由为啥互联网公司注重自由为啥互联网公司注重自由为啥互联网公司注重自由为啥互联网公司注重自由为啥互联网公司注重自由为啥互联网公司注重自由
+			</p>
+			<p>
+				<i>3.</i>为啥互联网公司注重自由
+				<br/> 为啥互联网公司注重自由为啥互联网公司注重自由为啥互联网公司注重自由为啥互联网公司注重自由为啥互联网公司注重自由为啥互联网公司注重自由为啥互联网公司注重自由
+			</p>
+		</div>
+		<!--查看红包 首-->
+		<div class="see">
+			<span>
+		        <a href="javascript:void(0)" class="sub1 lookup">查看红包</a>
+		        <a id="rob">抢红包</a>
+		        <a href="javascript:void(0)" class="sub2 share">分享</a>  
+    		</span>
+		</div>
+		<!--查看红包 尾-->
+
+		<!--红包弹框 首-->
+		<div class="red"></div>
+		<div class="tckdy_nr_two">
+			<h1>菜鸟基地，助学金红包</h1>
+			<h2>叫上你的小伙伴，一起抢红包</h2>
+			<h3><a id="open">開</a></h3>
+		</div>
+		<div class="tckdy_nr">
+			<h1 class="congratulate">恭喜你，为您的好友抢到</h1>
+			<h2 class="money">0元</h2>
+			<a href="javascript:void(0)" class="share">帮他分享</a>
+		</div>
+		<!--红包弹框 尾-->
+		<script src="javascript/jquery-1.9.1.min.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script src="javascript/wechatUtil.js"></script>
+		<script src="javascript/common.js"></script>
+		<script>
+			if(!localStorage.getItem("visitor")) {
+				if(!getQuerystring("code")) {
+					location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx73da5380e9bc39de&redirect_uri=http://res.wscainiao.com/welfare/?userid=" + getQuerystring("userid") + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+				} else {
+					$.getJSON("http://res.wscainiao.com:443/getUserInfo?code=" + getQuerystring("code"), function(result) {
+						var data = result.result;
+						//存入当前用户的信息于localStorage
+						localStorage.setItem("visitor", JSON.stringify(data));
+						var user = {
+							"headimgurl": data.headimgurl,
+							"name": data.nickname,
+							"openid": data.openid
+						}
+						$.ajax({
+							type: "post",
+							url: "http://res.wscainiao.com:443/addUserInfo",
+							contentType: "application/json",
+							async: true,
+							data: JSON.stringify(user),
+							success: function(result) {
+								console.log(result);
+							}
+						});
+					})
+				}
+			}
+		</script>
+	</body>
+
+</html>

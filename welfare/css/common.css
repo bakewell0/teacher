@@ -1,0 +1,130 @@
+﻿ @charset "utf-8";
+/*清除浮动*/
+@charset "utf-8";
+/* reset */
+html { height: 100% }
+body { min-height: 100%; overflow-x: hidden;}
+body { _height: 100% }
+body, div, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, iframe, pre, code, fieldset, legend, form, input, select, textarea, button, p, blockquote, th, td, figure { margin: 0; padding: 0 }
+body, div, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, iframe, pre, code, fieldset, legend, form, p, blockquote, figure, header, footer, nav, article, section, aside, address, figcaption { *zoom: 1 }
+li { list-style-type: none }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight:normal;}
+iframe, frame, fieldset, img { border: 0 none }
+img { vertical-align: top }
+input[type=button], input[type=submit], input[type=reset] { cursor: pointer }
+button { cursor: pointer }
+input[type=text], input[type=password], input[type=file], textarea { -webkit-border-radius: 0; -webkit-appearance: normal }
+input[type=search] { -webkit-box-sizing: content-box; -moz-box-sizing: content-box; -ms-box-sizing: content-box; -o-box-sizing: content-box; box-sizing: content-box }
+textarea { overflow: auto; resize: none }
+blockquote, q { quotes: none }
+blockquote:before, blockquote:after, q:before, q:after { content: ""; content: none }
+caption, th { text-align: left }
+th { font-weight: normal }
+em, cite, address,i { font-style: normal }
+sup { vertical-align: text-top }
+sub { vertical-align: text-bottom }
+body, input, select, button, textarea { font-size: 14px; font-family:"微软雅黑",arial,"\5b8b\4f53";  }
+body { line-height: 1.17 }
+a { text-decoration: none }
+a { blr:expression(this.onFocus=this.blur()) }
+a * { *cursor: pointer }
+:focus { outline: none }
+
+.edit_con_original{ line-height:1.5; padding:20px; color:#333;}
+.edit_con_original li, .edit-con-original li { list-style-type: disc }
+.edit_con_original h1, .edit-con-original h1 { font-size: 2em }
+.edit_con_original h2, .edit-con-original h2 { font-size: 1.5em }
+.edit_con_original h3, .edit-con-original h3 { font-size: 1.17em }
+.edit_con_original h4, .edit-con-original h4 { font-size: 1em }
+.edit_con_original h5, .edit-con-original h5 { font-size: 0.83em }
+.edit_con_original h6, .edit-con-original h6 { font-size: 0.67em }
+.edit_con_original em, .edit-con-original em { font-style: italic }
+.edit_con_original cite, .edit-con-original cite { font-style: italic }
+.edit_con_original address, .edit-con-original address { font-style: italic;}
+.edit_con_original i, .edit-con-original i { font-style: italic }
+
+.fixed:after, .clearfix:after, .cf:after, .header:after, .main:after, .footer:after { content: " "; display: block; clear: both; height: 0; overflow: hidden }
+.fixed, .clearfix, .cf, .header, .main, .footer { *zoom: 1 }
+.clear, .cl { display: block!important; float: none!important; clear: both; width: auto!important; max-width: none!important; min-width: 0!important; max-height: none!important; min-height: 0!important; overflow: hidden; margin: 0!important; padding: 0!important; border: 0 none!important; font-size: 0!important; line-height: 0!important }            
+.lt9 .t-shadow { filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#99000000", EndColorStr="#99000000") }
+.t-shadow {background: rgba(0, 0, 0, .5)}
+
+.lf{ float: left;}
+.rf{ float: right;}
+.jz{ overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+
+/*菜鸟抢红包页面2*/
+.top{ position: relative; display:none}
+.top a{ position: absolute; top: 17px; left: 10px; font-size: 16px; color: #fff;}
+.top h1{ font-size: 18px; color: #fff; text-align: center; line-height: 50px; background: #39393d;}
+.top span{ position: absolute; top: 15px; right: 10px; font-size: 20px; color: #fff;}
+
+.use{ background: #fafafa; margin: 0 10px; margin-top: 10px; padding: 20px 10px 10px 10px; margin-bottom: 60px;}
+.name_left img.t1{ width: 80px; height: auto; margin-right: 22px;}
+.name_right h1,.name_right h2,.name_right h3{font-size: 14px; color: #7f7f7f; margin-bottom: 14px;}
+.name_right h2 span{ font-size: 17px;}
+.name_right h2 span i,.name_right h3 i{ color: #df3121;}
+
+.friend h1{font-size: 14px; color: #7f7f7f; margin-top: 15px; margin-bottom: 5px;}
+.friend2{ background: #f1f4fc; border-radius: 8px;}
+.friend2 li{ border-bottom: 1px solid #cdcdcd;}
+.friend2 li a span{ font-size: 16px; color: #17222a; line-height: 80px; margin: 0 5px;}
+.friend2 li a img{ width: 50px; height: auto; margin-top: 15px; margin-right: 10px;}
+.friend_name{ width: 68%; border-bottom: 2px solid #fa951e; padding-bottom: 10px; margin-top: 23px;}
+.friend_name em,.friend_name i{ font-size: 14px; color: #7f7f7f;}
+.friend_name i{ color: #df3121;}
+
+.see{ background: #f0f0f0; padding:10px 0; position: fixed; bottom: 0; left: 0; width: 100%;}
+.see span a{ border: none; width: 26%; background: #ff4c00; border-radius: 5px; font-size: 16px; color: #fff; line-height: 40px; margin: 0 auto; display: block; text-align:center}
+.see span a:hover{ font-size: 18px;}
+.see span{ position: relative; display:block}
+.see span a.sub1{ position: absolute; top: 0; left: 15px; background: #FF9001;}
+.see span a.sub2{ position: absolute; top: 0; right: 15px; background: #ff4c00;}
+
+/*菜鸟抢红包页面*/
+.thinking{ padding: 0 10px; margin-bottom: 90px;}
+.thinking h1{ font-size:18px; color: #000; padding: 20px 0; line-height: 24px;padding-bottom: 10px;}
+.thinking div{ padding-bottom: 20px;}
+.thinking div span{ font-size: 14px; color:#8c8c8c ; line-height: 18px; padding-right:10px;}
+.thinking div a{ font-size: 14px; color:#667ea3 ; line-height: 18px; }
+.thinking p{font-size: 14px; color:#000 ; line-height: 28px; padding: 12px 0;}
+.thinking p i{ font-style: italic; color: #ea9b56;font-size: 16px;padding-right:3px;}
+
+/*红包弹框*/
+/*金额*/
+.red{ width: 100%; height: 100%; background: rgba(0,0,0,0.5); position: fixed;top: 0; left: 0; z-index: 1;}
+.tckdy_nr{ width: 220px; height: 352px; background:url(../img/t3.png) no-repeat; background-size: 100% 100%; position:fixed;left:50%; top:50%; z-index: 9999; margin-left:-110px; margin-top:-171px}
+.red_weizi{ width: 180px; position: absolute; top: 300px; left: 50%; margin-left: -90px;}
+.tckdy_nr h1{ font-size: 14px; color: #fcf56c; padding: 140px 0 30px 15px;}
+.tckdy_nr h2{ font-size: 22px; color: #fcf56c; text-align: center; letter-spacing: 2px;}
+.tckdy_nr a{font-size: 15px; color: #fcf56c; margin: 0 auto; width: 100px; text-align: center; display: block; border: 2px solid #fcf56c; line-height: 30px; border-radius: 16.5px; margin-top: 40px;}
+
+/*開*/
+.tckdy_nr_two{ width: 220px; height: 352px; background:url(../img/t4.png) no-repeat; background-size: 100% 100%; position:fixed;left:50%; top:50%; z-index: 9999; margin-left:-110px; margin-top:-171px}
+.tckdy_nr_two h1{ font-size: 16px; color: #fcf56c; text-align: center; margin: 80px 0 20px 0;}
+.tckdy_nr_two h2{ font-size: 14px; color: #fcf56c; text-align: center; margin-bottom: 80px;}
+.tckdy_nr_two h3 a{ display: block; font-size: 22px; color: #cd422f; background: #fcf56c; width: 70px; height: 70px; border-radius: 50px; text-align: center; margin: 0 auto; line-height: 70px;}
+
+.red,.tckdy_nr_two,.tckdy_nr{ display:none}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
