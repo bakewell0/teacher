@@ -21,26 +21,6 @@ $(document).ready(function() {
 	});
 });
 
-$(document).on("click", ".share", function() {
-	wx.onMenuShareTimeline({
-		title: '长沙菜鸟基地产品',
-		link: link,
-		imgUrl: 'http://res.wscainiao.com/welfare/img/p2166127561.jpg',
-		trigger: function(res) {
-
-		},
-		success: function(res) {
-
-		},
-		cancel: function(res) {
-
-		},
-		fail: function(res) {
-			alert(JSON.stringify(res));
-		}
-	});
-})
-
 $(document).on("click", ".lookup", function() {
 	location.href = "redPacket.html?userid=" + getQuerystring('userid')
 })
