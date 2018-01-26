@@ -106,6 +106,7 @@ a * { *cursor: pointer }
 .tckdy_nr_two h3 a{ display: block; font-size: 22px; color: #cd422f; background: #fcf56c; width: 70px; height: 70px; border-radius: 50px; text-align: center; margin: 0 auto; line-height: 70px;}
 
 .red,.tckdy_nr_two,.tckdy_nr{ display:none}
+.fx{ position:fixed; left:0; top:0; z-index:9999; width:100%; height:auto; display:none}
 
 
 

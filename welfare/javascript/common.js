@@ -52,3 +52,10 @@ function renderRedPacket(result) {
 		$(".money").html(result.result.money + "元");
 	}
 }
+
+$(".share").click(function() {
+	$(".fx").fadeIn();
+});
+$(".fx").click(function() {
+	$(this).fadeOut();
+});
