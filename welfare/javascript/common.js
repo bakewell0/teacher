@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$("#rob").click(function() {
+	$(".rob").click(function() {
 		$(".red").fadeIn();
 		$(".tckdy_nr_two").fadeIn();
 	});

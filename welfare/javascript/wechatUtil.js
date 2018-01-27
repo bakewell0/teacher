@@ -26,7 +26,7 @@ wx.ready(function() {
 	//监听“分享给朋友”
 	wx.onMenuShareAppMessage({
 		title: '菜鸟校刊--我为校园代言',
-		desc: '',
+		desc:  '    菜鸟基地发福利啦！2000元助学红包任性抢~抢~抢…把校长吓哭了！！！',
 		link: link,
 		imgUrl: 'http://res.wscainiao.com/welfare/img/icon.jpg',
 		trigger: function(res) {
@@ -65,7 +65,7 @@ wx.ready(function() {
 	//分享到QQ
 	wx.onMenuShareQQ({
 		title: '菜鸟校刊--我为校园代言',
-		desc: '',
+		desc:  '    菜鸟基地发福利啦！2000元助学红包任性抢~抢~抢…把校长吓哭了！！！',
 		link: link,
 		imgUrl: 'http://res.wscainiao.com/welfare/img/icon.jpg',
 		trigger: function(res) {
