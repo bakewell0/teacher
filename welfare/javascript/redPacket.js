@@ -20,10 +20,10 @@ function renderList(data) {
 		totalmoney = user.totalmoney ? user.totalmoney : 0,
 		totalnum = user.totalnum ? user.totalnum : 0;
 
-	for(var i = 0; i < redpackets.length; i++) {
+	for(var i = redpackets.length - 1; i >= 0; i--) {
 		list += '<li class="cf">' +
 			'<a href = "#" >' +
-			'<span class = "lf" >' + (i + 1) + '</span>' +
+			'<span class = "lf" >' + (i+1) + '</span>' +
 			'<img src = ' + redpackets[i].headimage + ' class = "t2 lf" / >' +
 			'<div class = "cf lf friend_name" >' +
 			'<em class = "lf" >' + redpackets[i].nickname + ' </em>' +

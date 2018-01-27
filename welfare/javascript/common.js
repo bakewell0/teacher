@@ -18,6 +18,9 @@ $(document).ready(function() {
 		$(".red").fadeOut();
 		$(".tckdy_nr_two").fadeOut();
 		$(".tckdy_nr").fadeOut();
+		setTimeout(function() {
+			location.reload();
+		}, 1000);
 	});
 });
 
