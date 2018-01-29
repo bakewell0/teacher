@@ -60,7 +60,7 @@ a * { *cursor: pointer }
 .top span{ position: absolute; top: 15px; right: 10px; font-size: 20px; color: #fff;}
 
 .use{ background: #fafafa; margin: 0 10px; margin-top: 10px; padding: 20px 10px 10px 10px; margin-bottom: 60px;}
-.name_left img.t1{ width: 80px; height: auto; margin-right: 22px;}
+.name_left img.t1{ width: 80px; height: auto; margin-right: 6px;}
 .name_right h1,.name_right h2,.name_right h3{font-size: 14px; color: #7f7f7f; margin-bottom: 14px;}
 .name_right h2 span{ font-size: 17px;}
 .name_right h2 span i,.name_right h3 i{ color: #df3121;}

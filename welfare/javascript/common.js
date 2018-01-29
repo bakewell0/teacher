@@ -28,6 +28,10 @@ $(document).on("click", ".lookup", function() {
 	location.href = "redPacket.html?userid=" + getQuerystring('userid')
 })
 
+$(document).on("click", ".index", function() {
+	location.href = "index.html?userid=" + getQuerystring('userid')
+})
+
 //抢到当前红包金额
 function robRedPacket() {
 	//取localstorage的值
