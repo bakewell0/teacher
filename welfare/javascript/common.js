@@ -3,7 +3,12 @@ $(document).ready(function() {
 		$(".red").fadeIn();
 		$(".tckdy_nr_two").fadeIn();
 	});
+	var flag = true;
 	$("#open").click(function() {
+		if(!flag) {
+			return;
+		}
+		flag = false;
 		$(".new-year-but1").addClass("main_jb2");
 		setTimeout(function() {
 			$(".new-year-but1").removeClass("main_jb2");

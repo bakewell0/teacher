@@ -73,7 +73,7 @@ a * { *cursor: pointer }
 .friend_name{ width: 65%; border-bottom: 2px solid #fa951e; padding-bottom: 10px; margin-top: 23px;}
 .friend_name em,.friend_name i{ font-size: 14px; color: #7f7f7f;}
 .friend_name i{ color: #df3121;}
-
+.friend_name em{width: 140px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
 .see{ background: #f0f0f0; padding:10px 0; position: fixed; bottom: 0; left: 0; width: 100%; z-index:5}
 .see span a{ border: none; width: 26%; background: #ff4c00; border-radius: 5px; font-size: 16px; color: #fff; line-height: 40px; margin: 0 auto; display: block; text-align:center}
 .see span a:hover{ font-size: 18px;}
