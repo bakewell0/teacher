@@ -1,0 +1,53 @@
+ @charset "utf-8";
+/*清除浮动*/
+@charset "utf-8";
+/* reset */
+html { height: 100% }
+body { height: 100%; min-width:1200px; overflow-x: hidden;}
+body { _height: 100% }
+body, div, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, iframe, pre, code, fieldset, legend, form, input, select, textarea, button, p, blockquote, th, td, figure { margin: 0; padding: 0 }
+body, div, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, iframe, pre, code, fieldset, legend, form, p, blockquote, figure, header, footer, nav, article, section, aside, address, figcaption { *zoom: 1 }
+li { list-style-type: none }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight:normal;}
+iframe, frame, fieldset, img { border: 0 none }
+img { vertical-align: middle }
+input[type=button], input[type=submit], input[type=reset] { cursor: pointer }
+button { cursor: pointer }
+input[type=text], input[type=password], input[type=file], textarea { -webkit-border-radius: 0; -webkit-appearance: normal }
+input[type=search] { -webkit-box-sizing: content-box; -moz-box-sizing: content-box; -ms-box-sizing: content-box; -o-box-sizing: content-box; box-sizing: content-box }
+textarea { overflow: auto; resize: none }
+blockquote, q { quotes: none }
+blockquote:before, blockquote:after, q:before, q:after { content: ""; content: none }
+caption, th { text-align: left }
+th { font-weight: normal }
+em, cite, address,i { font-style: normal }
+sup { vertical-align: text-top }
+sub { vertical-align: text-bottom }
+body, input, select, button, textarea { font-size: 14px; font-family:arial}
+/*body { line-height: 1.17 }*/
+a { text-decoration: none }
+a { blr:expression(this.onFocus=this.blur()) }
+a * { *cursor: pointer }
+:focus { outline: none }
+
+.fixed:after, .clearfix:after, .cf:after, .header:after, .main:after, .footer:after { content: " "; display: block; clear: both; height: 0; overflow: hidden }
+.fixed, .clearfix, .cf, .header, .main, .footer { *zoom: 1 }
+.clear, .cl { display: block!important; float: none!important; clear: both; width: auto!important; max-width: none!important; min-width: 0!important; max-height: none!important; min-height: 0!important; overflow: hidden; margin: 0!important; padding: 0!important; border: 0 none!important; font-size: 0!important; line-height: 0!important }            
+.lt9 .t-shadow { filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#99000000", EndColorStr="#99000000") }
+.t-shadow {background: rgba(0, 0, 0, .5)}
+
+.lf{ float: left;}
+.rf{ float: right;}
+.jz{ overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.w1170{
+	width: 1170px!important;
+	margin: auto;
+}
+
+.clearfix{overflow: hidden;}
+
+
+/*业务级*/
+body{
+	background: #292929;
+}
