@@ -8,10 +8,44 @@
 	color: white
 }
 
-.nav {}
+.nav {
+    width: 1170px;
+    margin: 17px auto;
+}
+
+.nav ul{
+	display: flex;
+	align-items: center;
+	height: 75px;
+}
+
+.nav li{
+	margin: 0 12px;
+}
+
+.nav li .login{
+	position: absolute;
+	top:0;
+	left: 0;
+}
+
+.nav li .login span{
+	float: left;
+    height: 28px;
+    line-height: 28px;
+}
+
+.nav li a{
+	color: white;
+    line-height: 28px;
+    height: 28px;
+    float: left;
+    margin: 0 7.5px;
+}
 
 .name {
 	font-size: 100px;
+	margin-top: 100px;
 }
 
 .summary {
@@ -32,10 +66,16 @@
 
 .email input {
 	width: 480px;
-	height: 52px;
-	background: transparent;
-	padding-left: 20px;
-	box-sizing: border-box;
+    height: 46px;
+    background: transparent;
+    padding-left: 20px;
+    box-sizing: border-box;
+    color: white;
+    top: 0;
+    position: absolute;
+    left: 0;
+    border: 0;
+    z-index: 2;
 }
 
 .email span {
@@ -43,11 +83,17 @@
 	width: 50px;
 	height: 38px;
 	line-height: 38px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 4px;
     right: 6px;
-	background: #1f73fc;
 	background: linear-gradient(135deg, #1f73fc, #ea21be);
+	z-index: 2;
+	cursor: pointer;
+}
+
+.email .error{
+	color:#f56c6c;
+	margin-top: 10px;
+	text-align: left;
 }
 
 .service {

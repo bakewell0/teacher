@@ -1,0 +1,1 @@
+window.reqUrl="http://13.228.40.104:80/api-1.0.0/api/action.do";

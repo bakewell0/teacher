@@ -51,3 +51,25 @@ a * { *cursor: pointer }
 body{
 	background: #292929;
 }
+
+.footer {
+	color: white;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 45px -110px 0 -110px;   
+    position: relative;
+}
+.footer .items{
+	overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.footer .footitem {text-align: center;}
+.footer .footitem .copyright {font-size: 12px;margin: 30px 0;}
+.footer .footitem .footlogo {width: 135px;}
+.footer .footitem .footdes {text-align: left;margin-right: 40px;float: left;}
+.footer .footitem .footdes .footdesp {font-size: 20px;}
+.footer .footitem .footdes a , .footer .footitem .footdes span{line-height: 45px;display: block;color: white;}
+.footer .footitem .footdes img{vertical-align: middle;}
