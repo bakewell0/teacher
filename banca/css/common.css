@@ -55,7 +55,6 @@ body{
 .footer {
 	color: white;
     box-sizing: border-box;
-    width: 100%;
     margin: 45px -110px 0 -110px;   
     position: relative;
 }
