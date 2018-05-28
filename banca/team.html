@@ -1,9 +1,370 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/team.css" />
 	</head>
+
 	<body>
+		<div id="app">
+			<div style="position: relative;">
+				<!--banner-->
+				<img src="img/navbar.jpg" alt="" />
+				<div class="nav">
+					<img src="img/logo2.png" alt="" class="lf">
+					<ul class="rf">
+						<li>
+							<a href="index.html" style="color:#f01ebc">HOME</a>
+						</li>
+						<li>
+							<a href="index.html#aboutus">ABOUT US</a>
+						</li>
+						<li>
+							<a href="https://www.banca.world/A_UpLoad/upload_file/20180424/20180424155717_1837.pdf" target="_blank">WHITE PAPER</a>
+						</li>
+						<li>
+							<a href="team.html">TEAM MEMBERS AND SUPPORTERS</a>
+						</li>
+						<li style="position: relative;" @click="showDialog">
+							<img src="img/login.png" alt="">
+							<div class="login">
+								<a href="javascript:void(0)">Log in</a> <span class="lf">/</span>
+								<a href="javascript:void(0)">Sign Up</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="service">
+				<div class="service-title">Our Team</div>
+				<div class="service-line">
+					<img src="img/line.jpg" alt="" />
+				</div>
+				<ul class="teamList">
+					<li>
+						<div class="profile">
+							<img src="img/m1.png" alt="" />
+							<img src="img/icon.png" alt="" class="icon" @click="showDetail(1)" />
+						</div>
+						<p class="name">Linda Chen
+							<a href="https://www.linkedin.com/in/linda-chen-6085496/"><img src="img/linkin.png" alt="" /></a>
+						</p>
+						<p class="role">CEO</p>
+					</li>
+					<li>
+						<div class="profile">
+							<img src="img/m2.png" alt="" />
+							<img src="img/icon.png" alt="" class="icon" @click="showDetail(2)" />
+						</div>
+						<p class="name">Dr. Yuhan Cai
+							<a href=""><img src="img/linkin.png" alt="" /></a>
+						</p>
+						<p class="role">CTO</p>
+					</li>
+					<li>
+						<div class="profile">
+							<img src="img/m3.png" alt="" />
+							<img src="img/icon.png" alt="" class="icon" @click="showDetail(3)" />
+						</div>
+						<p class="name">Artem Sokolenko
+							<a href="https://www.linkedin.com/in/artisokolenko"><img src="img/linkin.png" alt="" /></a>
+						</p>
+						<p class="role">CMO</p>
+					</li>
+					<li>
+						<div class="profile">
+							<img src="img/m4.png" alt="" />
+							<img src="img/icon.png" alt="" class="icon" @click="showDetail(4)" />
+						</div>
+						<p class="name">Leo Li
+							<a href="https://www.linkedin.com/in/hao-li-20009419/"><img src="img/linkin.png" alt="" /></a>
+						</p>
+						<p class="role">Director of Crypto Products</p>
+					</li>
+					<li>
+						<div class="profile">
+							<img src="img/m5.png" alt="" />
+							<img src="img/icon.png" alt="" class="icon" @click="showDetail(5)" />
+						</div>
+						<p class="name">Dr. Bing Chen</p>
+						<p class="role">Chief Scientist</p>
+					</li>
+					<li>
+						<div class="profile">
+							<img src="img/m6.png" alt="" />
+							<img src="img/icon.png" alt="" class="icon" @click="showDetail(6)" />
+						</div>
+						<p class="name">Jay Tang</p>
+						<p class="role">Director of Operations</p>
+					</li>
+					<li>
+						<div class="profile">
+							<img src="img/m7.png" alt="" />
+							<img src="img/icon.png" alt="" class="icon" @click="showDetail(7)" />
+						</div>
+						<p class="name">Jeff Barr</p>
+						<p class="role">Director of Infrastructure Services</p>
+					</li>
+					<li>
+						<div class="profile">
+							<img src="img/m8.png" alt="" />
+							<img src="img/icon.png" alt="" class="icon" @click="showDetail(8)" />
+						</div>
+						<p class="name">Liang Yu</p>
+						<p class="role">Chief Architect</p>
+					</li>
+					<li>
+						<div class="profile">
+							<img src="img/m9.png" alt="" />
+							<img src="img/icon.png" alt="" class="icon" @click="showDetail(9)" />
+						</div>
+						<p class="name">Pieta Feng
+							<a href="https://www.linkedin.com/in/pieta-feng-99b19b9b/">
+								<img src="img/linkin.png" alt="" />
+							</a>
+						</p>
+						<p class="role">Senior Manager</p>
+					</li>
+					<li>
+						<div class="profile">
+							<img src="img/m10.png" alt="" />
+							<img src="img/icon.png" alt="" class="icon" @click="showDetail(10)" />
+						</div>
+						<p class="name">Jessica Liu</p>
+						<p class="role">UI Designer</p>
+
+					</li>
+				</ul>
+			</div>
+
+			<!--Investors & Strategic Advisors-->
+
+			<div class="service">
+				<div class="service-title">Investors & Strategic Advisors</div>
+				<div class="service-line">
+					<img src="img/line.jpg" alt="" />
+				</div>
+				<ul class="teamList">
+					<li>
+						<img src="img/ad1.png" alt="" />
+						<p class="name">Quantum Foundation</p>
+						<p class="role">Qtum Quantum Chain is committed to becoming the future value transport protocol and distributed application platform on the Internet.</p>
+					</li>
+					<li>
+						<img src="img/ad2.png" alt="" />
+						<p class="name">Aleksey Matiychenko</p>
+						<p class="role">Former Director of the JPMorgan Fund Investment Department</p>
+					</li>
+					<li>
+						<img src="img/ad3.png" alt="" />
+						<p class="name">Richard Wang</p>
+						<p class="role">Partner of Draper Dragon Fund</p>
+					</li>
+					<li>
+						<img src="img/ad4.png" alt="" />
+						<p class="name">Dr. Li Bin</p>
+						<p class="role">Former Merrill Lynch VP, UBS Executive Director</p>
+					</li>
+					<li>
+						<img src="img/ad5.png" alt="" />
+						<p class="name">Adrian Lam Ju Miin</p>
+						<p class="role">Founder of workzspace.com, which has listings of 1000 + Serviced Offices & Co-working spaces in Asia. Independent council member of the Gerson Lehrman Group(GLG)</p>
+					</li>
+					<li>
+						<img src="img/ad6.png" alt="" />
+						<p class="name">Lester Lim</p>
+						<p class="role">Blockchain Advisor/Investor and founder of a global private syndicate, which is investing in the best ICOs on the market.</p>
+					</li>
+					<li>
+						<img src="img/ad7.png" alt="" />
+						<p class="name">Jayden Wei</p>
+						<p class="role">Founder of LEEKICO, Executive director of Collinstar Capital, Blockchain Fans and Fintech Startup Supporter. Australia's only digital currency block chain venture capital licence holder.</p>
+					</li>
+					<li>
+						<img src="img/ad8.png" alt="" />
+						<p class="name">Jonas Sevel Karlberg</p>
+						<p class="role">Jonas is a co-founder of the Nordic Blockchain Association, and the founder of AmaZix, the world's leading community management and engagement firm, instrumental in major successful token sales like Bancor, HDAC (by Hyundai), BANKEX, WePower and Sharpe Capital +50 more.</p>
+					</li>
+					<li>
+						<img src="img/ad9.png" alt="" />
+						<p class="name">Jess Kim</p>
+						<p class="role">A seasoned venture capitalist, who primarly focusing on crypto startups / invested several projects including ink protocol, the key, Qlink and mediblock / background in economics.</p>
+					</li>
+
+					<li>
+						<img src="img/ad10.png" alt="" />
+						<p class="name">SungJoon Hwang</p>
+						<p class="role" style="margin-bottom: 200px;">Blockchain Advisor/Investor, A Sales Representative at Oracle in the field of Blockchain and Cloud Computing</p>
+					</li>
+
+					<li>
+						<img src="img/ad11.png" alt="" />
+						<p class="name">GENESIS</p>
+						<p class="role">GENESIS is a professional investment banking and venture capital firm specialized in the blockchain industry.</p>
+					</li>
+
+					<li>
+						<img src="img/ad12.png" alt="" />
+						<p class="name">Xing Zao Finance</p>
+						<p class="role">Venture capital firm.</p>
+					</li>
+					<li>
+						<img src="img/ad13.png" alt="" />
+						<p class="name">CollinStar Capital</p>
+						<p class="role">CollinStar Capital, an Australian based asset management company and a market leader in Fintech.</p>
+					</li>
+				</ul>
+			</div>
+
+			<div class="service">
+				<div class="footer"><img src="img/bandage.jpg" alt="">
+					<div class="w1170 items">
+						<div class="footitem lf"><img src="img/logo_white.svg" alt="" class="footlogo">
+							<p class="copyright">Copyright © Banca All Rights Reserved.</p>
+						</div>
+						<div class="footitem rf" style="margin-top: 20px;">
+							<div class="footdes">
+								<a href="" class="footdesp">Site Map</a>
+								<a href="">About Us</a>
+								<a href="">Media</a>
+							</div>
+							<div class="footdes">
+								<a href="" class="footdesp">Contact US</a>
+								<a href="">EMAIL：info@banca.world</a>
+								<a href=""><img border="0" hspace="0" vspace="0" src="https://icon.cnzz.com/img/pic.gif"></a>
+							</div>
+							<div class="footdes"><img src="img/twitter.png" alt="" class="lf"> <span class="lf footdesp">Twitter</span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<ul class="sideBar">
+				<li>
+					<a href="https://t.me/banca_official" target="_blank"><img src="img/s1.png" alt="" /></a>
+					<i></i>
+				</li>
+				<li>
+					<a href="https://twitter.com/Banca_Official" target="_blank">
+						<img src="img/s2.png" alt="" />
+					</a>
+					<i></i>
+				</li>
+				<li style="position: relative;" @mouseenter="showE" @mouseleave="hideE">
+					<a href="">
+						<img src="img/s3.png" alt="" />
+					</a>
+					<div class="email" v-show="showEmail">
+						Email - info@banca.world
+					</div>
+					<i></i>
+				</li>
+				<li>
+					<a href="https://bitcointalk.org/index.php?topic=2725461.new#new" target="_blank">
+						<img src="img/s4.png" alt="" />
+					</a>
+					<i></i>
+				</li>
+				<li>
+					<a href="https://www.reddit.com/r/Bancaworld/" target="_blank">
+						<img src="img/s5.png" alt="" />
+					</a>
+					<i></i>
+				</li>
+			</ul>
+
+			<div class="mask" @click="unmask" v-show="mask"></div>
+			<div class="memberDetail" v-show="curindex==1&&mask">
+				<h1>Linda Chen<b>CEO</b></h1>
+				<p>Linda has 12 years of investment management experience in Wall Street investment banks and hedge funds, successively working for DFD Select Group, a famous fund of hedge fund (FOHF) of asset management in Wall Street, Eaton Partners, and Hong Kong’s Ajia Partners, where she was responsible for investment management, personally interviewing thousands of private hedge funds at home and abroad.</p>
+				<p>She then went on to start her own business, founding Golden Bridge International in New York and Shanghai Caichi Asset Management Co., Ltd. She is familar with the development path and operational management of start-ups.</p>
+				<p>Caichi Asset introduced the Buffett Fund to Chinese investors for the first time, with over 800 million RMB of the management scale and over 500 million USD of overseas asset management scale, making it a sustained and excellent investment.</p>
+				<p>After entering the market of digital currency, she was the first to propose the application of Wall Street’s advanced Smart Beta quantitative timing algorithm to the investments in the digital token market, achieving excellent investment returns for her portfolios. At the same time, she accumulated extensive networks between project sides, investors and service providers in the field of currency, which lays a foundation for the development of the Banca community.</p>
+				<p>Linda grew up in Australia, graduated from The University of New South Wales and received degrees in both Actuarial Science and Accounting.</p>
+			</div>
+
+			<div class="memberDetail" v-show="curindex==2&&mask">
+				<h1>Dr Cai Yuhan<b>CTO</b></h1>
+				<p>Dr. Yuhan Cai is a leading expert in the financial technology field in Silicon Valley, with 16-years of experience in core technology development and team management. He has worked for Microsoft, Amazon, Google, Apple and other large technology companies, and was responsible for the architecture, development and operational maintenance of financial big data platforms. He was the Senior Technical Director of Apple and was responsible for the design and optimization of machine learning models in user behavior analysis system before joining our team.</p>
+				<p>He was the Founding Member & Technical Director of ZenMarketing business division, successfully developing integration and analysis platforms for big data mobile applications, rapidly setting up his own technical team. Project results include: high-speed real-time bidding platform, cloud big data risk control system and Samsung private cloud.</p>
+				<p>Dr. Yuhan Cai has obtained many patents for inventions and published 25 professional papers on information theory, artificial intelligence, big data, game theory, calculation method and other fields, and has won several awards from the National Science Foundation, United States, and Best Paper and Best Show, etc., from the Association for Computing Machinery (ACM).</p>
+				<p>“Chebyshev Efficient Index”, “Stock Pattern Matching” and other patents about big data application obtained by Dr. Yuhan Cai will be transplanted to Banca community and become significant technical advantages.</p>
+				<p>Dr. Yuhan Cai graduated from University of British Columbia (Bachelors Degree) and University of Washington (Doctorate in Computer Science).</p>
+			</div>
+
+			<div class="memberDetail" v-show="curindex==3&&mask">
+				<h1>Artem Sokolenko<b>CMO</b></h1>
+				<p>He is a top-class marketer and sales expert in Europe, having many years' experience in international marketing and branding for multi-national companies. He is now responsible for the operation and marketing of Banca community.</p>
+				<p>He used to lead marketing teams in Europe, Dubai, the United States and Russia while working for multi-national companies and at the same time providing strategic advisory to international big brands such as Hershey and Armani.</p>
+				<p>He is going to lead Banca's marketing team and promote the startup's idea, product and service on overseas community, social media and major international media.</p>
+			</div>
+
+			<div class="memberDetail" v-show="curindex==4&&mask">
+				<h1>Leo Li<b>Director of Digital Currency Investment Products</b></h1>
+				<p>Leo has professionally worked as a senior financial products designer, with rich experience in financial product design, asset allocation and services for high-net-worth investors. He worked for Hillview Capital Advisors in Wall Street, where he was responsible for the allocation of all kinds of assets around the world and analysis of financial products. His ten-year investment experience covers global stocks, bonds, commodities, and a variety of complex financial products.</p>
+				<p>In 2016, he returned to co-found a number of financial/non-financial enterprises, including Shanghai Qiyi Investment Management Co., Ltd. (Founding Partner) and Shanghai Yingquan Education Technology Co., Ltd. (Founding Partner), etc.</p>
+				<p>Leo has a Bachelors degree in biology from Fudan University and a Masters Degree in Finance from George Washington University.</p>
+			</div>
+
+			<div class="memberDetail" v-show="curindex==5&&mask">
+				<h1>Dr. Bing<b>ChenChief Scientist</b></h1>
+				<p>Dr. Bing Chen is a Senior Researcher of Murray Hill Research Center, AT&T, and is is a world-leading scientist in research and development of information technology and data processing. She was responsible for VoIP network construction and testing, and has obtained 21 patents and published 21 papers on IEEE Communication. She has delivered many speeches at international academic forums.</p>
+				<p>She is a world-class expert in speech compression algorithms, echo cancellers, statistical analysis, ITU network planning models (E-Model) and objective speech quality models (PESQ, PAMS).</p>
+				<p>Dr. Bing Chen was a lecturer at Rutgers and a postdoctoral scholar at the University of Rochester.</p>
+				<p>She holds a Bachelors degree in Mechanical Engineering from Taiyuan University of Technology and a Doctorate in Experimental Psychology from University of California, San Diego.</p>
+				<p>Dr. Bing Chen’s patents, papers and scientific achievements will be used in basic underlying architecture and several modules of the Banca platform.</p>
+			</div>
+
+			<div class="memberDetail" v-show="curindex==6&&mask">
+				<h1>Jay Tang<b>Director of Operations</b></h1>
+				<p>Jay once worked for famous Canadian trading company SwiftTrade and at well-known domestic securities company Guosen, successively serving as Trader, PR Manager and Director of Operations of a branch. While serving as an Investment Counselor, he was responsible for, through communicating with China’s top financial public relations companies including Citigate Dewe Rogerson, providing all-around financial services for institutions and high-net-worth clients and expanding the market for the company’s business and products, with excellent performance achieved.</p>
+				<p>While working for financial institutions, he invested in stocks, funds, futures and digital currencies as an independent investor to maintain close ties to the market. He can acutely capture the market’s demand trend and find investors’ pain points.</p>
+				<p>Jay holds Bachelors Degrees in Finance and Management Information Systems from the North China University of Science and Technology.</p>
+			</div>
+
+			<div class="memberDetail" v-show="curindex==7&&mask">
+				<h1>Jeffrey Barr<b>Director of Infrastructure of Investment Banking Service</b></h1>
+				<p>Jeff is one of Wall Street’s senior investment banking experts who worked in Citibank’s Investment Banking Division and was responsible for issuing financial derivatives and other complex financial products, evaluating and rating derivative projects and related legal affairs, financial analysis and business negotiation, etc.</p>
+				<p>After leaving Citibank, he became engaged in wealth management for private families in Wall Street for a long time, and has successfully applied his understanding and experience with complex financial products, and has gained excess revenue for high-net-worth families and institutions.</p>
+				<p>He graduated from the world-famous Wharton School of the University of Pennsylvania, with a Bachelors Degree in Finance and a MBA.</p>
+			</div>
+
+			<div class="memberDetail" v-show="curindex==8&&mask">
+				<h1>Yu Liang<b>Chief Architect</b></h1>
+				<p>Mr Yu was Vice President in the GBAM division of Bank Of America. He has more than 17 years of experience in technology infrastructure and project management in top Wall Street investment banks and world leading financial information providers. He has strong expertise in large real-time distributed systems, full stack system architecture and implementation of financial information platforms.</p>
+				<p>Prior to Bank Of America, Mr Yu worked worked on various positions as senior software engineer or project manager in the technology departments of Bloomberg, Morgan Stanley, Goldman Sachs, JPMorgan & Chase. He led projects or was involved in the development of products such as large scale distributed enterprise-wide data solutions, real-time global stocks trading systems, fixed-income securities trading applications and risk management systems for repurchase products.</p>
+				<p>Mr Yu holds a master degree in Computer Science from Queens College, CUNY, NYC.He currently concentrates in the research, design and integration of the blockchain technology with various financial applications.</p>
+			</div>
+
+			<div class="memberDetail" v-show="curindex==9&&mask">
+				<h1>Pieta<b>FengSenior Manager</b></h1>
+				<p>Pieta Feng was a member of Enactus, an international entrepreneurial organization, and has learnt a lot of entrepreneurial experieences in his early years. Enactus, founded in 1975, is a non-profit organization made up of global college students, academics and leaders from top 500 businesses, headquartered in the U.S.</p>
+				<p>After graduation, he worked for investment divisions of China’s first-tier investment banks and well-known private placement institutions, where he was responsible for market and project analysis. Then, he entered the blockchain industry and participated as an independent investor in the evaluation and tracking of blockchain projects and trading in the secondary market.</p>
+				<p>Pieta Feng graduated from Zhengzhou University with Bachelors Degrees in Finance and Management, and has rich experience in Media Operations.</p>
+			</div>
+
+			<div class="memberDetail" v-show="curindex==10&&mask">
+				<h1>Jessica<b>UI Designer</b></h1>
+				<p>Jessica Liu has over nine years of work experience in User Interface design.</p>
+				<p>She has engaged in various kinds of web and app product UI design and visual design for many years.</p>
+				<p>Before joining Banca, she was the key UI designer at Bidpoc, a blockchain company in China. </p>
+				<p>Jessica graduated from Shanghai Institute of Technology in art design. </p>
+			</div>
+
+			<div class="come" v-show="showD">
+				<div style="position: relative;">
+					<img src="img/close.png" alt=""  class="close" @click="ok"/>
+				</div>
+				<p class="des">Coming Soon</p>
+				<p class="ok" @click="ok">ok</p>
+			</div>
+
+		</div>
+		<script src="js/vue.js"></script>
+		<script src="js/team.js"></script>
 	</body>
+
 </html>

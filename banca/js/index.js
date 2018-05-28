@@ -2,7 +2,9 @@ var vm = new Vue({
 	el: "#container",
 	data: {
 		email: "",
-		error: false
+		error: false,
+		showD: false,
+		mask:false
 	},
 	methods: {
 		submit() {
@@ -28,6 +30,18 @@ var vm = new Vue({
 				this.error = false;
 				return true;
 			}
+		},
+		ok(){
+			this.mask = false;
+			this.showD=false;
+		},
+		showDialog(){
+			this.mask = true;
+			this.showD=true;
+		},
+		unmask(){
+			this.mask=false;
+			this.showD=false;
 		}
 	},
 

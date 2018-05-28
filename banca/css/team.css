@@ -1,0 +1,96 @@
+.nav {
+	width: 1170px;
+	height: 80px;
+	margin: auto;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.nav>img {
+	margin-top: 15.5px;
+}
+
+.service {
+	max-width: 1700px;
+	margin: auto;
+}
+
+.teamList {
+	overflow: hidden;
+	margin-top: 180px;
+}
+
+.teamList li {
+	float: left;
+	width: 20%;
+	color: white;
+	text-align: center;
+}
+
+.teamList li .name {
+	margin-top: 35px;
+	font-size: 24px;
+	height: 36px;
+}
+
+.teamList li .name img {
+	margin-left: 15px;
+}
+
+.teamList li .role {
+	margin-top: 15px;
+	margin-bottom: 95px;
+	font-size: 18px;
+}
+
+
+
+.profile {
+	position: relative;
+}
+
+.profile .icon {
+	position: absolute;
+	bottom: 0;
+	right: 90px;
+}
+
+.memberDetail {
+	width: 800px;
+	height: 460px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: white;
+	overflow: scroll;
+	padding: 30px;
+	box-sizing: border-box;
+}
+
+.memberDetail h1 {
+    font-weight: normal;
+    font-size: 32px;
+    margin: 0px auto;
+    line-height: 30px;
+    color: #000;
+}
+
+.memberDetail b {
+    font-size: 14px;
+    font-weight: normal;
+    color: #000;
+    padding-left: 15px;
+}
+
+.memberDetail p {
+    font-size: 14px;
+    color: #000;
+    line-height: 30px;
+    margin-top: 10px;
+    background: url(../img/lx.png) no-repeat 1px 10px;
+    padding-left: 20px;
+    background-size: 10px 10px;
+}

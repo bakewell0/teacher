@@ -8,41 +8,6 @@
 	color: white
 }
 
-.nav {
-    width: 1170px;
-    margin: 17px auto;
-}
-
-.nav ul{
-	display: flex;
-	align-items: center;
-	height: 75px;
-}
-
-.nav li{
-	margin: 0 12px;
-}
-
-.nav li .login{
-	position: absolute;
-	top:0;
-	left: 0;
-}
-
-.nav li .login span{
-	float: left;
-    height: 28px;
-    line-height: 28px;
-}
-
-.nav li a{
-	color: white;
-    line-height: 28px;
-    height: 28px;
-    float: left;
-    margin: 0 7.5px;
-}
-
 .name {
 	font-size: 100px;
 	margin-top: 100px;

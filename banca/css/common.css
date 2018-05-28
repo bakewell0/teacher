@@ -72,3 +72,147 @@ body{
 .footer .footitem .footdes .footdesp {font-size: 20px;}
 .footer .footitem .footdes a , .footer .footitem .footdes span{line-height: 45px;display: block;color: white;}
 .footer .footitem .footdes img{vertical-align: middle;}
+
+
+.service .service-title {
+	font-size: 60px;
+	color: white;
+	text-align: center;
+	padding-top: 135px;
+}
+
+.service .service-line {
+	text-align: center;
+	margin: 25px;
+}
+
+/*导航*/
+.nav {
+    width: 1170px;
+    margin: 17px auto;
+}
+
+.nav ul{
+	display: flex;
+	align-items: center;
+	height: 75px;
+}
+
+.nav li{
+	margin: 0 12px;
+	color: white;
+}
+
+.nav li .login{
+	position: absolute;
+	top:0;
+	left: 0;
+}
+
+.nav li .login span{
+	float: left;
+    height: 28px;
+    line-height: 28px;
+}
+
+.nav li a{
+	color: white;
+    line-height: 28px;
+    height: 28px;
+    float: left;
+    margin: 0 7.5px;
+}
+
+/*折布*/
+.mask{
+	position: fixed;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    top: 0;
+}
+
+
+/*侧栏*/
+.sideBar {
+	width: 60px;
+	height: 295px;
+	background: linear-gradient(#1b75fd, #ed1fbc);
+	background: -webkit-linear-gradient(#1b75fd, #ed1fbc);
+	position: fixed;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.sideBar li {
+	height: 20%;
+	text-align: center;
+	line-height: 60px;
+	cursor: pointer;
+}
+
+.sideBar li .email{
+	width: 160px;
+    height: 36px;
+    position: absolute;
+    top: 12px;
+    right: 50px;
+    line-height: 36px;
+    background: #151e2a;
+    color: white;
+    text-align: left;
+    padding: 0 16px;
+}
+
+.sideBar li:hover {
+	background: #1b75fd;
+}
+
+.sideBar li img {}
+
+.sideBar li i {
+	width: 28px;
+	height: 1px;
+	background: rgba(255, 255, 255, 0.2);
+	display: block;
+	margin: auto;
+}
+
+
+/*弹框*/
+.come{
+	width: 395px;
+	height: 245px;
+	background: #292929;
+	position: absolute;
+	top:50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.come .close{
+	position: absolute;
+	top:16px;
+	right:16px;
+	cursor: pointer;
+}
+
+.come .des{
+	color:#1f73fb;
+	font-size:34px;
+    text-align: center;
+	margin-top: 75px;
+}
+
+.come .ok{
+	width: 155px;
+	height:40px;
+    background: linear-gradient(to right, #2073fc, #ea20bd);
+    line-height: 40px;
+    text-align: center;
+    font-size: 18px;
+    color: white;
+    margin: 50px auto 0 auto;
+    cursor: pointer;
+}

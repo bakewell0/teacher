@@ -8,7 +8,7 @@
 		<title></title>
 		<link rel="stylesheet" href="css/common.css" />
 		<link rel="stylesheet" href="css/index.css" />
-		<style type="text/css">		
+		<style type="text/css">
 			#container,
 			.sections,
 			.section {
@@ -25,7 +25,7 @@
 	<body>
 		<div id="container" data-PageSwitch>
 			<div class="sections">
-				<div class="section active" id="section0">
+				<div class="section active">
 					<video autoplay id="video" width="100%" height="" loop="loop" muted="muted">
 						<source src="video/banca.mp4" type="video/mp4">
 					</video>
@@ -33,16 +33,23 @@
 						<div class="nav">
 							<img src="img/logo.png" alt="" class="lf" />
 							<ul class="rf">
-								<li style="color:#f01ebc">HOME</li>
-								<li>ABOUT US</li>
-								<li>WHITE PAPER</li>
-								<li>Team members and supporters</li>
-								<li style="position: relative;">
-									<img src="img/login.png" alt="" />
+								<li>
+									<a href="index.html" style="color:#f01ebc">HOME</a>
+								</li>
+								<li>
+									<a href="index.html#aboutus">ABOUT US</a>
+								</li>
+								<li>
+									<a href="https://www.banca.world/A_UpLoad/upload_file/20180424/20180424155717_1837.pdf" target="_blank">WHITE PAPER</a>
+								</li>
+								<li>
+									<a href="team.html">TEAM MEMBERS AND SUPPORTERS</a>
+								</li>
+								<li style="position: relative;" @click="showDialog">
+									<img src="img/login.png" alt="">
 									<div class="login">
-										<a href="">Log in</a>
-										<span class="lf">/</span>
-										<a href="">Sign Up</a>
+										<a href="javascript:void(0)">Log in</a> <span class="lf">/</span>
+										<a href="javascript:void(0)">Sign Up</a>
 									</div>
 								</li>
 							</ul>
@@ -51,7 +58,7 @@
 						<div class="summary">The Wall Street on Blockchain</div>
 						<div class="subscribe">SUBSCRIBE TO NEWSLETTER</div>
 						<div class="email">
-							<img src="img/input.png" alt="" />											
+							<img src="img/input.png" alt="" />
 							<input type="text" placeholder="E-MAIL" v-model="email" />
 							<span @click="submit"> 
 								<img src="img/btn.png" alt="" />								
@@ -61,7 +68,7 @@
 					</div>
 				</div>
 
-				<div class="section" id="section0">
+				<div class="section">
 					<div class="service">
 						<div class="service-title">Banca’s Products and Services</div>
 						<div class="service-line">
@@ -71,7 +78,7 @@
 						<ul class="pros">
 							<li>
 								<img src="img/icon_01.png" alt="" />
-								<p>COINAI</p>
+								<p>COIN AI</p>
 							</li>
 							<li>
 								<img src="img/icon_02.png" alt="" />
@@ -98,11 +105,11 @@
 								<p>Risk Management</p>
 							</li>
 							<li>
-								<img src="img/icon_01.png" alt="" />
+								<img src="img/icon_08.png" alt="" />
 								<p></p>
 							</li>
 							<li>
-								<img src="img/icon_01.png" alt="" />
+								<img src="img/icon_09.png" alt="" />
 								<p></p>
 							</li>
 							<li>
@@ -112,9 +119,9 @@
 						</ul>
 					</div>
 				</div>
-				<div class="section" id="section1">
+				<div class="section" id="aboutus">
 					<div class="service">
-						<div class="service-title">Why choose Banca?</div>
+						<div class="service-title">About Banca</div>
 						<div class="service-line">
 							<img src="img/line.jpg" alt="" />
 						</div>
@@ -130,7 +137,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="section" id="section2">
+				<div class="section">
 					<div class="service">
 						<div class="service-title">Our Vision</div>
 						<div class="service-line">
@@ -148,7 +155,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="section" id="section3">
+				<div class="section">
 					<div class="service">
 						<div class="service-title">BANCA Token</div>
 						<div class="service-line">
@@ -167,7 +174,7 @@
 					</div>
 				</div>
 
-				<div class="section" id="section4">
+				<div class="section">
 					<div class="service">
 						<div class="service-title">Partners and Media</div>
 						<div class="service-line">
@@ -219,6 +226,21 @@
 					</div>
 				</div>
 			</div>
+			
+			<div class="mask" @click="unmask" v-show="mask">			
+			</div>
+						
+			<div class="come" v-show="showD">
+				<div style="position: relative;">
+					<img src="img/close.png" alt=""  class="close" @click="ok"/>
+				</div>
+				<p class="des">Coming Soon</p>
+				<p class="ok" @click="ok">ok</p>
+			</div>
+			
+			<sidebar></sidebar>
+			
+			
 		</div>
 		<script type="text/javascript" src="http://www.5iweb.com.cn/resource/5iweb2017062501/jquery-1.11.2.min.js"></script>
 		<script type="text/javascript" src="http://www.5iweb.com.cn/resource/5iweb2017062501/pageswitch.js"></script>
