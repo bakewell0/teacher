@@ -29,13 +29,13 @@ gulp.task('revJs', function(){
   
 //Html替换css、js文件版本  
 gulp.task('revHtmlCss', function () {  
-    return gulp.src(['./dist/css/*.json', 'index.html'])  
+    return gulp.src(['./dist/css/*.json', '*.html'])  
         .pipe(revCollector())                         //替换html中对应的记录  
         .pipe(gulp.dest('./dist'));                     //输出到该文件夹中  
 });  
 
 gulp.task('revHtmlJs', function () {  
-    return gulp.src(['./dist/js/*.json', './dist/index.html'])  
+    return gulp.src(['./dist/js/*.json', './dist/*.html'])  
         .pipe(revCollector())  
         .pipe(gulp.dest('./dist'));  
 });  

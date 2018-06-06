@@ -1,0 +1,96 @@
+/*注册-投资人*/
+.create{ width: 446px; margin: 0 auto; padding: 45px 0 65px 0;}
+.create h1{ font-size: 24px; color: #3b3b3b; font-family: arial; font-weight: bold; margin-bottom: 15px;text-align: center;}
+.create2{ background: #fff; padding-bottom: 30px;}
+.create2_tit{ padding: 0 23px; padding-top: 15px;}
+.create2_tit li{ float: left; width: 50%;cursor: pointer;}
+.create2_tit li span{ font-size: 24px; color: #93959f; font-weight: bold; font-family: arial; display: block; text-align: center; padding: 12px 0; border-bottom: 6px solid #fff;}
+.create2_tit li:hover span,.create2_tit li.dk span{ color: #006eff; border-bottom: 6px solid #006eff;}
+
+.baiod{margin: 0 23px; padding-top: 10px;}
+.baiod input{ width: 338px; height: 34px; margin: 0 auto; display: block; text-indent: 6px; margin-top: 20px;}
+.fux{ width: 340px; margin: 0 auto;}
+.fux .gou{ width: 14px; height: 14px;}
+.fux p{ text-indent: 30px; font-size: 12px; color: #3b3b3b; line-height: 22px; font-family: arial; margin-top: -18px;}
+.fux p a{ color: #00a8ff;}
+.sub{ width: 340px; height: 40px; background: #006eff; border: none; font-weight: bold; font-family: arial; font-size: 16px; color: #fff;}
+
+.sign{ width: 340px; margin: 0 auto; padding-top: 36px;}
+.sign2{ width: 55px;}
+.sign2 img.x30{ display: block; margin: 0 auto;}
+.sign2 span{ font-size: 12px; color: #93959f; font-family: arial; display: block; text-align: center; line-height: 14px; margin-top: 5px;}
+.sign em{ width: 30px; height: 2px; background: #dedde9; display: block; margin: 0 5px; margin-top: 22px;}
+
+.error input{border: 1px red solid;}
+.error .textError{display: block!important;color:red;padding-top: 5px;margin-left: 30px;}
+
+
+.el-input input{
+	width: 340px;
+}
+
+.el-form-item__content{
+	margin-left: 53px!important;
+}
+.el-form-item:nth-child(5) input{
+	width: 240px;
+}
+.conditions{
+	width: 340px;
+    height: 122px;
+    margin: auto;
+    line-height: 24px;
+    border: 1px #dedde9 solid;
+    padding: 7px;
+    box-sizing: border-box;
+    overflow: scroll;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

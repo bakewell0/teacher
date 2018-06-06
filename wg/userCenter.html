@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+		<title>CoinAI</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+		<link rel="stylesheet" href="css/userCenter.css">
+		<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css" />
+	</head>
+
+	<body style="background: #f5f6fd;">
+		<div id="app">
+			<navmenu></navmenu>
+			<!--用户-->
+			<div class="user-active" style="display:none" v-show="isShowBar&&isActive"><img src="img/check.png" alt="" />Account successfully activated!Hey, this is a great time to edit your project</div>
+			<div class="user-noActive" style="display:none" v-show="isShowBar&&!isActive">
+				<div class="w1170">
+					Please activate your account at({{userCenter.email}})
+					<span class="resend" @click="resend">Resend email</span>
+				</div>
+			</div>
+			<div class="user cf w1170" v-cloak style="flex: 1 1 0%;">
+				<!--左侧导航-->
+				<ul class="user_nav lf">
+					<li :class="{active:nav_index==index}" v-for="(nav,index) in user_navs" @click="tab(index)"><span>{{nav}}</span></li>
+				</ul>
+				<!--左测导航-->
+				<!--右用户-->
+				<div class="user_right rf">
+					<!--用户头像-->
+					<div v-show="nav_index==0">
+						<h1>account</h1>
+						<div class="us_name cf" style="display: flex;align-items: center;">
+							<span class="lf">
+								<el-upload
+								  class="avatar-uploader"
+								  :action="pcUploadUrl"
+								  :show-file-list="false"
+								  :on-success="handleAvatarSuccess"
+								  :before-upload="beforeAvatarUpload"
+								  :data="{actionCode:'uploadFile',token:token,uploadType:5}">
+								  <img v-if="userCenter.head_img_url" :src="userCenter.head_img_url" class="avatar">
+								  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+								</el-upload>
+								<!--<img :src="userCenter.head_img_url" class="w5 head"/>
+								<input type="file" name="" id="" value="" @change="upload(5,$event)"/>-->
+							</span>
+							<div class="us_name2 lf">
+								<h2>{{userCenter.userName}}</h2>															
+							</div>
+							<i style="margin-left: 25px;cursor: pointer;"><img src="img/w6.png" class="w6" @click="edit"/></i>
+						</div>
+						<div class="us_name user_name cf" style="margin-top: 15px;">
+							<span class="lf">Email :</span>
+							<i>{{userCenter.email}}</i>
+						</div>
+						<div class="us_name user_name cf">
+							<span class="lf">Full Name :</span>
+							<i v-show="!isEdit">{{userCenter.userName}}</i>
+							<input type="text" v-show="isEdit" :value="userCenter.userName" v-model="userCenter.userName" />
+						</div>
+						<div class="us_name user_name cf">
+							<input type="button" value="Save" class="sub_seve" v-show="isEdit" @click="saveName()" />
+						</div>
+					</div>
+					<!--用户密码-->
+					<div v-show="nav_index==1">							
+						<h1>security</h1>
+						<div class="user_pass">
+							<el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" class="demo-ruleForm" label-position="right" label-width="150px">
+							<el-form-item prop="oldPass"  label="Current Password :">
+								<el-input type="password" v-model="ruleForm2.oldPass" auto-complete="off" placeholder="Enter your password"></el-input>
+							</el-form-item>
+							<el-form-item prop="pass" label="New Password :">
+								<el-input type="password" v-model="ruleForm2.pass" auto-complete="off" placeholder="Enter your password"></el-input>
+							</el-form-item>
+							<el-form-item prop="checkPass" label="Confim Password :">
+								<el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off" placeholder="Confirm password"></el-input>
+							</el-form-item>
+							<el-form-item>
+								<input type="button" value="Save" class="su_pass" @click="savePassword('ruleForm2')" />
+							</el-form-item>
+							</el-form>
+						</div>
+					</div>
+				</div>
+				<!--右用户-->
+			</div>
+			<footmenu></footmenu>
+		</div>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/vue.js"></script>
+		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+		<script src="js/axios.min.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/userCenter.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120232487-1"></script>
+			<script>
+			  window.dataLayer = window.dataLayer || [];
+			  function gtag(){dataLayer.push(arguments);}
+			  gtag('js', new Date());
+			  gtag('config', 'UA-120232487-1');
+			</script>		
+	</body>
+
+</html>

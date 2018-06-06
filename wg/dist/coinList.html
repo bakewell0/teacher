@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+		<title>Coin Ai</title>
+		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index-c1cb46b3f8.css">
+		<link rel="stylesheet" href="css/common-6e1d5f73a8.css" />
+		<link rel="stylesheet" href="css/iconList-d41d8cd98f.css" />
+	</head>
+
+	<body>
+		<div id="app">
+			<navmenu></navmenu>
+			<div class="content w1170" style="flex: 1;margin-top: 0;">
+				<div class="navRoot">
+					<a href="index.html">Home page</a>
+					&gt;
+					<a href="">Crypto Analysis</a>
+				</div>
+				<div class="search" style="margin: 20px 0;"><input type="text" v-model="searchFilter"><span @click="getCoinsList">Search</span></div>
+				<table cellpadding="0" cellspacing="0" class="dt_tab" v-cloak>
+					<tbody>
+						<tr>
+							<th style="30px"></th>
+							<th style="width: 100px;">Coin</th>
+							<th>Ticker</th>
+							<th style="width: 135px;">Market cap</th>
+							<th>Price</th>
+							<th>Circulating supply</th>
+							<th style="width: 200px;">Trading Volume(24H)</th>
+							<th>%1Hour</th>
+							<th>%24Hours</th>
+							<th>%7Days</th>
+							<th>Details</th>
+						</tr>
+						<tr @click="getCoinDetail(coin.coin_id)" style="cursor:pointer;" v-for="(coin,index) in coinsList">
+							<td><img v-if="index==0&&page.currentPage==1" src="img/golden.png" alt="" /><span v-else>{{page.currentPage*8+index-7}}</span></td>
+							<td class="nickname"><img :src="coin.coin_url" alt="" />{{coin.coin_name}}</td>
+							<td>{{coin.simple_name}}</td>
+							<td>{{coin.market_cap}}</td>
+							<td style="color:#1e5adc">{{coin.price}}</td>
+							<td style="color:#1e5adc">{{coin.supply_pvolume}}</td>
+							<td style="color:#1e5adc">{{coin.trading_24_volume}}</td>
+							<td :style="{color:hours_1_index[index]}">{{coin.hours_1_index}}</td>
+							<td :style="{color:hours_24_index[index]}">{{coin.hours_24_index}}</td>
+							<td :style="{color:day_7_index[index]}">{{coin.day_7_index}}</td>
+							<td>
+								<a><img src="img/sch.jpg" alt=""></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="page">
+					<el-pagination background layout="prev, pager, next" :page-size="page.pageSize" :total="page.totalPage" :current-page="page.currentPage" @current-change="goto">
+					</el-pagination>
+				</div>
+			</div>
+			<footmenu></footmenu>
+		</div>
+		<script src="js/vue-3e7fd9458a.js"></script>
+		<script src="https://unpkg.com/element-ui/lib/index-d251c17bee.js"></script>
+		<script src="js/axios-330bd8ed15.min.js"></script>
+		<script src="js/common-11cf8877ad.js"></script>
+		<script src="js/iconList-93c75cfa06.js"></script>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120232487-1"></script>
+			<script>
+			  window.dataLayer = window.dataLayer || [];
+			  function gtag(){dataLayer.push(arguments);}
+			  gtag('js', new Date());
+			  gtag('config', 'UA-120232487-1');
+			</script>
+	</body>
+
+</html>

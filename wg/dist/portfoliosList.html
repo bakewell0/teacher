@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+		<title>Coin Ai</title>
+		<meta name="Keywords" content="review,research"/>
+		<meta name="Description" content=""/>
+		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index-c1cb46b3f8.css">
+		<link rel="stylesheet" type="text/css" href="css/common-6e1d5f73a8.css" />
+		<link rel="stylesheet" type="text/css" href="css/portfoliosList-ee0004e300.css" />
+	</head>
+
+	<body>
+		<div id="app">
+			<navmenu></navmenu>
+			<!--内容-->
+			<div class="content w1170" style="flex: 1;margin-top: 0;">
+				<div class="navRoot">Home page > Portfolio</div>			
+					<el-select v-model="sort_type" placeholder="">	
+						<el-option value="hour_24" label="Daily">
+						</el-option>
+						<el-option value="day_7" label="Weekly">
+						</el-option>						   	
+						<el-option value="total" label="Total">
+						</el-option>
+					</el-select>
+							
+				<table cellpadding="0" cellspacing="0" class="dt_tab" v-cloak>
+					<tbody>
+						<tr>
+							<th>Ranking</th>
+							<th>Nickname</th>
+							<th>Porftolio</th>
+							<th>ROI</th>
+							<!--<th>ROI(Week)</th>-->
+							<th style="position: relative;">
+								Max Drawdown
+								<el-tooltip content="Top center" placement="right">
+									<div slot="content" class="tipcontent">
+										Max Drawdown:The Max Drawdown Duration is the worst (the maximum / longest) amount of time an investment has seen between peaks. Link:
+										<a href="https://en.wikipedia.org/wiki/Drawdown_(economics)">https://en.wikipedia.org/wiki/Drawdown_(economics)</a>
+									</div>
+									<div class="ques" style="top: 23px;left: 130px;">
+										?
+									</div>
+								</el-tooltip>
+							</th>
+							<th>views</th>
+							<th>Details</th>
+							<!--<th>Compare</th>-->
+						</tr>
+						<tr @click="getPortfolioDetail(portfolio.folio_id)" style="cursor:pointer;" v-for="(portfolio,index) in portfolioList" :data-folio_id="portfolio.folio_id">
+							<td><img v-if="index==0&&page.currentPage==1" src="img/golden.png" alt="" /><span v-else>{{page.currentPage*8+index-7}}</span></td>
+							<td class="nickname"><img :src="portfolio.head_image_url" alt=""><i :title="portfolio.user_name">{{portfolio.user_name}}</i></td>
+							<td :title="combinations[index]" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+								{{combinations[index]}}
+							</td>
+							<td :style="{color:roi[index]}">{{portfolio.roi}}</td>
+							<!--<td :style="{color:roiWeek[index]}">{{portfolio.roiWeek}}</td>-->
+							<td :style="{color:max_drawdown[index]}">{{portfolio.max_drawdown}}</td>
+							<td>{{portfolio.read_num}}</td>
+							<td>
+								<a><img src="img/sch.jpg" alt=""></a>
+							</td>
+							<!--<td><a :href="'compare.html?folio_id='+portfolio.folio_id" class="compare">Compare</a></td>-->
+						</tr>
+					</tbody>
+				</table>
+				<div class="page">
+					<el-pagination background layout="prev, pager, next" :page-size="page.pageSize" :total="page.totalPage" :current-page="page.currentPage" @current-change="goto">
+					</el-pagination>
+				</div>
+			</div>
+			<footmenu></footmenu>
+			<script src="js/vue-3e7fd9458a.js"></script>
+			<script src="https://unpkg.com/element-ui/lib/index-d251c17bee.js"></script>
+			<script src="js/axios-330bd8ed15.min.js"></script>
+			<script src="js/common-11cf8877ad.js"></script>
+			<script src="js/portfoliosList-c155bd44fe.js"></script>
+			<!-- Global site tag (gtag.js) - Google Analytics -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120232487-1"></script>
+			<script>
+			  window.dataLayer = window.dataLayer || [];
+			  function gtag(){dataLayer.push(arguments);}
+			  gtag('js', new Date());
+			  gtag('config', 'UA-120232487-1');
+			</script>
+	</body>
+
+</html>

@@ -1,4 +1,26 @@
 {
-  "one.js": "one-d41d8cd98f.js",
-  "two.js": "two-d41d8cd98f.js"
+  "axios.min.js": "axios-330bd8ed15.min.js",
+  "canvas.js": "canvas-80d8099013.js",
+  "chart.js": "chart-eebb8eb037.js",
+  "coinDetail.js": "coinDetail-40e642fbbc.js",
+  "common.js": "common-11cf8877ad.js",
+  "compare.js": "compare-9c231eba7b.js",
+  "createPortfolios.js": "createPortfolios-cbf0da44aa.js",
+  "forgetPass.js": "forgetPass-04109e97ff.js",
+  "iconList.js": "iconList-93c75cfa06.js",
+  "index.js": "index-d251c17bee.js",
+  "jquery-3.3.1.min.js": "jquery-3-378087a64e.3.1.min.js",
+  "jquery-ui.js": "jquery-ui-e0e5b13099.js",
+  "loader.js": "loader-8fa7d68442.js",
+  "login.js": "login-aed978471e.js",
+  "md5.js": "md5-c37a6ec65a.js",
+  "portfolios.js": "portfolios-cd45676f40.js",
+  "portfoliosList.js": "portfoliosList-c155bd44fe.js",
+  "register.js": "register-bb9bb03ee0.js",
+  "sendEmail.js": "sendEmail-ad1262b1bb.js",
+  "share.js": "share-72817a7c13.js",
+  "userCenter.js": "userCenter-1270e3d349.js",
+  "vue-validator.min.js": "vue-validator-aaddd6d507.min.js",
+  "vue.js": "vue-3e7fd9458a.js",
+  "vue2-autocomplete.js": "vue2-autocomplete-236b51b3c3.js"
 }

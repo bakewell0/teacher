@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+		<title>CoinAI</title>
+		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index-c1cb46b3f8.css">
+		<link rel="stylesheet" type="text/css" href="css/common-6e1d5f73a8.css" />
+		<link rel="stylesheet" href="css/login-e12c9b6a3b.css">
+		<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css" />
+	</head>
+
+	<body>
+		<!--登录-->
+		<div id="app" style="background: white;">
+			<navmenu :show-user="false"></navmenu>
+			<div class="log cf" style="flex: 1;">
+				<img src="img/dl1.png" class="w1 lf" />
+				<el-form :model="loginForm" :rules="rules" ref="loginForm" label-position="top" class="log2 rf">
+					<el-form-item prop="loginName" label="Account:" style="margin-top: 30px;">
+						<el-input v-model="loginForm.loginName" placeholder="Email"></el-input>
+					</el-form-item>
+					<el-form-item prop="loginPassword" label="Password:">
+						<el-input type="password" placeholder="Password" v-model="loginForm.loginPassword"></el-input>
+					</el-form-item>
+					<el-form-item prop="captchaCode" label="Captcha Code:">
+						<el-input placeholder="Enter Captcha Code" v-model="loginForm.captchaCode" style="width: auto;"></el-input>
+						<img :src="captchaImgUrl" @click="getCaptchaImage()" style="margin-left: 15px;" id="captcha"/>
+					</el-form-item>
+					<input type="button" value="Login" class="qd" @click="submitForm('loginForm')">
+					<div class="remem cf"><label class="lf"><input type="checkbox" class="ckb lf" v-model="loginForm.checked" @click="ck"/><i class="lf">Remember Me</i></label>
+						<a href="register.html" class="rf">Sign Up</a>					
+						<a style="float: right;margin: 0 10px;">|</a>
+						<a href="sendEmail.html" class="rf">Forgot Password</a>
+					</div>
+				</el-form>
+			</div>
+			<footmenu></footmenu>
+		</div>
+		<!--登录-->
+		<script src="js/jquery-3-378087a64e.3.1.min.js"></script>
+		<script src="js/md5-c37a6ec65a.js"></script>
+		<script src="js/vue-3e7fd9458a.js"></script>
+		<script src="https://unpkg.com/element-ui/lib/index-d251c17bee.js"></script>
+		<script src="js/axios-330bd8ed15.min.js"></script>
+		<script src="js/common-11cf8877ad.js"></script>
+		<script src="js/login-aed978471e.js"></script>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120232487-1"></script>
+			<script>
+			  window.dataLayer = window.dataLayer || [];
+			  function gtag(){dataLayer.push(arguments);}
+			  gtag('js', new Date());
+			  gtag('config', 'UA-120232487-1');
+			</script>
+	</body>
+
+</html>

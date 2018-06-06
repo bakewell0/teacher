@@ -1,0 +1,362 @@
+/*正文*/
+
+.porbasic {
+	padding: 20px;
+}
+
+.userDetail {
+	overflow: hidden;
+	display: flex;
+	align-items: flex-end;
+	margin-top: 30px;
+}
+
+.userDetail li {
+	float: left;
+}
+
+.userDetail li .head {
+	width: 115px;
+	height: 115px;
+	border-radius: 50%;
+}
+
+.userDetail li .userName {
+	font-size: 18px;
+	color: #3b3b3b
+}
+
+.userDetail li .eye {
+	font-size: 12px;
+	margin: 10px 0;
+	display: flex;
+	align-items: flex-end;
+}
+
+.userDetail li .eye img {
+	margin-right: 10px;
+}
+
+.userDetail li .follow {
+	width: 80px;
+	height: 30px;
+	background: #20ae16;
+	color: white;
+	line-height: 30px;
+	text-align: center;
+}
+
+.userDetail li .ranking {
+	font-weight: bold;
+	margin-top: 50px;
+}
+
+.userDetail li .rankingNum {
+	font-size: 42px;
+	margin-top: 14px;
+}
+
+.userDetail li .beat {
+	font-size: 18px
+}
+
+.userDetail li .beat .num {
+	font-size: 36px;
+	color: red
+}
+
+.userDetail li .share {
+	width: 152px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	background: #1e5adc;
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 40px;
+	color: white
+}
+
+.userDetail li .share img {
+	vertical-align: middle;
+	margin-left: 16px;
+}
+
+.userDetail .userBase {
+	margin-left: 25px;
+	padding-left: 16px;
+}
+
+.userDetail .rankBase {
+	margin-left: 80px;
+}
+
+.userDetail .beatBase {
+	margin-left: 30px;
+}
+
+.userDetail .shareBase {
+	margin-left: 100px;
+}
+
+
+/*指标*/
+
+
+/*分析*/
+
+.analysis {
+	position: relative;
+}
+
+.analysis h1 {
+	font-size: 24px;
+	font-weight: bold;
+	margin: 25px 0;
+	margin-top: 5px;
+}
+
+.analysis .blankTitle {
+	margin: 40px 0;
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.analysisTab {
+	overflow: hidden;
+}
+
+.analysisTab .cur {
+	border-top: 2px #1e5adc solid;
+	color: #3b3b3b
+}
+
+.analysisTab li {
+	float: left;
+	line-height: 40px;
+	text-align: center;
+	color: #afafaf;
+	border-top: 2px #fff solid;
+	width: 16.66%;
+	cursor: pointer;
+}
+
+.analysisTab li i {
+	display: block;
+}
+
+
+/*图表*/
+
+input[type=range] {
+	-webkit-appearance: none;
+	background: #1e5adc;
+	border-radius: 2px;
+	width: 970px;
+	cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+	height: 10px;
+	border-radius: 2px;
+	/*将轨道设为圆角的*/
+	position: relative
+}
+
+input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	height: 40px;
+	width: 40px;
+	margin-top: -15px;
+	/*使滑块超出轨道部分的偏移量相等*/
+	background: #20ae16;
+	border-radius: 50%;
+	/*外观设置为圆形*/
+}
+
+.factorModel {
+	margin: 70px auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.factorModel input {
+	margin-right: 20px;
+}
+
+.factorModel span {
+	margin-right: 125px;
+}
+
+.factorModel .aiForecast {
+	width: 160px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background: #1e5adc;
+	font-size: 14px;
+	font-weight: bold;
+	color: white
+}
+
+.process {
+	overflow: hidden;
+	width: 970px;
+	margin: 12px auto 0 auto;
+}
+
+.process .port {}
+
+.process .port p {
+	font-size: 18px;
+/*	font-weight: bold;*/
+	color: #3b3b3b
+}
+
+.process .port img {}
+
+.user {
+	overflow: hidden;
+}
+
+.user .userInfo {
+	border: 1px #a0a0a0 solid;
+	width: 170px;
+	height: 195px;
+	float: left;
+	margin-right: 215px;
+}
+
+.user .userInfo li {
+	margin: 10px 0;
+	text-align: center;
+}
+
+.user .userInfo li img {
+	width: 95px;
+	height: 95px;
+	border-radius: 50%;
+}
+
+.user .userInfo .follow {
+	width: 80px;
+	height: 30px;
+	background: #1e5adc;
+	margin: auto;
+	line-height: 30px;
+	color: white;
+}
+
+
+/*ddd*/
+
+.analysis:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.analysis .quota {
+	position: relative;
+}
+
+.analysis .quota .pointer {
+	position: absolute;
+	left: -42px;
+	top: 17px;
+}
+
+.analysis .quota .first {
+	margin-bottom: 30px;
+}
+
+.analysis .quota p {
+	font-weight: bold;
+	color: #3b3b3b;
+	line-height: 30px;
+}
+
+.analysis .quota p i {
+	font-weight: normal;
+}
+
+.analysis .ranking {
+	font-size: 14px;
+	position: absolute;
+	top: 27%;
+	font-weight: bold;
+	text-align: center;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.analysis .ranking i {
+	font-size: 56px;
+	display: block;
+	font-weight: normal
+}
+
+.rankBase .rankingNum {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 56px;
+}
+
+.portfolioGraph .eye img {
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+.portfolioGraph .eye {
+	margin: 20px 0 15px 0;
+	text-align: center;
+}
+
+.portfolioGraph .share {
+	width: 152px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+/*	background: #1e5adc;*/
+	font-size: 18px;
+	font-weight: bold;
+	color: white;
+	margin: auto;
+/*	cursor: pointer;*/
+}
+
+.portfolioGraph .share img {
+	margin-left: 15px;
+	vertical-align: middle;
+}
+
+.portfolio {
+	height: 300px;
+	margin-top: 15px;
+}
+
+/*.annReturn{
+	width: 95px;
+    height: 60px;
+    border: 1px solid rgb(30, 90, 220);
+    text-align: center;
+    margin: auto;
+}*/
+
+.annReturn .annname{
+    font-size: 22px;
+    font-weight: bold;
+    margin-left: 80px;
+    color: #109618;
+}
+
+.annReturn .annVal{
+	font-size: 20px;
+    margin-top: 7px;
+}
+
+

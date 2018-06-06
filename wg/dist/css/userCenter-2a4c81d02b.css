@@ -1,0 +1,94 @@
+/*用户中心*/
+.user{ margin-top: 20px; margin-bottom: 52px;height: 700px;}
+.user_nav{ width: 270px; background: #fff; height: 100%;}
+.user_nav li{ box-sizing: border-box; border-left: 6px solid #fff;}
+.user_nav .active{ border-left: 6px solid #006eff;}
+.user_nav li span{cursor: pointer; font-size: 14px; color: #3b3b3b; text-align: left; text-transform: uppercase; font-weight: bold; font-family: arial; border-bottom: 2px solid #f5f6fd; margin: 0 30px 0 24px; display: block; line-height: 60px; text-indent: 5px;}
+.user_nav .active span{ color: #006eff;}
+
+.user_right{ width: 870px; background: #fff;margin-left: 30px;height: 100%;}
+.user_right h1,.pass_follow h1{ font-size: 14px; color: #93959f; font-weight: bold; font-family: arial; text-transform: uppercase; padding: 30px 0 30px 30px;}
+.us_name .head{height: 152px;width: 152px;border-radius: 50%;}
+.us_name input[type="file"]{height: 152px;width: 152px;position: absolute;right: 25px;top: 0;opacity: 0;}
+.us_name > span{position: relative;}
+.us_name span{ width: 245px; text-align: right; display: block; padding-right: 25px;}
+.us_name2 h2{ font-size: 36px; color: #3b3b3b; font-weight: bold; font-family: arial; margin: 20px 0 8px 0;}
+.us_name2 i{ font-size: 18px; color: #93959f; font-family: arial; display: block;}
+.us_name2 i img.w6{ margin-left: 20px;}
+.us_name2 em{ font-size: 16px; color: #3b3b3b; font-family: arial; margin-top: 25px; display: block;padding-bottom: 55px;}
+.us_name2 em img.w7{ margin-right: 10px; margin-top: -2px;}
+.user_name{}
+.user_name i{float: left;line-height: 36px;}
+.user_name span{ font-size: 14px; color: #3b3b3b; line-height: 36px; display: block; font-weight: bold; font-family: arial;}
+.user_name input{ width: 398px; height: 34px; text-indent: 5px;}
+.user_name input.sub_seve,.user_pass input.su_pass{ width: 170px; height: 40px; background: #006eff; border: none;font-size: 14px; margin-bottom: 15px; color: #fff; font-family: arial;}
+
+.user_pass{ padding: 15px 0;text-align: center;width: 550px;margin: auto;}
+.user_pass span{ width: 245px; line-height: 36px; display: block; text-align: right; font-size: 14px; color: #3b3b3b; font-weight: bold; font-family: arial; padding-right: 25px;}
+.user_pass input{ width: 398px; height: 34px; text-indent: 5px;}
+
+.pass_follow2{ margin: 0 30px; padding: 25px 0; border-bottom: 2px solid #f5f6fd;}
+.pass_follow2:nth-last-child(1){ border-bottom: none;}
+.pass_follow h1{ padding-bottom: 0;}
+.flo_img{ position: relative;}
+.flo_img img{width: 180px;height: 135px;}
+.flo_img span{ position: absolute; top: 0; left: 0; width: 65px; line-height: 24px; font-size: 18px; text-align: center; font-family: arial; background: #45cbad; color: #fff;}
+.foll_two{ width: 410px; margin-left: 32px;}
+.foll_two h2{ font-size: 20px; color: #3b3b3b; font-weight: bold; font-family: arial; margin: 2px 0;}
+.foll_two p{ font-size: 14px; color: #3b3b3b; line-height: 18px; font-family: arial; margin-top: 8px;}
+.foll_two2 i{ font-size: 18px; color: #3b3b3b; font-family: arial; margin-right: 45px; margin-top: 18px;}
+.foll_two2 i img{ margin-top: -2px; margin-right: 12px;}
+.pass_follow2 input{ width: 156px; height: 36px; background: none; border: 2px solid #006eff; font-size: 14px; color: #006eff; font-weight: bold; font-family: arial; margin-top: 42px;} 
+
+.user-active{height: 50px;line-height: 50px;text-align: center;background: #00a25f;color: white;}
+.user-noActive{text-align: left;line-height: 50px;height: 50px;background: #ff6600;color: white;}
+.user-noActive a{text-decoration: underline;color: white;margin-left: 10px;}
+.resend{width: 120px;height: 30px;border: 1px white solid;display: block;float: right;margin-top: 25px;transform: translateY(-50%);color: white;line-height: 30px;text-align: center;cursor: pointer;}
+
+/*头部定制*/
+.header .operate a img{
+	width: 40px;
+    height: 40px;
+    transform: translateY(-50%);
+    margin-top: 9.5px;
+    margin-left: 10px;
+    border-radius: 50%;
+}
+
+.el-upload img{
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

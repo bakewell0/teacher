@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>CoinAI</title>
+		<link rel="stylesheet" type="text/css" href="css/common-6e1d5f73a8.css" />
+		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index-c1cb46b3f8.css">
+		<link rel="stylesheet" href="css/forgetPass-11654dc615.css" />
+	</head>
+
+	<body>
+		<div id="app">
+			<navmenu></navmenu>
+			<div style="flex: 1;margin: 0 auto;" class="content w1170">
+				<div class="navRoot">
+					<a href="index.html">Home page</a>
+					> 
+					<a href="">Reset Password</a>					 
+				</div>			
+				<div class="user_pass">
+					<h1 class="title">RESET PASSWORD</h1>
+					<el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" class="demo-ruleForm" label-position="right" label-width="150px">
+						<el-form-item prop="pass" label="New Password :">
+							<el-input type="password" v-model="ruleForm2.pass" auto-complete="off" placeholder="Enter your password"></el-input>
+						</el-form-item>
+						<el-form-item prop="checkPass" label="Confim Password :">
+							<el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off" placeholder="Confirm password"></el-input>
+						</el-form-item>
+						<el-form-item>
+							<input type="button" value="Save" class="su_pass" @click="resetPassword('ruleForm2')" id="btn"/>
+						</el-form-item>
+					</el-form>
+				</div>
+			</div>
+			<footmenu></footmenu>
+		</div>
+		<script src="js/jquery-3-378087a64e.3.1.min.js"></script>
+		<script src="js/md5-c37a6ec65a.js"></script>
+		<script src="js/vue-3e7fd9458a.js"></script>
+		<script src="https://unpkg.com/element-ui/lib/index-d251c17bee.js"></script>
+		<script src="js/axios-330bd8ed15.min.js"></script>
+		<script src="js/common-11cf8877ad.js"></script>
+		<script src="js/forgetPass-04109e97ff.js"></script>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120232487-1"></script>
+			<script>
+			  window.dataLayer = window.dataLayer || [];
+			  function gtag(){dataLayer.push(arguments);}
+			  gtag('js', new Date());
+			  gtag('config', 'UA-120232487-1');
+			</script>
+	</body>
+
+</html>
