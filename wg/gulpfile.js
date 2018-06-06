@@ -2,6 +2,7 @@ var gulp = require('gulp'),
     runSequence = require('run-sequence'),  
     rev = require('gulp-rev'),  
     revCollector = require('gulp-rev-collector');  
+    clean = require('gulp-clean');
   
 //定义css、js源文件路径  
 var cssSrc = 'css/*.css',  
