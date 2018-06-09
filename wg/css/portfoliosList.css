@@ -1,0 +1,12 @@
+.compare {
+    width: 77px;
+    height: 25px;
+    color: white;
+    background: #1e5adc;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 25px;
+    display: block;
+    margin: auto;
+}
