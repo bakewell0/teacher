@@ -5,12 +5,13 @@
     <title>分期公司签订协议</title>
     <meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no'>
     <link href="https://cdn.bootcss.com/layer/3.1.0/mobile/need/layer.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/common.css" />
     <link href="css/index.css" rel="stylesheet">
 </head>
 <body>
 <div id="app">
 <header class="clearFix" id="header">
-    <i class="icon"></i>
+    <img class="icon" src="img/Group 6.png" alt="" />
     <p>签订借款协议</p>
 </header>
     <form action="" id="loginForm" method="get">
@@ -18,9 +19,9 @@
     <div class="workInfo">
         <p class="title"><span>签订借款协议</span></p>
         <p><span>手机号</span><input disabled="disabled" v-model="mobile" id="phone" name="phone" type="text" placeholder="010-1226251"></p>
-        <p><span style="float: left">验证码</span><input id="msg" name="msg" style="width: 80px;float: left" type="text" placeholder="请填写验证码"><a id="sendMsg" href="javascript:;">发送验证码</a></p>
-        <div><input id="cb" name="cb" type="checkbox" style="vertical-align: middle">&nbsp;<label style="vertical-align: middle" for="cb">确定签订</label>  <a style="vertical-align: middle" href="http://www.baidu.com">《征信授权查询书》</a></div>
-        <div><input id="cb1" name="cb1" type="checkbox" style="vertical-align: middle">&nbsp;<label style="vertical-align: middle" for="cb1">确定签订</label>  <a style="vertical-align: middle" href="http://www.baidu.com">《借款协议》</a></div>
+        <p><span style="float: left">验证码</span><input id="msg" name="msg" style="width: 80px;float: left" type="text" placeholder="请填写验证码"><a id="sendMsg" class="sendMsg" href="javascript:;">发送验证码</a></p>
+        <div class="checkDiv"><input id="cb" name="cb" type="checkbox">&nbsp;<label style="vertical-align: middle" for="cb">确定签订</label>  <a style="vertical-align: middle" href="http://www.baidu.com">《征信授权查询书》</a></div>
+        <div class="checkDiv"><input id="cb1" name="cb1" type="checkbox">&nbsp;<label style="vertical-align: middle" for="cb1">确定签订</label>  <a style="vertical-align: middle" href="http://www.baidu.com">《借款协议》</a></div>
     </div>
 </div>
 <footer id="footer">

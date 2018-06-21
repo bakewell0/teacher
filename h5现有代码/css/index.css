@@ -34,9 +34,15 @@
 .workInfo .title{
 	font-size: 0.42rem;
 	height: 1.9rem;
+	display: block;
+    line-height: 1.9rem;
 }
 
 .workInfo p span{
+	width: 2rem;
+}
+
+.workInfo1 p span{
 	width: 3rem;
 }
 

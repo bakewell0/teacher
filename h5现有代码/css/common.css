@@ -20,3 +20,26 @@ body,p{
 		font-size: 55.2px!important;
 	}
 }
+
+/*业务*/
+
+.checkDiv{
+	display: flex;
+}
+
+.checkDiv input[type="checkbox"]{
+	vertical-align: middle;
+    width: 0.36rem;
+    height: 0.36rem;
+    float: left;
+}
+
+.checkDiv a{
+	vertical-align: middle;
+    color: rgb(53, 198, 211);
+    text-decoration: none;
+}
+
+.sendMsg{
+	color:#35C6D3;font-size: 0.32rem;margin-right:0.3rem;text-decoration: none;
+}
