@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>分期公司补充信息</title>
+		<meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no'>
+		<link rel="stylesheet" href="css/common.css" />
+		<link href="css/index.css" rel="stylesheet">
+		<link href="https://cdn.bootcss.com/layer/3.1.0/mobile/need/layer.css" rel="stylesheet">
+		<script src="js/vue.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			<header class="clearFix" id="header">
+				<img class="icon" src="img/Group 6.png" alt="" />
+				<p>分期公司补充信息</p>
+			</header>
+			<form action="" method="post" id="loginForm" class="form">
+				<div id="content">
+					<div class="workInfo">
+						<p class="title"><span>工作信息</span></p>
+						<p><span>工作单位</span><input id="workInfo" name="workInfo" v-model="corpName" type="text" placeholder="请输入工作单位"></p>
+						<p><span>工作单位所在省</span>
+							<select id="Province" name="Province">
+							</select>
+							<img src="img/Group 5.png" alt="" />
+						</p>
+						<p><span>工作单位所在市</span>
+							<select id="city" name="city">
+							</select>
+							<img src="img/Group 5.png" alt="" />
+						</p>
+						<p><span>工作单位所在区</span>
+							<select id="area" name="area">
+							</select>
+							<img src="img/Group 5.png" alt="" />
+						</p>
+						<div id="show"></div>
+						<p><span>工作单位详细地址</span><input id="detail" name="detail" v-model="corpDetail" type="text"></p>
+						<p><span>工作单位电话</span><input id="phone" name="phone" v-model="corpPhone" type="text"></p>
+						<p><span>月收入</span><input id="income" name="income" type="number"></p>
+					</div>
+					<div class="workInfo">
+						<p class="title"><span>紧急联系人</span></p>
+						<p><span>姓名</span><input id="contactsName" name="contactsName" type="text" placeholder="姓名"></p>
+						<p><span>联系方式</span><input id="contactsPhone" name="contactsPhone" type="text" placeholder="联系方式"></p>
+						<p><span>关系</span>
+							<select id="contactsRelation" name="contactsRelation">
+								<option>父母</option>
+								<option>配偶</option>
+								<option>同事</option>
+								<option>同学</option>
+							</select>
+							<img src="img/Group 5.png" alt="" />
+						</p>
+					</div>
+				</div>
+
+				<footer id="footer">
+					<button id="btn" type="submit">下一步</button>
+				</footer>
+			</form>
+		</div>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+		<script src="https://cdn.bootcss.com/layer/3.1.0/layer.js"></script>
+		<script src="js/area.js"></script>
+		<script>
+			(function(doc, win) {
+				// 分辨率Resolution适配
+				var docEl = doc.documentElement,
+					resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+					recalc = function() {
+						var clientWidth = docEl.clientWidth;
+						if(!clientWidth) return;
+						docEl.style.fontSize = 100 * (clientWidth / 320) + 'px';
+					};
+
+				// Abort if browser does not support addEventListener
+				if(!doc.addEventListener) return;
+				win.addEventListener(resizeEvt, recalc, false);
+				doc.addEventListener('DOMContentLoaded', recalc, false);
+				// 一物理像素在不同屏幕的显示效果不一样。要根据devicePixelRatio来修改meta标签的scale,要注释上面的meta标签
+				(function() {
+					return;
+					var dpr = scale = 1;
+					var isIPhone = win.navigator.appVersion.match(/iphone/gi);
+					var devicePixelRatio = win.devicePixelRatio;
+					if(isIPhone) {
+						// iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
+						if(devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {
+							dpr = 3;
+						} else if(devicePixelRatio >= 2 && (!dpr || dpr >= 2)) {
+							dpr = 2;
+						} else {
+							dpr = 1;
+						}
+					} else {
+						// 其他设备下，仍旧使用1倍的方案
+						dpr = 1;
+					}
+					scale = 1 / dpr;
+
+					//
+					var metaEl = "";
+					metaEl = doc.createElement('meta');
+					metaEl.setAttribute('name', 'viewport');
+					metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+					if(docEl.firstElementChild) {
+						docEl.firstElementChild.appendChild(metaEl);
+					} else {
+						var wrap = doc.createElement('div');
+						wrap.appendChild(metaEl);
+						doc.write(wrap.innerHTML);
+					}
+				})();
+			})(document, window);
+		</script>
+		<script>
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					corpName: "",
+					corpDetail: "",
+					corpPhone: ""
+				},
+				created: function() {
+					function GetQueryString(name) {
+						var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+						var r = window.location.search.substr(1).match(reg); //search,查询？后面的参数，并匹配正则
+						if(r != null) return unescape(r[2]);
+						return null;
+					}
+					var outTradeNo = GetQueryString("outTradeNo");
+					localStorage.outTradeNo = outTradeNo;
+					//为了在内部函数能使用外部函数的this对象，要给它赋值了一个名叫self的变量。
+					var that = this;
+					$.ajax({
+						url: 'http://www.trinfi.com/dkh5/inputData/query?outTradeNo=' + outTradeNo,
+						type: 'get',
+						data: {},
+						dataType: 'json'
+					}).then(function(res) {
+						//把从json获取的数据赋值给数组
+						that.corpName = res.inputData.corpName;
+						that.corpDetail = res.inputData.corpDetail;
+						that.corpPhone = res.inputData.corpPhone;
+						that.linkManName = res.inputData.linkManName;
+						that.relation = res.inputData.relation;
+						that.linkManType = res.inputData.linkManType;
+						that.linkManMobile = res.inputData.linkManMobile;
+						that.outTradeNo = localStorage.outTradeNo;
+						console.log(res.inputData);
+					}).fail(function() {
+						console.log('失败');
+					})
+				}
+			})
+		</script>
+		<script>
+			$(function() {
+				$("#loginForm").validate({
+					rules: {
+						workInfo: {
+							required: true,
+						},
+						Province: {
+							required: true,
+						},
+						city: {
+							required: true,
+						},
+						area: {
+							required: true,
+						},
+						detail: {
+							required: true,
+						},
+						phone: {
+							required: true,
+						},
+						income: {
+							required: true,
+							digits: true
+						},
+						contactsName: {
+							required: true,
+						},
+						contactsPhone: {
+							required: true,
+						},
+						contactsRelation: {
+							required: true,
+						}
+					},
+					messages: {
+						workInfo: {
+							required: "工作单位不能为空",
+						},
+						Province: {
+							required: "工作单位所在省不能为空",
+						},
+						city: {
+							required: "工作单位所在市不能为空",
+						},
+						area: {
+							required: "工作单位所在区不能为空",
+						},
+						detail: {
+							required: "工作单位详细地址不能为空",
+						},
+						phone: {
+							required: "工作单位电话不能为空",
+						},
+						income: {
+							required: "月收入不能为空",
+						},
+						contactsName: {
+							required: "姓名不能为空",
+						},
+						contactsPhone: {
+							required: "联系方式不能为空",
+						},
+						contactsRelation: {
+							required: "关系不能为空",
+						}
+					},
+					errorPlacement: function(error, element) {
+						layer.msg(error.text());
+					},
+					unhighlight: function(element) {},
+					submitHandler: function(form) {
+						$.ajax({
+							url: "http://www.trinfi.com/dkh5/inputData/saveInputData",
+							type: "post",
+							dataType: "json",
+							data: {
+								outTradeNo: vm.outTradeNo,
+								linkManName: $("#contactsName").val(),
+								linkManMobile: $("#contactsPhone").val(),
+								relation: $("#contactsRelation").val(),
+								linkManType: "2",
+								corpProvince: $("#Province").val(),
+								corpCity: $("#city").val(),
+								corpCounty: $("#area").val(),
+								corpDetail: $("#detail").val(),
+								corpPhone: $("#phone").val(),
+								incomes: $("#income").val()
+							},
+							success: function(message) {
+								if(message.static == "0") {
+									layer.msg("提交成功!");
+									window.location.href = "http://www.trinfi.com/dankeh5/signInformation.html?outTradeNo=" + vm.outTradeNo;
+								} else {
+									layer.msg(message.message);
+								}
+							},
+							error: function() {
+								console.log(1212);
+							}
+						});
+						return;
+					},
+					onfocusout: function(element) {
+						$(element).valid();
+					},
+					onkeyup: false
+				});
+			})
+		</script>
+
+		<script type="text/javascript">
+			addressInit('Province', 'city', 'area');
+		</script>
+	</body>
+
+</html>
