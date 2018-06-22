@@ -6,6 +6,8 @@
 		<title>分期公司签订协议</title>
 		<meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no'>
 		<link href="https://cdn.bootcss.com/layer/3.1.0/mobile/need/layer.css" rel="stylesheet">
+		<!-- 引入样式 -->
+		<link rel="stylesheet" href="https://unpkg.com/mint-ui@1/lib/style.css">
 		<link rel="stylesheet" href="css/common.css" />
 		<link href="css/index.css" rel="stylesheet">
 	</head>
@@ -20,7 +22,7 @@
 				<div id="content">
 					<div class="workInfo">
 						<p class="title"><span>签署代扣协议</span></p>
-						<p><span>银行卡号</span><input v-model="bankCardNo" id="bankCardNo" name="bankCardNo" type="text" placeholder="请输入银行卡号"></p>
+						<p><span>银行卡号</span><input v-model="bankCardNo" id="bankCardNo" name="bankCardNo" type="text" placeholder="请输入银行卡号" /></p>
 						<p><span>银行</span>
 							<select id="bankName" v-model="selected">
 								<option v-for="option in options" :value="option.text">
@@ -49,6 +51,7 @@
 		<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
 		<script src="https://cdn.bootcss.com/layer/3.1.0/layer.js"></script>
 		<script src="js/vue.js"></script>
+		<script src="https://unpkg.com/mint-ui@1/lib/index.js"></script>
 		<script>
 			var vm = new Vue({
 				el: '#app',
@@ -119,34 +122,41 @@
 							value: '上海浦东发展银行'
 						},
 					],
+					popupVisible: true
 				},
-				mounted: function() {
-					function GetQueryString(name) {
+
+				created() {
+					this.query();
+				},
+
+				methods: {
+					GetQueryString(name) {
 						var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
 						var r = window.location.search.substr(1).match(reg); //search,查询？后面的参数，并匹配正则
 						if(r != null) return unescape(r[2]);
 						return null;
+					},
+					query() {
+						var outTradeNo = this.GetQueryString("outTradeNo");
+						var that = this;
+						localStorage.setItem("outTradeNo", outTradeNo);
+						$.ajax({
+							url: 'http://www.trinfi.com/dkh5/inputData/query?outTradeNo=' + outTradeNo,
+							type: 'get',
+							data: {},
+							dataType: 'json'
+						}).then(function(res) {
+							//把从json获取的数据赋值给数组
+							that.idName = res.inputData.idName;
+							that.idNo = res.inputData.idNo;
+							that.bankCardNo = res.inputData.bankCardNo;
+							that.bankMobile = res.inputData.bankMobile;
+							that.selected = res.inputData.bankCode;
+							console.log(res.inputData);
+						}).fail(function() {
+							console.log('失败');
+						})
 					}
-					var outTradeNo = GetQueryString("outTradeNo");
-					localStorage.outTradeNo = outTradeNo;
-					//为了在内部函数能使用外部函数的this对象，要给它赋值了一个名叫self的变量。
-					var that = this;
-					$.ajax({
-						url: 'http://www.trinfi.com/dkh5/inputData/query?outTradeNo=' + outTradeNo,
-						type: 'get',
-						data: {},
-						dataType: 'json'
-					}).then(function(res) {
-						//把从json获取的数据赋值给数组
-						that.idName = res.inputData.idName;
-						that.idNo = res.inputData.idNo;
-						that.bankCardNo = res.inputData.bankCardNo;
-						that.bankMobile = res.inputData.bankMobile;
-						that.selected = res.inputData.bankCode;
-						console.log(res.inputData);
-					}).fail(function() {
-						console.log('失败');
-					})
 				}
 			})
 		</script>

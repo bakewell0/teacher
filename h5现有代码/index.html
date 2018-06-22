@@ -5,6 +5,7 @@
 		<meta charset="UTF-8">
 		<title>分期公司补充信息</title>
 		<meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no'>
+		<link rel="stylesheet" href="https://unpkg.com/mint-ui@1/lib/style.css">
 		<link rel="stylesheet" href="css/common.css" />
 		<link href="css/index.css" rel="stylesheet">
 		<link href="https://cdn.bootcss.com/layer/3.1.0/mobile/need/layer.css" rel="stylesheet">
@@ -67,95 +68,50 @@
 		<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
 		<script src="https://cdn.bootcss.com/layer/3.1.0/layer.js"></script>
 		<script src="js/area.js"></script>
-		<script>
-			(function(doc, win) {
-				// 分辨率Resolution适配
-				var docEl = doc.documentElement,
-					resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
-					recalc = function() {
-						var clientWidth = docEl.clientWidth;
-						if(!clientWidth) return;
-						docEl.style.fontSize = 100 * (clientWidth / 320) + 'px';
-					};
-
-				// Abort if browser does not support addEventListener
-				if(!doc.addEventListener) return;
-				win.addEventListener(resizeEvt, recalc, false);
-				doc.addEventListener('DOMContentLoaded', recalc, false);
-				// 一物理像素在不同屏幕的显示效果不一样。要根据devicePixelRatio来修改meta标签的scale,要注释上面的meta标签
-				(function() {
-					return;
-					var dpr = scale = 1;
-					var isIPhone = win.navigator.appVersion.match(/iphone/gi);
-					var devicePixelRatio = win.devicePixelRatio;
-					if(isIPhone) {
-						// iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
-						if(devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {
-							dpr = 3;
-						} else if(devicePixelRatio >= 2 && (!dpr || dpr >= 2)) {
-							dpr = 2;
-						} else {
-							dpr = 1;
-						}
-					} else {
-						// 其他设备下，仍旧使用1倍的方案
-						dpr = 1;
-					}
-					scale = 1 / dpr;
-
-					//
-					var metaEl = "";
-					metaEl = doc.createElement('meta');
-					metaEl.setAttribute('name', 'viewport');
-					metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
-					if(docEl.firstElementChild) {
-						docEl.firstElementChild.appendChild(metaEl);
-					} else {
-						var wrap = doc.createElement('div');
-						wrap.appendChild(metaEl);
-						doc.write(wrap.innerHTML);
-					}
-				})();
-			})(document, window);
-		</script>
+		<script src="https://unpkg.com/mint-ui@1/lib/index.js"></script>
 		<script>
 			var vm = new Vue({
 				el: '#app',
 				data: {
 					corpName: "",
 					corpDetail: "",
-					corpPhone: ""
+					corpPhone: "",
+					popupVisible: true
 				},
 				created: function() {
-					function GetQueryString(name) {
+					this.query();
+				},
+				methods: {
+					query() {
+						var outTradeNo = this.GetQueryString("outTradeNo");
+						var that = this;
+						localStorage.setItem("outTradeNo", outTradeNo);
+						$.ajax({
+							url: 'http://www.trinfi.com/dkh5/inputData/query?outTradeNo=' + outTradeNo,
+							type: 'get',
+							data: {},
+							dataType: 'json'
+						}).then(function(res) {
+							//把从json获取的数据赋值给数组
+							that.corpName = res.inputData.corpName;
+							that.corpDetail = res.inputData.corpDetail;
+							that.corpPhone = res.inputData.corpPhone;
+							that.linkManName = res.inputData.linkManName;
+							that.relation = res.inputData.relation;
+							that.linkManType = res.inputData.linkManType;
+							that.linkManMobile = res.inputData.linkManMobile;
+							that.outTradeNo = localStorage.outTradeNo;
+							console.log(res.inputData);
+						}).fail(function() {
+							console.log('失败');
+						})
+					},
+					GetQueryString(name) {
 						var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
 						var r = window.location.search.substr(1).match(reg); //search,查询？后面的参数，并匹配正则
 						if(r != null) return unescape(r[2]);
 						return null;
 					}
-					var outTradeNo = GetQueryString("outTradeNo");
-					localStorage.outTradeNo = outTradeNo;
-					//为了在内部函数能使用外部函数的this对象，要给它赋值了一个名叫self的变量。
-					var that = this;
-					$.ajax({
-						url: 'http://www.trinfi.com/dkh5/inputData/query?outTradeNo=' + outTradeNo,
-						type: 'get',
-						data: {},
-						dataType: 'json'
-					}).then(function(res) {
-						//把从json获取的数据赋值给数组
-						that.corpName = res.inputData.corpName;
-						that.corpDetail = res.inputData.corpDetail;
-						that.corpPhone = res.inputData.corpPhone;
-						that.linkManName = res.inputData.linkManName;
-						that.relation = res.inputData.relation;
-						that.linkManType = res.inputData.linkManType;
-						that.linkManMobile = res.inputData.linkManMobile;
-						that.outTradeNo = localStorage.outTradeNo;
-						console.log(res.inputData);
-					}).fail(function() {
-						console.log('失败');
-					})
 				}
 			})
 		</script>
