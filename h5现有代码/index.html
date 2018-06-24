@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 		<title>分期公司补充信息</title>
 		<meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no'>
-		<link rel="stylesheet" href="https://unpkg.com/mint-ui@1/lib/style.css">
+		<link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
 		<link rel="stylesheet" href="css/common.css" />
 		<link href="css/index.css" rel="stylesheet">
 		<link href="https://cdn.bootcss.com/layer/3.1.0/mobile/need/layer.css" rel="stylesheet">
@@ -24,17 +24,22 @@
 						<p class="title"><span>工作信息</span></p>
 						<p><span>工作单位</span><input id="workInfo" name="workInfo" v-model="corpName" type="text" placeholder="请输入工作单位"></p>
 						<p><span>工作单位所在省</span>
-							<select id="Province" name="Province">
-							</select>
+							<input id="Province" name="Province" v-model="provinceName" type="text" readonly="" @click="chooseProvince" placeholder="请选择单位所在省"/>																			
 							<img src="img/Group 5.png" alt="" />
 						</p>
 						<p><span>工作单位所在市</span>
-							<select id="city" name="city">
+							<select id="city" name="city" v-model="cityName">
+								<option :value="city.areaName" v-for="city in cityList">
+									{{city.areaName}}
+								</option>
 							</select>
 							<img src="img/Group 5.png" alt="" />
 						</p>
 						<p><span>工作单位所在区</span>
-							<select id="area" name="area">
+							<select id="area" name="area" v-model="areaName">
+								<option value="" v-for="area in areaList">
+									{{area.areaName}}
+								</option>
 							</select>
 							<img src="img/Group 5.png" alt="" />
 						</p>
@@ -62,13 +67,29 @@
 				<footer id="footer">
 					<button id="btn" type="submit">下一步</button>
 				</footer>
+				
+				<mt-popup v-model="provinceVisible" popup-transition="popup-fade" class="popup">
+				  <div class="workplace">
+				  	工作单位所在地区<i class="close"></i>
+				  </div>
+				  <div class="choose">选择省份/地区</div>
+				   <ul class="itemList">
+				   		<li v-for="item in provinceList" :data-areacode="item.areaCode" v-cloak @click="chooseProvinceVal(item)">
+				   			<div class="letter">{{item.areaLetter}}</div>
+				   			<div class="name">{{item.areaName}}</div>
+				   		</li>
+				   </ul>
+				</mt-popup>
 			</form>
 		</div>
 		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 		<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
 		<script src="https://cdn.bootcss.com/layer/3.1.0/layer.js"></script>
 		<script src="js/area.js"></script>
-		<script src="https://unpkg.com/mint-ui@1/lib/index.js"></script>
+		<script src="js/vue.js"></script>
+  		<script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+		
+		
 		<script>
 			var vm = new Vue({
 				el: '#app',
@@ -76,18 +97,27 @@
 					corpName: "",
 					corpDetail: "",
 					corpPhone: "",
-					popupVisible: true
+					provinceVisible: false,
+					outTradeNo:0,
+					provinceList:[],
+					provinceName:"",
+					cityList:[],
+					cityName:"",
+					areaList:[],
+					areaName:"",
+					code:""
 				},
 				created: function() {
+					this.outTradeNo = this.GetQueryString("outTradeNo");
 					this.query();
+					this.queryCity();
 				},
 				methods: {
 					query() {
-						var outTradeNo = this.GetQueryString("outTradeNo");
 						var that = this;
-						localStorage.setItem("outTradeNo", outTradeNo);
+						localStorage.setItem("outTradeNo", this.outTradeNo);
 						$.ajax({
-							url: 'http://www.trinfi.com/dkh5/inputData/query?outTradeNo=' + outTradeNo,
+							url: 'http://www.trinfi.com/dkh5/inputData/query?outTradeNo=' + this.outTradeNo,
 							type: 'get',
 							data: {},
 							dataType: 'json'
@@ -111,6 +141,44 @@
 						var r = window.location.search.substr(1).match(reg); //search,查询？后面的参数，并匹配正则
 						if(r != null) return unescape(r[2]);
 						return null;
+					},
+					queryCity(){
+						$.ajax({
+							url: 'http://www.trinfi.com/dkh5/inputData/queryCityForH5?outTradeNo=' + this.outTradeNo +"&parentCode=" + this.code,
+							type: 'get',
+							data: {},
+							dataType: 'json'
+						}).then((res)=> {
+							//删除相同的字母
+							var areaLetterArr=[];
+							res.date.forEach(function(d){
+								if(areaLetterArr.indexOf(d.areaLetter)>-1){
+									d.areaLetter="";
+								}
+								else{
+									areaLetterArr.push(d.areaLetter);
+								}							
+							})
+							this.provinceList = res.date;
+						}).fail(function() {
+							console.log('失败');
+						})
+					},
+					chooseProvince(){
+						this.provinceVisible=true
+					},
+					chooseProvinceVal(province){
+						this.code = province.areaCode;
+						this.provinceName=province.areaName;
+						this.provinceVisible=false;
+					}
+				},
+				watch:{
+					provinceName(){
+						this.queryCity();
+					},
+					cityName(){
+						this.queryCity();
 					}
 				}
 			})
@@ -208,7 +276,7 @@
 							success: function(message) {
 								if(message.static == "0") {
 									layer.msg("提交成功!");
-									window.location.href = "http://www.trinfi.com/dankeh5/signInformation.html?outTradeNo=" + vm.outTradeNo;
+									window.location.href = "signInformation.html?outTradeNo=" + vm.outTradeNo;
 								} else {
 									layer.msg(message.message);
 								}
@@ -225,10 +293,6 @@
 					onkeyup: false
 				});
 			})
-		</script>
-
-		<script type="text/javascript">
-			addressInit('Province', 'city', 'area');
 		</script>
 	</body>
 

@@ -35,7 +35,7 @@
 						<p><span>身份证号</span><input disabled="disabled" v-model="idNo" id="idCard" name="idCard" type="text"></p>
 						<p><span>手机号</span><input id="phone" v-model="bankMobile" name="phone" type="text" placeholder="请填写手机号"></p>
 						<p><span style="float: left">验证码</span><input id="msg" name="msg" style="width: 80px;float: left" type="text" placeholder="请填写验证码">
-							<a id="sendMsg" class="sendMsg" href="javascript:;">发送验证码</a>
+							<a id="sendMsg" class="sendMsg" href="javascript:;" @click="sendMsg">发送验证码</a>
 						</p>
 						<div class="checkDiv"><input id="cb" name="cb" type="checkbox">&nbsp;<label style="vertical-align: middle" for="cb">确定签署</label>
 							<a href="http://www.baidu.com">《代扣协议》</a>
@@ -156,6 +156,29 @@
 						}).fail(function() {
 							console.log('失败');
 						})
+					},
+					sendMsg(){
+						$.ajax({
+							url: "http://www.trinfi.com/dkh5/inputData/fourElements",
+							type: "post",
+							dataType: "json",
+							data: {
+								outTradeNo: localStorage.outTradeNo,
+								bankCardNo: $("#bankCardNo").val(),
+								bankCode: $("#bankName").val(),
+								bankMobile: $("#phone").val(),
+							},
+							success: function(message) {
+								if(message.static == "0") {
+									layer.msg("发送验证码成功");
+								} else {
+									layer.msg("发送验证码失败");
+								}
+							},
+							error: function() {
+								console.log(1212);
+							}
+						});
 					}
 				}
 			})
@@ -225,7 +248,7 @@
 							success: function(message) {
 								if(message.static == "0") {
 									layer.msg("提交成功");
-									window.location.href = "http://www.trinfi.com/dankeh5/signInformation2.html?outTradeNo=" + localStorage.outTradeNo + "&bankMobile=" + $("#phone").val();
+									window.location.href = "signInformation2.html?outTradeNo=" + localStorage.outTradeNo + "&bankMobile=" + $("#phone").val();
 								} else {
 									layer.msg("提交失败");
 								}
@@ -239,33 +262,6 @@
 					},
 					onkeyup: false
 				});
-			})
-		</script>
-		<script>
-			$(function() {
-				$("#app").on('click', '#sendMsg', function() {
-					$.ajax({
-						url: "http://www.trinfi.com/dkh5/inputData/fourElements",
-						type: "post",
-						dataType: "json",
-						data: {
-							outTradeNo: localStorage.outTradeNo,
-							bankCardNo: $("#bankCardNo").val(),
-							bankCode: $("#bankName").val(),
-							bankMobile: $("#phone").val(),
-						},
-						success: function(message) {
-							if(message.static == "0") {
-								layer.msg("发送验证码成功");
-							} else {
-								layer.msg("发送验证码失败");
-							}
-						},
-						error: function() {
-							console.log(1212);
-						}
-					});
-				})
 			})
 		</script>
 	</body>

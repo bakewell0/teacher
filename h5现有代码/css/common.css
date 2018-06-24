@@ -1,6 +1,14 @@
-body,p{
+body,p,ul{
 	margin: 0;
 	padding: 0;
+}
+
+ul li{
+	list-style: none;
+}
+
+[v-cloak] {
+    display: none;
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 375px) {

@@ -132,3 +132,63 @@
 	background: #000000;
 	top: 0;
 }
+
+/*index*/
+.popup{
+	width: 100%;
+    text-align: left;
+    padding: 0 0.32rem;
+    box-sizing: border-box;
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.10);
+    border-radius: 18px 18px 0 0;
+    height: 100%;
+    top: calc(50% + 5.41rem);
+}
+.popup .workplace{
+	font-family: PingFang-SC-Medium;
+	font-size: 0.38rem;
+	color: #666666;
+	height: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+}
+
+.popup .workplace .close{
+	width: 0.4rem;
+	height: 0.4rem;
+}
+
+.popup .choose{
+	font-family: PingFang-SC-Medium;
+	font-size: 0.28rem;
+	color: #B0B0B0;
+}
+
+.itemList{
+	overflow: scroll;
+    height: 100%;
+}
+
+.itemList li{
+	overflow: hidden;
+	display: flex;
+    align-items: center;
+    margin: 0.8rem 0;
+}
+
+.itemList li .letter{
+	font-family: PingFang-SC-Medium;
+	font-size: 0.28rem;
+	color: #B0B0B0;
+	float: left;
+	width: 0.98rem;
+	padding-left: 0.32rem;
+    box-sizing: border-box;
+}
+
+.itemList li .name{
+	font-family: PingFang-SC-Medium;
+	font-size: 0.34rem;
+	color: #666666;
+	float: left;
+}
