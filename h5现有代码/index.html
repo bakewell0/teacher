@@ -28,19 +28,11 @@
 							<img src="img/Group 5.png" alt="" />
 						</p>
 						<p><span>工作单位所在市</span>
-							<select id="city" name="city" v-model="cityName">
-								<option :value="city.areaName" v-for="city in cityList">
-									{{city.areaName}}
-								</option>
-							</select>
+							<input id="city" name="city" v-model="cityName" type="text" readonly="" @click="chooseCity" placeholder="请选择单位所在市"/>																			
 							<img src="img/Group 5.png" alt="" />
 						</p>
 						<p><span>工作单位所在区</span>
-							<select id="area" name="area" v-model="areaName">
-								<option value="" v-for="area in areaList">
-									{{area.areaName}}
-								</option>
-							</select>
+							<input id="area" name="area" v-model="areaName" type="text" readonly="" @click="chooseArea" placeholder="请选择单位所在区"/>																			
 							<img src="img/Group 5.png" alt="" />
 						</p>
 						<div id="show"></div>
@@ -80,6 +72,37 @@
 				   		</li>
 				   </ul>
 				</mt-popup>
+							
+				<mt-popup v-model="cityVisible" popup-transition="popup-fade" class="popup">
+				  <div class="workplace">
+				  	工作单位所在地区<i class="close"></i>
+				  </div>
+				  <div class="choose">已选择</div>
+				  <div class="hasName">{{provinceName}}</div>
+				  <div class="toName">选择城市</div>
+				   <ul class="itemList">
+				   		<li v-for="item in cityList" :data-areacode="item.areaCode" v-cloak @click="chooseCityVal(item)">
+				   			<div class="letter">{{item.areaLetter}}</div>
+				   			<div class="name">{{item.areaName}}</div>
+				   		</li>
+				   </ul>
+				</mt-popup>
+				
+				<mt-popup v-model="areaVisible" popup-transition="popup-fade" class="popup">
+				  <div class="workplace">
+				  	工作单位所在地区<i class="close"></i>
+				  </div>
+				  <div class="choose">已选择</div>
+				  <div class="hasName">{{cityName}}</div>
+				  <div class="toName">选择区县</div>
+				   <ul class="itemList">
+				   		<li v-for="item in areaList" :data-areacode="item.areaCode" v-cloak @click="chooseAreaVal(item)">
+				   			<div class="letter">{{item.areaLetter}}</div>
+				   			<div class="name">{{item.areaName}}</div>
+				   		</li>
+				   </ul>
+				</mt-popup>
+								
 			</form>
 		</div>
 		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
@@ -97,20 +120,27 @@
 					corpName: "",
 					corpDetail: "",
 					corpPhone: "",
-					provinceVisible: false,
 					outTradeNo:0,
+					provinceVisible: false,
+					cityVisible:false,
+					areaVisible:false,
 					provinceList:[],
-					provinceName:"",
 					cityList:[],
-					cityName:"",
 					areaList:[],
+					provinceName:"",
+					cityName:"",
 					areaName:"",
-					code:""
+					provinceCode:"",
+					cityCode:"",
+					areaCode:''
 				},
 				created: function() {
+					var that=this;
 					this.outTradeNo = this.GetQueryString("outTradeNo");
 					this.query();
-					this.queryCity();
+					this.queryCity("",function(res){
+						that.provinceList=res;
+					});
 				},
 				methods: {
 					query() {
@@ -153,13 +183,13 @@
 						if(r != null) return unescape(r[2]);
 						return null;
 					},
-					queryCity(){
+					queryCity(code,callback){
 						$.ajax({
-							url: 'http://www.trinfi.com/dkh5/inputData/queryCityForH5?outTradeNo=' + this.outTradeNo +"&parentCode=" + this.code,
+							url: 'http://www.trinfi.com/dkh5/inputData/queryCityForH5?outTradeNo=' + this.outTradeNo +"&parentCode=" + code,
 							type: 'get',
 							data: {},
 							dataType: 'json'
-						}).then((res)=> {
+						}).then(function(res){
 							//删除相同的字母
 							var areaLetterArr=[];
 							res.date.forEach(function(d){
@@ -170,7 +200,7 @@
 									areaLetterArr.push(d.areaLetter);
 								}							
 							})
-							this.provinceList = res.date;
+							callback(res.date);
 						}).fail(function() {
 							console.log('失败');
 						})
@@ -178,18 +208,40 @@
 					chooseProvince(){
 						this.provinceVisible=true
 					},
+					chooseCity(){
+						this.cityVisible=true
+					},
+					chooseArea(){
+						this.areaVisible=true
+					},
 					chooseProvinceVal(province){
-						this.code = province.areaCode;
+						this.provinceCode = province.areaCode;
 						this.provinceName=province.areaName;
 						this.provinceVisible=false;
+					},
+					chooseCityVal(city){
+						this.cityCode = city.areaCode;
+						this.cityName=city.areaName;
+						this.cityVisible=false;
+					},
+					chooseAreaVal(province){
+						this.areaCode = province.areaCode;
+						this.areaName=province.areaName;
+						this.areaVisible=false;
 					}
 				},
 				watch:{
 					provinceName(){
-						this.queryCity();
+						var that=this;
+						this.queryCity(this.provinceCode,function(res){
+							that.cityList = res;
+						});
 					},
 					cityName(){
-						this.queryCity();
+						var that=this;
+						this.queryCity(this.cityCode,function(res){
+							that.areaList = res;
+						});
 					}
 				}
 			})

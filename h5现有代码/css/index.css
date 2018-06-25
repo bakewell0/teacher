@@ -164,6 +164,22 @@
 	color: #B0B0B0;
 }
 
+.popup .hasName{
+	font-family: PingFang-SC-Medium;
+    font-size: 0.34rem;
+    color: #666666;
+    margin-top: 0.47rem;
+    border-bottom: 1px #DFDFDF solid;
+    padding-bottom: 0.28rem;
+}
+
+.popup .toName{
+	font-family: PingFang-SC-Medium;
+    font-size: 0.28rem;
+    color: #B0B0B0;
+    margin-top: 0.28rem;
+}
+
 .itemList{
 	overflow: scroll;
     height: 100%;
