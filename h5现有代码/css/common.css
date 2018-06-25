@@ -51,3 +51,14 @@ ul li{
 .sendMsg{
 	color:#35C6D3;font-size: 0.32rem;margin-right:0.3rem;text-decoration: none;
 }
+.cuntdown{
+	width: 1.6rem;
+    height: 0.45rem;
+    background: gray;
+    display: block;
+    text-align: center;
+    line-height: 0.45rem;
+    text-decoration: none;
+   	margin-right: 0.3rem;
+   	color:white
+}
