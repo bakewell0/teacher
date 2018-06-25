@@ -65,6 +65,18 @@
 							//把从json获取的数据赋值给数组
 							that.idName = res.inputData.idName;
 							that.idNo = res.inputData.idNo;
+							if(res.isContacts==0){
+								location.href="index.html?outTradeNo="+that.GetQueryString("outTradeNo");
+							}
+							else if(res.fourElements==0){
+								location.href="signInformation.html?outTradeNo="+that.GetQueryString("outTradeNo");
+							}
+							else if(res.creditAuthorization==0){
+								location.href="signInformation2.html?outTradeNo="+that.GetQueryString("outTradeNo");
+							}
+							else{
+								//location.href="signInformation3.html?outTradeNo="+that.GetQueryString("outTradeNo");
+							}	
 						}).fail(function() {
 							console.log('失败');
 						})

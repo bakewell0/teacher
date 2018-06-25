@@ -89,6 +89,18 @@
 							that.idName = res.inputData.idName;
 							that.idNo = res.inputData.idNo;
 							that.mobile = res.inputData.mobile;
+							if(res.isContacts==0){
+								location.href="index.html?outTradeNo="+that.GetQueryString("outTradeNo");
+							}
+							else if(res.fourElements==0){
+								location.href="signInformation.html?outTradeNo="+that.GetQueryString("outTradeNo");
+							}
+							else if(res.creditAuthorization==0){
+								//location.href="signInformation2.html?outTradeNo="+that.GetQueryString("outTradeNo");
+							}
+							else{
+								location.href="signInformation3.html?outTradeNo="+that.GetQueryString("outTradeNo");
+							}	
 						}).fail(function() {
 							console.log('失败');
 						})
@@ -161,10 +173,12 @@
 								validateCode: $("#msg").val(),
 							},
 							success: function(message) {
-								if(message.static == "0") {
-									layer.msg('验证码正确');
-									alert('验证码正确');
-									window.location.href = "http://www.trinfi.com/dankeh5/signInformation3.html?outTradeNo=" + localStorage.outTradeNo + "&bankMobile=" + $("#phone").val();
+								if(message.static == "0") {								
+									vm.isComplete = true;
+									vm.isMask = true;
+									setTimeout(function(){
+										window.location.href = "signInformation3.html?outTradeNo=" + localStorage.outTradeNo + "&bankMobile=" + $("#phone").val();
+									},3000);
 								} else {
 									layer.msg('验证码错误');
 								}
