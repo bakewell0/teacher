@@ -4,9 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
 var app = express();
 
 // view engine setup
@@ -19,8 +16,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+/*路由映射*/
+app.use('/afterSale', require('./routes/afterSale'));
+app.use('/customer', require('./routes/customer'));
+app.use('/goods', require('./routes/goods'));
+app.use('/purchase', require('./routes/purchase'));
+app.use('/staff', require('./routes/staff'));
+app.use('/supplier', require('./routes/supplier'));
+app.use('/user', require('./routes/user'));
+app.use('/wharehouse', require('./routes/wharehouse'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
