@@ -1,30 +1,72 @@
 var express = require('express');
 var router = express.Router();
 var customer = require("../model.js").customer;
-// force: true will drop the table if it already exists
+
 /*customer.sync({
 	force: true
 }).then(() => {
 
 });*/
-router.post('/addCustomer', async(req, res, next) => {
-	var cust = await customer.create({
+
+router.post('/add', (req, res, next) => {
+	customer.create({
 		name: req.body.name,
 		category: req.body.category,
 		linkman: req.body.linkman,
 		telephone: req.body.telephone,
 		taxNum: req.body.taxNum,
 		property: req.body.property
-	});
-	res.json({
-		success: true
-	});
+	}).then((result) => {
+		res.json({
+			isSuccess: true,
+			result: result
+		});
+	})
 });
 
-router.get('/getCustomerList', async(req, res, next) => {
-	var customerList = await customer.findAll();
-	res.json({
-		customerList: customerList
+router.post('/query', (req, res, next) => {
+	customer.findAll({
+		where: {
+			id: req.body.customerid
+		}
+	}).then((result) => {
+		res.json({
+			isSuccess: true,
+			result: result
+		});
+	});
+})
+
+router.post('/delete', (req, res, next) => {
+	customer.destroy({
+		where: {
+			id: req.body.customerid
+		}
+	}).then((result) => {
+		res.json({
+			isSuccess: result?true:false,
+			result: result
+		});
+	});
+})
+
+router.post('/update', (req, res, next) => {
+	customer.update({
+		name: req.body.name,
+		category: req.body.category,
+		linkman: req.body.linkman,
+		telephone: req.body.telephone,
+		taxNum: req.body.taxNum,
+		property: req.body.property
+	}, {
+		where: {
+			id: req.body.customerid
+		}
+	}).then((result) => {
+		res.json({
+			isSuccess: result[0]?true:false,
+			result: result
+		});
 	});
 })
 
