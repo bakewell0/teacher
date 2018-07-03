@@ -80,25 +80,17 @@ var purchase=sequelize.define('purchase', {
 var promanage=sequelize.define('promanage', {
 	proname:Sequelize.STRING,//项目名称
 	custname:Sequelize.STRING,//客户名称
-	goodsList:Sequelize.STRING,//货物清单
+	goodsList:Sequelize.STRING,//货物清单,数组
 });	
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*货物清单表*/
+var manifest={
+	quantity:Sequelize.STRING,//数量
+	buyprice:Sequelize.STRING,//进价
+	sellprice:Sequelize.STRING,//售价
+	supplierid:Sequelize.STRING,//供应商
+	isget:Sequelize.STRING//到货情况
+}
 
 var models={
 		user:user,
@@ -108,7 +100,9 @@ var models={
 		staff:staff,
 		goods:goods,
 		afterSale:afterSale,
-		purchase:purchase
+		purchase:purchase,
+		promanage:promanage,
+		manifest:manifest
 }
 
 module.exports=models;
