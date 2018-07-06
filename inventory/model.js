@@ -51,7 +51,7 @@ var staff=sequelize.define('staff', {
 
 /*商品*/
 var goods= sequelize.define('goods', {
-	name:Sequelize.STRING,
+	name:Sequelize.STRING,//名称
 	category:Sequelize.STRING,//类别
 	brand:Sequelize.STRING,//品牌
 	model:Sequelize.STRING,//型号
@@ -72,16 +72,25 @@ var afterSale=sequelize.define('afterSale', {
 
 /*采购，进货管理*/
 var purchase=sequelize.define('purchase', {
-	supplierid:Sequelize.STRING,//供应商
-	handleman:Sequelize.STRING,//经办人
-	handledate:Sequelize.STRING,//经办日期
-	paymenttype:Sequelize.STRING,//付款方式,0现金，1网银
-	invoicetype:Sequelize.STRING,//发票类型
-	invoiceno:Sequelize.STRING,//发票号
-	goodsid:Sequelize.STRING//商品id
+	proid:Sequelize.STRING,//项目id,
+	custid:Sequelize.STRING//客户id
 });	
 
-/*销售*/
+/*项目管理*/
+var promanage=sequelize.define('promanage', {
+	proname:Sequelize.STRING,//项目名称
+	custname:Sequelize.STRING,//客户名称
+	goodsList:Sequelize.STRING,//货物清单,数组
+});	
+
+/*货物清单表*/
+var manifest={
+	quantity:Sequelize.STRING,//数量
+	buyprice:Sequelize.STRING,//进价
+	sellprice:Sequelize.STRING,//售价
+	supplierid:Sequelize.STRING,//供应商
+	isget:Sequelize.STRING//到货情况
+}
 
 var models={
 		user:user,
@@ -91,7 +100,9 @@ var models={
 		staff:staff,
 		goods:goods,
 		afterSale:afterSale,
-		purchase:purchase
+		purchase:purchase,
+		promanage:promanage,
+		manifest:manifest
 }
 
 module.exports=models;
