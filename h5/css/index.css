@@ -1,13 +1,11 @@
 body{
 	background: #383a4c;
 	font-family: San Francisco;
-	width: 7.5rem;
-    margin: auto;
 }
 .pro{
 	height: 6.5rem;
     background: #5c76d5;
-    padding-top: 0.5rem;
+    padding-top: 0.7rem;
     box-sizing: border-box;
     position: relative;
 }
@@ -15,12 +13,15 @@ body{
 .pro img{
 	position: absolute;
 	top:0;
-	width: 100%;
+	height: 1.96rem;
+	left: 50%;
+    transform: translateX(-50%);
 }
 
 .pro .proContent{
 	position: absolute;
 	z-index: 2;
+	width: 100%;
 }
 
 .pro .title{
@@ -32,7 +33,7 @@ body{
 	font-size: 0.36rem;
     color: white;
     text-align: center;
-    margin: 0.75rem 0.85rem;
+    margin: 0.85rem;
     line-height: 0.7rem;
 }
 .form{
