@@ -1,0 +1,87 @@
+body{
+	background: #383a4c;
+	font-family: San Francisco;
+}
+.pro{
+	height: 6.5rem;
+    background: #5c76d5;
+    padding-top: 0.7rem;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.pro img{
+	position: absolute;
+	top:0;
+	height: 1.96rem;
+	left: 50%;
+    transform: translateX(-50%);
+}
+
+.pro .proContent{
+	position: absolute;
+	z-index: 2;
+	width: 100%;
+}
+
+.pro .title{
+	font-size:0.6rem;
+	color: white;
+    text-align: center;
+}
+.pro .describe{
+	font-size: 0.36rem;
+    color: white;
+    text-align: center;
+    margin: 0.85rem;
+    line-height: 0.7rem;
+}
+.form{
+	height: 8.7rem;
+	margin: 0.18rem 0.2rem;
+}
+.form li{
+	height: 1.27rem;
+    border-bottom: 1px #8e909a solid;
+}
+.form li .key{
+	font-size: 0.24rem;
+	color: #8e909a;
+	padding-top: 0.35rem;
+}
+.form li .value{
+	font-size: 0.3rem;
+    color: white;
+    width: 100%;
+    border: 0;
+    background: transparent;
+    display: block;
+    margin-top: 0.1rem;
+    outline: none;
+}
+
+.submit{
+	text-align: center;
+	line-height: 0.8rem;
+	height: 0.8rem;
+	background: #5c76d5;
+	color:white;
+	font-size:0.3rem;
+	margin: 0 0.2rem;
+}
+.linkway{
+	margin-top: 0.73rem;
+}
+.linkway .email{
+	text-align: center;
+}
+.linkway .email img{
+	
+}
+.linkway .text{
+	margin-top: 0.2rem;
+	text-align: center;
+	font-size:0.3rem;
+	color:white;
+	margin-bottom: 2.45rem;
+}
