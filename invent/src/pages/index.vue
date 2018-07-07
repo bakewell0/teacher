@@ -148,7 +148,7 @@
 		width: 189px;
 		background: #f9f9f9;
 		color: #585858;
-		text-align: center;
+		text-align: left;
 	}
 	
 	.nav-menu > li {
@@ -158,6 +158,7 @@
 	.nav-menu li .option {
 		line-height: 39px;
 		height: 39px;
+		padding-left: 40px;
 	}
 	
 	.nav-menu li .menu-item {
@@ -175,7 +176,7 @@
 		display: block;
 	    position: relative;
 	    color: #616161;
-	    padding: 7px 0 9px 37px;
+	    padding: 7px 0 9px 57px;
 	    margin: 0;
 	    border-top: 1px dotted #e4e4e4;
 	}
