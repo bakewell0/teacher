@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 /*路由映射*/
-app.use('/afterSale', require('./routes/afterSale'));
+app.use('/aftersale', require('./routes/aftersale'));
 app.use('/customer', require('./routes/customer'));
 app.use('/goods', require('./routes/goods'));
 app.use('/purchase', require('./routes/purchase'));
@@ -30,6 +30,7 @@ app.use('/staff', require('./routes/staff'));
 app.use('/supplier', require('./routes/supplier'));
 app.use('/user', require('./routes/user'));
 app.use('/wharehouse', require('./routes/wharehouse'));
+app.use('/promanage', require('./routes/promanage'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

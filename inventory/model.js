@@ -64,9 +64,8 @@ var afterSale=sequelize.define('afterSale', {
 	breakdown:Sequelize.STRING,//故障
 	iswarranty:Sequelize.STRING,//保修期内0，保修期外1
 	ischarge:Sequelize.STRING,//收费0，免费1
-	feedback:Sequelize.STRING,//跟踪反馈
-	price:Sequelize.STRING,//价格
-	note:Sequelize.STRING,//备注
+	aftercontent:Sequelize.STRING,//售后内容
+	price:Sequelize.STRING//价格
 });	
 
 /*采购，进货管理*/
@@ -79,17 +78,19 @@ var purchase=sequelize.define('purchase', {
 var promanage=sequelize.define('promanage', {
 	proname:Sequelize.STRING,//项目名称
 	custname:Sequelize.STRING,//客户名称
-	goodsList:Sequelize.STRING,//货物清单,数组
 });	
 
 /*货物清单表*/
-var manifest={
+var manifest=sequelize.define('manifest', {
+	name:Sequelize.STRING,//名称
 	quantity:Sequelize.STRING,//数量
 	buyprice:Sequelize.STRING,//进价
 	sellprice:Sequelize.STRING,//售价
-	supplierid:Sequelize.STRING,//供应商
-	isget:Sequelize.STRING//到货情况
-}
+	supplier:Sequelize.STRING,//供应商
+	isget:Sequelize.STRING,//到货情况
+	proname:Sequelize.STRING,//项目名称
+	custname:Sequelize.STRING//客户名称
+});	
 
 var models={
 		user:user,

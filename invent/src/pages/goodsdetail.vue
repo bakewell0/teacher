@@ -4,7 +4,7 @@
 		<v-nav></v-nav>
 		<div class="content">
 			<div style="margin: 20px;"></div>
-			<el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign" :rules="rules" ref="formLabelAlign">
+			<el-form :label-position="labelPosition" label-width="100px" :model="formLabelAlign" :rules="rules" ref="formLabelAlign">
 				<el-form-item label="商品名称" prop="name">
 					<el-input v-model="formLabelAlign.name"></el-input>
 				</el-form-item>
