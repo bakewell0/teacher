@@ -30,10 +30,8 @@ var customer=sequelize.define('customer', {
 
 /*仓库*/
 var wharehouse=sequelize.define('wharehouse', {
-	code:Sequelize.STRING,//仓库代码
 	name:Sequelize.STRING,//仓库名称
 	addr:Sequelize.STRING,//仓库地址
-	area:Sequelize.STRING,//仓库面积
 	note:Sequelize.STRING//备注
 });	
 
@@ -44,9 +42,10 @@ var staff=sequelize.define('staff', {
 	duty:Sequelize.STRING,//岗位
 	idcard:Sequelize.STRING,//身份证
 	gender:Sequelize.STRING,//性别
-	family:Sequelize.STRING,//家庭情况
 	employDate:Sequelize.STRING,//入职时间
-	fullDate:Sequelize.STRING//转正时间
+	fullDate:Sequelize.STRING,//转正时间，
+	familyphone:Sequelize.STRING,//家庭电话
+	familyaddr:Sequelize.STRING,//家庭住址
 });	
 
 /*商品*/

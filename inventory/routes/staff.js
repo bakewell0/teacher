@@ -15,7 +15,9 @@ router.post('/add', (req, res, next) => {
 		gender:req.body.gender,//性别
 		family:req.body.family,//家庭情况
 		employDate:req.body.employDate,//入职时间
-		fullDate:req.body.fullDate//转正时间
+		fullDate:req.body.fullDate,//转正时间
+		familyphone:req.body.familyphone,//家庭电话
+		familyaddr:req.body.familyaddr//家庭住址
 	}).then((result) => {
 		res.json({
 			isSuccess: true,
@@ -25,11 +27,7 @@ router.post('/add', (req, res, next) => {
 });
 
 router.post('/query', (req, res, next) => {
-	staff.findAll({
-		where: {
-			id: req.body.staffid
-		}
-	}).then((result) => {
+	staff.findAll().then((result) => {
 		res.json({
 			isSuccess: true,
 			result: result
@@ -52,12 +50,16 @@ router.post('/delete', (req, res, next) => {
 
 router.post('/update', (req, res, next) => {
 	staff.update({
-		name: req.body.name,
-		category: req.body.category, //类别
-		brand: req.body.brand, //品牌
-		model: req.body.model, //型号
-		specific: req.body.specific, //规格
-		supplier: req.body.supplier //供应商名称
+		name:req.body.name,//名称
+		telephone:req.body.telephone,//电话
+		duty:req.body.duty,//岗位
+		idcard:req.body.idcard,//身份证
+		gender:req.body.gender,//性别
+		family:req.body.family,//家庭情况
+		employDate:req.body.employDate,//入职时间
+		fullDate:req.body.fullDate,//转正时间
+		familyphone:req.body.familyphone,//家庭电话
+		familyaddr:req.body.familyaddr//家庭住址
 	}, {
 		where: {
 			id: req.body.staffid

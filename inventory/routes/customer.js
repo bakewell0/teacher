@@ -25,11 +25,7 @@ router.post('/add', (req, res, next) => {
 });
 
 router.post('/query', (req, res, next) => {
-	customer.findAll({
-		where: {
-			id: req.body.customerid
-		}
-	}).then((result) => {
+	customer.findAll().then((result) => {
 		res.json({
 			isSuccess: true,
 			result: result

@@ -25,11 +25,7 @@ router.post('/add', (req, res, next) => {
 });
 
 router.post('/query', (req, res, next) => {
-	goods.findAll({
-		where: {
-			id: req.body.goodsid
-		}
-	}).then((result) => {
+	goods.findAll().then((result) => {
 		res.json({
 			isSuccess: true,
 			result: result
