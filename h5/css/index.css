@@ -33,9 +33,20 @@ body{
 	font-size: 0.36rem;
     color: white;
     text-align: center;
-    margin: 0.85rem;
+    margin: 1rem 0; 
     line-height: 0.7rem;
 }
+
+.pro .describe .tit{
+	font-size: 0.36rem;
+	line-height: 0.5rem;
+}
+
+.pro .describe .cont{
+	font-size: 0.48rem;
+	line-height: 0.77rem;
+}
+
 .form{
 	height: 8.7rem;
 	margin: 0.18rem 0.2rem;
