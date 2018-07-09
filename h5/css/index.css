@@ -1,7 +1,13 @@
 body{
-	background: #383a4c;
 	font-family: "San Francisco";
 }
+
+#app{
+	width: 7.5rem;
+    margin: auto;
+    background: #383a4c;
+}
+
 .pro{
 	height: 6.5rem;
     background: #5c76d5;
@@ -96,7 +102,7 @@ body{
 	text-align: center;
 	font-size:0.3rem;
 	color:white;
-	margin-bottom: 2.45rem;
+	padding-bottom: 2.45rem;
 }
 .error{
 	font-size: 0.24rem;
