@@ -26,9 +26,7 @@ var vm=new Vue({
 				})
 				.then((response) => {
 					if(response.data.meta.errno == 0) {
-						
-					} else {
-						
+						alert(response.data.meta.msg);
 					}
 				})
 				.catch(function(error) {
