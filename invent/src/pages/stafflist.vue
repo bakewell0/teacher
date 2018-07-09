@@ -1,8 +1,10 @@
 <template>
-	<div>
+	<div class="container">
 		<v-top></v-top>
+		<div class="both">
 		<v-nav></v-nav>
 		<div class="content">
+			<v-breadcrumb path1="职员管理" path2="职员信息列表"></v-breadcrumb>
 			<el-table :data="stafflist">
 				<el-table-column prop="name" label="员工名称" width="180">
 				</el-table-column>
@@ -24,13 +26,15 @@
 				</el-table-column>				
 			</el-table>
 		</div>
+		</div>
 	</div>
 </template>
 
 <script>
 	import nav from '../components/nav';
 	import top from '../components/top';
-	import api from '../fetch/api'
+	import api from '../fetch/api';
+	import breadcrumb from '../components/breadcrumb'
 	export default {
 		data() {
 			return {
@@ -39,7 +43,8 @@
 		},
 		components: {
 			'v-nav': nav,
-			'v-top': top
+			'v-top': top,
+			'v-breadcrumb':breadcrumb
 		},
 		methods:{
 			getstafflist(){

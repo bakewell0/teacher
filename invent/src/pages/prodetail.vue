@@ -1,10 +1,12 @@
 <template>
-	<div>
+	<div class="container">
 		<v-top></v-top>
+		<div class="both">
 		<v-nav></v-nav>
 		<div class="content">
+			<v-breadcrumb path1="项目管理" path2="项目录入"></v-breadcrumb>
 			<div style="margin: 20px;"></div>
-			<el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign" :rules="rules" ref="formLabelAlign">
+			<el-form :label-position="labelPosition" label-width="100px" :model="formLabelAlign" :rules="rules" ref="formLabelAlign">
 				<el-form-item label="项目名称" prop="proname">
 					<el-input v-model="formLabelAlign.proname"></el-input>
 				</el-form-item>
@@ -64,11 +66,7 @@
 					<el-button>取消</el-button>
 				</el-form-item>
 			</el-form>
-
-			<!--proname:Sequelize.STRING,//项目名称
-			custname:Sequelize.STRING,//客户名称
-			goodsList:Sequelize.STRING,//货物清单,数组-->
-
+		</div>
 		</div>
 	</div>
 </template>
@@ -76,7 +74,8 @@
 <script>
 	import nav from '../components/nav';
 	import top from '../components/top';
-	import api from '../fetch/api'
+	import api from '../fetch/api';
+	import breadcrumb from '../components/breadcrumb'
 	export default {
 		data() {
 			return {
@@ -85,7 +84,7 @@
 					proname:"",//项目名称
 					custname:"",//所选客户名称
 					customerlist:[],//客户列表
-					curgoods: {},//所选商品
+					curgoods: "",//所选商品
 					goodslist: [],//商品列表
 					goodsCart: []//货物清单
 				},
@@ -110,7 +109,8 @@
 		},
 		components: {
 			'v-nav': nav,
-			'v-top': top
+			'v-top': top,
+			'v-breadcrumb':breadcrumb
 		},
 		methods: {
 			submitForm(formName) {
@@ -211,7 +211,7 @@
 		border-bottom: 1px #dcdfe6 solid;
 	}
 	.goodsCart tr th,.goodsCart tr td{
-		height: 50px;
+		height: 40px;
 		width: 170px;
 		text-align: center;
 	}

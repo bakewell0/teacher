@@ -1,8 +1,10 @@
 <template>
-	<div>
+	<div class="container">
 		<v-top></v-top>
+		<div class="both">
 		<v-nav></v-nav>
 		<div class="content">
+			<v-breadcrumb path1="售后管理" path2="售后信息列表"></v-breadcrumb>
 			<el-table :data="aftersalelist" style="width: 100%">
 				<el-table-column prop="name" label="客户名称" width="180">
 				</el-table-column>
@@ -23,12 +25,14 @@
 			</el-table>
 		</div>
 	</div>
+	</div>
 </template>
 
 <script>
 	import nav from '../components/nav';
 	import top from '../components/top';
-	import api from '../fetch/api'
+	import api from '../fetch/api';
+	import breadcrumb from '../components/breadcrumb'
 	export default {
 		data() {
 			return {
@@ -37,7 +41,8 @@
 		},
 		components: {
 			'v-nav': nav,
-			'v-top': top
+			'v-top': top,
+			'v-breadcrumb':breadcrumb
 		},
 		methods:{
 			getaftersalelist(){

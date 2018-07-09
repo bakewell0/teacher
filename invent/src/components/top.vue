@@ -18,5 +18,6 @@
 		line-height: 45px;
 		padding-left: 5px;
 		box-sizing: border-box;
+		text-align: center;
 	}
 </style>
