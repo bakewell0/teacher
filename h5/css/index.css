@@ -1,6 +1,6 @@
 body{
 	background: #383a4c;
-	font-family: San Francisco;
+	font-family: "San Francisco";
 }
 .pro{
 	height: 6.5rem;
@@ -76,7 +76,9 @@ body{
 	text-align: center;
 }
 .linkway .email img{
-	
+	width: 0.46rem;
+	display: block;
+    margin: auto;
 }
 .linkway .text{
 	margin-top: 0.2rem;
@@ -84,4 +86,10 @@ body{
 	font-size:0.3rem;
 	color:white;
 	margin-bottom: 2.45rem;
+}
+.error{
+	font-size: 0.24rem;
+	color: #f56c6c;
+    margin-top: 0.15rem;
+    text-align: left;
 }

@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="css/index.css" />
 	</head>
 	<body>
+		<div id="app">
 		<div class="pro">
 			<img src="img/banner_02.png" alt="" />
 			<div class="proContent">
@@ -22,27 +23,28 @@
 			<ul class="form">
 				<li>
 					<div class="key">ProjectName</div>
-					<input class="value" type="text" value="" v-model=""/>
+					<input class="value" type="text" value="" v-model="projectName"/>
 				</li>
 				<li>
 					<div class="key">FirstName</div>
-					<input class="value" type="text" value="" v-model=""/>
+					<input class="value" type="text" value="" v-model="firstName"/>
 				</li>
 				<li>
 					<div class="key">LastName</div>
-					<input class="value" type="text" value="" v-model=""/>
+					<input class="value" type="text" value="" v-model="lastName"/>
 				</li>
 				<li>
 					<div class="key">Title</div>
-					<input class="value" type="text" value="" v-model=""/>
+					<input class="value" type="text" value="" v-model="title"/>
 				</li>
 				<li>
 					<div class="key">Telegram</div>
-					<input class="value" type="text" value="" v-model=""/>
+					<input class="value" type="text" value="" v-model="telegram"/>
 				</li>
 				<li>
 					<div class="key">Email</div>
-					<input class="value" type="text" value="" v-model=""/>
+					<input class="value" type="text" value="" v-model="email"/>
+					<div class="error" v-show="error">please enter your correct email address</div>
 				</li>
 			</ul>
 		</div>
@@ -52,6 +54,7 @@
 				<img src="img/email.png" alt="" />
 			</div>
 			<div class="text">info@cmcstar.com</div>
+		</div>
 		</div>
 		<script type="text/javascript" src="js/vue.js"></script>
 		<script type="text/javascript" src="js/axios.min.js"></script>
