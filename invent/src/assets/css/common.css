@@ -1,0 +1,21 @@
+body,p,ul{
+	margin: 0;
+	padding: 0;
+}
+
+ul li{
+	list-style: none;
+}
+
+a{
+	text-decoration: none;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+/*业务级*/
+.content{
+	float: left;
+}
