@@ -1,7 +1,13 @@
 body{
-	background: #383a4c;
-	font-family: San Francisco;
+	font-family: "San Francisco";
 }
+
+#app{
+	width: 7.5rem;
+    margin: auto;
+    background: #383a4c;
+}
+
 .pro{
 	height: 6.5rem;
     background: #5c76d5;
@@ -33,9 +39,20 @@ body{
 	font-size: 0.36rem;
     color: white;
     text-align: center;
-    margin: 0.85rem;
+    margin: 1rem 0; 
     line-height: 0.7rem;
 }
+
+.pro .describe .tit{
+	font-size: 0.36rem;
+	line-height: 0.5rem;
+}
+
+.pro .describe .cont{
+	font-size: 0.48rem;
+	line-height: 0.77rem;
+}
+
 .form{
 	height: 8.7rem;
 	margin: 0.18rem 0.2rem;
@@ -68,6 +85,7 @@ body{
 	color:white;
 	font-size:0.3rem;
 	margin: 0 0.2rem;
+	cursor: pointer;
 }
 .linkway{
 	margin-top: 0.73rem;
@@ -76,12 +94,20 @@ body{
 	text-align: center;
 }
 .linkway .email img{
-	
+	width: 0.46rem;
+	display: block;
+    margin: auto;
 }
 .linkway .text{
 	margin-top: 0.2rem;
 	text-align: center;
 	font-size:0.3rem;
 	color:white;
-	margin-bottom: 2.45rem;
+	padding-bottom: 2.45rem;
+}
+.error{
+	font-size: 0.24rem;
+	color: #f56c6c;
+    margin-top: 0.15rem;
+    text-align: left;
 }

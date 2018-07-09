@@ -1,3 +1,7 @@
+@font-face {
+	font-family: 'San Francisco';
+	src: url('../font/SF-Pro-Text-Regular.otf');
+}
 body,p,ul{
 	margin: 0;
 	padding: 0;
@@ -23,8 +27,14 @@ ul li{
 	}
 }
 
-@media only screen and (min-device-width:414px) {
+@media only screen and (min-device-width:414px) and (max-device-width: 640px) {
 	html{
 		font-size: 55.2px!important;
+	}
+}
+
+@media only screen and (min-device-width:640px) {
+	html{
+		font-size: 85.33px!important;
 	}
 }
