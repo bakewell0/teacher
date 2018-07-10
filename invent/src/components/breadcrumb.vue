@@ -1,6 +1,6 @@
 <template>
 	<div class="breadcrumbs">
-		{{path1}} > {{path2}}
+		{{path1}} <i class="el-icon-arrow-right"></i> {{path2}}
 	</div>
 </template>
 
