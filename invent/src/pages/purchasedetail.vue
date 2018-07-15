@@ -4,21 +4,48 @@
 		<div class="both">
 		<v-nav></v-nav>
 		<div class="content">
-			<v-breadcrumb path1="进货管理" path2="采购计划申请"></v-breadcrumb>
+			<v-breadcrumb path1="进货管理" path2="付款单打印"></v-breadcrumb>
 			<div style="margin: 20px;"></div>
-			<el-form :label-position="labelPosition" label-width="100px" :model="formLabelAlign" :rules="rules" ref="formLabelAlign">
-				<el-form-item label="仓库名称" prop="name">
-					<el-input v-model="formLabelAlign.name"></el-input>
+			<el-form :label-position="labelPosition" label-width="100px">
+				<el-form-item label="项目名称">
+					<el-input v-model="purchase.proname" readonly></el-input>
 				</el-form-item>
-				<el-form-item label="仓库地址" prop="addr">
-					<el-input v-model="formLabelAlign.addr"></el-input>
+				<el-form-item label="客户名称">
+					<el-input v-model="purchase.custname" readonly></el-input>
 				</el-form-item>
-				<el-form-item label="备注" prop="note">
-					<el-input v-model="formLabelAlign.note"></el-input>
+				<el-form-item label="商品列表">
+					<table border="0" cellspacing="0" cellpadding="0" class="goodsCart">
+						<tr>
+							<th>商品名称</th>
+							<th>数量</th>
+							<th>进价</th>
+							<th>供应商</th>
+							<th>到货情况</th>
+						</tr>
+						<tr v-for="(goods,index) in purchase.goodsCart">
+							<td>
+								<input type="text" :value="goods.name" readonly/>
+							</td>
+							<td>
+								<input type="text" v-model="goods.quantity" readonly/>
+							</td>
+							<td>
+								<input type="text" v-model="goods.buyprice" readonly/>
+							</td>
+							<td>
+								<input type="text" v-model="goods.supplier" readonly/>
+							</td>
+							<td>
+								<input type="text" v-model="goods.isget" readonly/>
+							</td>
+						</tr>
+					</table>
 				</el-form-item>
-				<el-form-item>
-					<el-button type="primary" @click="submitForm('formLabelAlign')">提交</el-button>
-					<el-button>取消</el-button>
+				<el-form-item label="仓库名称">
+					<el-input v-model="purchase.wharehousename" readonly></el-input>
+				</el-form-item>
+				<el-form-item label="总价" style="color:red">
+					{{purchase.sum}} 元
 				</el-form-item>
 			</el-form>
 		</div>
@@ -35,22 +62,8 @@
 		data() {
 			return {
 				labelPosition: 'right',
-				formLabelAlign: {
-					name: '',
-					addr: '',
-					note: ''
-				},
-				rules: {
-					name: [{
-						required: true,
-						message: '请填写仓库名称',
-						trigger: 'blur'
-					}],
-					addr: [{
-						required: true,
-						message: '请填写仓库地址',
-						trigger: 'blur'
-					}]
+				purchase:{
+					goodsCart:[]
 				}
 			}
 		},
@@ -60,34 +73,56 @@
 			'v-breadcrumb':breadcrumb
 		},
 		methods: {
-			submitForm(formName) {
-				this.$refs[formName].validate((valid) => {
-					if(valid) {
-						this.submit();
-					} else {
-						console.log('error submit!!');
-						return false;
-					}
-				});
-			},
-			submit() {
-				var data = {
-					name: this.formLabelAlign.name,
-					addr: this.formLabelAlign.addr,
-					note: this.formLabelAlign.note
-				}
-				api.addwharehouse(data)
+			getpurchaselist(){
+				api.getpurchaselist({purchaseid:this.$route.query.purchaseid})
 					.then(res => {
-						console.log(res);
+						if(res.isSuccess){
+							this.purchase=res.result[0];
+						}
 					})
 					.catch(error => {
 						console.log(error)
-					})
+				})
 			}
+		},
+		created() {
+			this.getpurchaselist();
 		}
 	}
 </script>
 
 <style>
-
+	.goodsCart{}
+	.goodsCart td{
+		border-top:1px #dcdfe6 solid
+	}
+	.goodsCart tr:nth-last-child(1) td{
+		border-bottom: 1px #dcdfe6 solid;
+	}
+	.goodsCart tr th,.goodsCart tr td{
+		height: 40px;
+		width: 170px;
+		text-align: center;
+	}
+	.goodsCart tr td input{
+		height: 30px;
+		text-align: center;
+		border:0
+	}
+	.goodsCart tr td{
+		border-left: 1px #dcdfe6 solid;
+	}
+	.goodsCart tr td:nth-last-child(1){
+		border-right: 1px #dcdfe6 solid;
+	}
+	.del{
+		width: 56px;
+		text-align: center;
+		line-height: 28px;
+		background: #f56c6c;
+		color:white;
+		font-size: 12px;
+    	border-radius: 3px;
+    	cursor: pointer;
+	}
 </style>

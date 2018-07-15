@@ -1,26 +1,29 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import index from '@/pages/index'
-import afterSalelist from '@/pages/afterSalelist'
-import afterSaledetail from '@/pages/afterSaledetail'
+import aftersalelist from '@/pages/aftersalelist'
+import aftersaletype from '@/pages/aftersaletype'
 import customerlist from '@/pages/customerlist'
-import customerdetail from '@/pages/customerdetail'
+import customertype from '@/pages/customertype'
 import goodslist from '@/pages/goodslist'
-import goodsdetail from '@/pages/goodsdetail'
+import goodstype from '@/pages/goodstype'
+import protype from '@/pages/protype'
 import prolist from '@/pages/prolist'
 import prodetail from '@/pages/prodetail'
 import purchaselist from '@/pages/purchaselist'
+import purchasetype from '@/pages/purchasetype'
 import purchasedetail from '@/pages/purchasedetail'
 import stafflist from '@/pages/stafflist'
-import staffdetail from '@/pages/staffdetail'
+import stafftype from '@/pages/stafftype'
 import supplierlist from '@/pages/supplierlist'
-import supplierdetail from '@/pages/supplierdetail'
+import suppliertype from '@/pages/suppliertype'
 import wharehouselist from '@/pages/wharehouselist'
-import wharehousedetail from '@/pages/wharehousedetail'
+import wharehousetype from '@/pages/wharehousetype'
 
 Vue.use(Router);
 
 export default new Router({
+	mode:'history',
   routes: [
     {
       path: '/',
@@ -28,14 +31,14 @@ export default new Router({
       component: index
     },
     {
-      path: '/afterSalelist',
-      name: 'afterSalelist',
-      component: afterSalelist
+      path: '/aftersalelist',
+      name: 'aftersalelist',
+      component: aftersalelist
     },
      {
-      path: '/afterSaledetail',
-      name: 'afterSaledetail',
-      component: afterSaledetail
+      path: '/aftersaletype',
+      name: 'aftersaletype',
+      component: aftersaletype
     },
      {
       path: '/customerlist',
@@ -43,9 +46,9 @@ export default new Router({
       component: customerlist
     },
      {
-      path: '/customerdetail',
-      name: 'customerdetail',
-      component: customerdetail
+      path: '/customertype',
+      name: 'customertype',
+      component: customertype
     },
      {
       path: '/goodslist',
@@ -53,11 +56,16 @@ export default new Router({
       component: goodslist
     },
      {
-      path: '/goodsdetail',
-      name: 'goodsdetail',
-      component: goodsdetail
+      path: '/goodstype',
+      name: 'goodstype',
+      component: goodstype
     },
-     {
+    {
+      path: '/protype',
+      name: 'protype',
+      component: protype
+    },
+    {
       path: '/prolist',
       name: 'prolist',
       component: prolist
@@ -73,6 +81,11 @@ export default new Router({
       component: purchaselist
     },
      {
+      path: '/purchasetype',
+      name: 'purchasetype',
+      component: purchasetype
+    },
+    {
       path: '/purchasedetail',
       name: 'purchasedetail',
       component: purchasedetail
@@ -83,9 +96,9 @@ export default new Router({
       component: stafflist
     },
     {
-      path: '/staffdetail',
-      name: 'staffdetail',
-      component: staffdetail
+      path: '/stafftype',
+      name: 'stafftype',
+      component: stafftype
     },
     {
       path: '/supplierlist',
@@ -93,9 +106,9 @@ export default new Router({
       component: supplierlist
     },
     {
-      path: '/supplierdetail',
-      name: 'supplierdetail',
-      component: supplierdetail
+      path: '/suppliertype',
+      name: 'suppliertype',
+      component: suppliertype
     },
     {
       path: '/wharehouselist',
@@ -103,9 +116,9 @@ export default new Router({
       component: wharehouselist
     },
     {
-      path: '/wharehousedetail',
-      name: 'wharehousedetail',
-      component: wharehousedetail
+      path: '/wharehousetype',
+      name: 'wharehousetype',
+      component: wharehousetype
     }
   ]
 })

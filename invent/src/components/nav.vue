@@ -4,13 +4,10 @@
 				<div class="option">进货管理</div>
 				<ul class="menu-item">
 					<li>
-						<router-link to="/purchasedetail">采购计划申请</router-link>					
+						<router-link to="/purchasetype">采购计划申请</router-link>					
 					</li>
 					<li>
 						<router-link to="/purchaselist">采购计划列表</router-link>					
-					</li>
-					<li>
-						<router-link to="/purchasedetail">付款单打印</router-link>
 					</li>
 				</ul>
 			</li>
@@ -18,13 +15,10 @@
 				<div class="option">项目管理</div>
 				<ul class="menu-item">
 					<li>
-						<router-link to="/prodetail">项目录入</router-link>
+						<router-link to="/protype">项目录入</router-link>
 					</li>
 					<li>
 						<router-link to="/prolist">项目列表</router-link>
-					</li>
-					<li>
-						<router-link to="/prodetail">项目详情</router-link>
 					</li>
 				</ul>
 			</li>
@@ -32,13 +26,10 @@
 				<div class="option">商品管理</div>
 				<ul class="menu-item">
 					<li>
-						<router-link to="/goodsdetail">商品录入</router-link>
+						<router-link to="/goodstype">商品录入</router-link>
 					</li>
 					<li>
 						<router-link to="/goodslist">商品列表</router-link>
-					</li>
-					<li>
-						<router-link to="/goodsdetail">商品详情</router-link>
 					</li>
 				</ul>
 			</li>
@@ -46,13 +37,10 @@
 				<div class="option">职员管理</div>
 				<ul class="menu-item">
 					<li>
-						<router-link to="/staffdetail">职员信息录入</router-link>
+						<router-link to="/stafftype">职员信息录入</router-link>
 					</li>
 					<li>
 						<router-link to="/stafflist">职员信息列表</router-link>
-					</li>
-					<li>
-						<router-link to="/staffdetail">职员信息详情</router-link>
 					</li>
 				</ul>
 			</li>
@@ -60,13 +48,10 @@
 				<div class="option">客户管理</div>
 				<ul class="menu-item">
 					<li>
-						<router-link to="/customerdetail">客户信息录入</router-link>
+						<router-link to="/customertype">客户信息录入</router-link>
 					</li>
 					<li>
 						<router-link to="/customerlist">客户信息列表</router-link>
-					</li>
-					<li>
-						<router-link to="/customerdetail">客户信息详情</router-link>
 					</li>
 				</ul>
 			</li>
@@ -74,13 +59,10 @@
 				<div class="option">供应商管理</div>
 				<ul class="menu-item">
 					<li>
-						<router-link to="/supplierdetail">供应商信息录入</router-link>
+						<router-link to="/suppliertype">供应商信息录入</router-link>
 					</li>
 					<li>
 						<router-link to="/supplierlist">供应商信息列表</router-link>
-					</li>
-					<li>
-						<router-link to="/supplierdetail">供应商信息详情</router-link>
 					</li>
 				</ul>
 			</li>
@@ -88,13 +70,10 @@
 				<div class="option">仓库信息管理</div>
 				<ul class="menu-item">
 					<li>
-						<router-link to="/wharehousedetail">仓库信息录入</router-link>
+						<router-link to="/wharehousetype">仓库信息录入</router-link>
 					</li>
 					<li>
 						<router-link to="/wharehouselist">仓库信息列表</router-link>
-					</li>
-					<li>
-						<router-link to="/wharehousedetail">仓库信息详情</router-link>
 					</li>
 				</ul>
 			</li>
@@ -102,10 +81,10 @@
 				<div class="option">售后管理</div>
 				<ul class="menu-item">
 					<li>
-						<router-link to="/afterSaledetail">售后信息录入</router-link>
+						<router-link to="/aftersaletype">售后信息录入</router-link>
 					</li>
 					<li>
-						<router-link to="/afterSalelist">售后信息列表</router-link>
+						<router-link to="/aftersalelist">售后信息列表</router-link>
 					</li>
 				</ul>
 			</li>
