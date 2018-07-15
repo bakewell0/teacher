@@ -33,4 +33,17 @@ router.post('/query', (req, res, next) => {
 	});
 })
 
+router.post('/delete', (req, res, next) => {
+	supplier.destroy({
+		where: {
+			id: req.body.supplierid
+		}
+	}).then((result) => {
+		res.json({
+			isSuccess: result?true:false,
+			result: result
+		});
+	});
+})
+
 module.exports = router;

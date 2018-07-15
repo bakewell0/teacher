@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var afterSale = require("../model.js").afterSale;
+var aftersale = require("../model.js").aftersale;
 var customer = require("../model.js").customer;
 
 // force: true will drop the table if it already exists
@@ -9,7 +9,7 @@ var customer = require("../model.js").customer;
 });*/
 
 router.post('/add', (req, res, next) => {
-	afterSale.create({
+	aftersale.create({
 		customerid: req.body.customerid, //客户
 		breakdown: req.body.breakdown, //故障
 		iswarranty: req.body.iswarranty, //保修期内0，保修期外1
@@ -25,7 +25,7 @@ router.post('/add', (req, res, next) => {
 });
 
 router.post('/query', async(req, res, next) => {
-	var afters = await afterSale.findAll();
+	var afters = await aftersale.findAll();
 	var custs = await customer.findAll();
 	afters.forEach((after) => {
 		custs.forEach((cust) => {
@@ -44,5 +44,18 @@ router.post('/query', async(req, res, next) => {
 		result: afters
 	});
 });
+
+router.post('/delete', (req, res, next) => {
+	aftersale.destroy({
+		where: {
+			id: req.body.aftersaleid
+		}
+	}).then((result) => {
+		res.json({
+			isSuccess: result?true:false,
+			result: result
+		});
+	});
+})
 
 module.exports = router;

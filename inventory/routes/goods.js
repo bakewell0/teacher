@@ -14,6 +14,7 @@ router.post('/add', (req, res, next) => {
 		category: req.body.category, //类别
 		brand: req.body.brand, //品牌
 		model: req.body.model, //型号
+		buyprice:req.body.buyprice,
 		specific: req.body.specific, //规格
 		supplier: req.body.supplier //供应商名称
 	}).then((result) => {
