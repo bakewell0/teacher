@@ -23,9 +23,6 @@
 							<th>供应商</th>
 							<th>到货情况</th>
 						</tr>
-						<tr v-if="pro.goodsCart.length==0">
-							没有可显示的数据记录
-						</tr>
 						<tr v-for="(goods,index) in pro.goodsCart">
 							<td>
 								<input type="text" :value="goods.name" readonly/>
