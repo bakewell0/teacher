@@ -2,7 +2,8 @@ import axios from 'axios';
 
 // axios 配置
 axios.defaults.timeout = 5000;
-axios.defaults.baseURL = 'http://localhost:3000';
+//axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = 'http://47.99.44.43:3000';
 
 export function fetch(url, params) {
 	return new Promise((resolve, reject) => {
