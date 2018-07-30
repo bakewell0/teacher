@@ -51,15 +51,15 @@ var staff=sequelize.define('staff', {
 /*商品*/
 var goods= sequelize.define('goods', {
 	name:Sequelize.STRING,//名称
-	category:Sequelize.STRING,//类别
 	brand:Sequelize.STRING,//品牌
 	model:Sequelize.STRING,//型号
+	buyprice:Sequelize.STRING,//进价
 	specific:Sequelize.STRING,//规格
 	supplier:Sequelize.STRING //供应商名称
 });	
 
 /*售后*/
-var afterSale=sequelize.define('afterSale', {
+var aftersale=sequelize.define('aftersale', {
 	customerid:Sequelize.STRING,//客户
 	breakdown:Sequelize.STRING,//故障
 	iswarranty:Sequelize.STRING,//保修期内0，保修期外1
@@ -70,8 +70,10 @@ var afterSale=sequelize.define('afterSale', {
 
 /*采购，进货管理*/
 var purchase=sequelize.define('purchase', {
-	proid:Sequelize.STRING,//项目id,
-	custid:Sequelize.STRING//客户id
+	proname:Sequelize.STRING,//项目名称,
+	custname:Sequelize.STRING,//客户名称
+	wharehousename:Sequelize.STRING,
+	sum:Sequelize.STRING
 });	
 
 /*项目管理*/
@@ -99,7 +101,7 @@ var models={
 		wharehouse:wharehouse,
 		staff:staff,
 		goods:goods,
-		afterSale:afterSale,
+		aftersale:aftersale,
 		purchase:purchase,
 		promanage:promanage,
 		manifest:manifest

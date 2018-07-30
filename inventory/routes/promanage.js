@@ -44,7 +44,13 @@ router.post('/add', (req, res, next) => {
 });
 
 router.post('/query', async (req, res, next) => {
-	let pros = await promanage.findAll();
+	var params = {};
+	if(req.body.proid){
+		params.id = req.body.proid;
+	}
+	let pros = await promanage.findAll({
+		where:params
+	});
 	for(let i=0;i<pros.length;i++){		
 		let manifests =await manifest.findAll({
 			where:{
@@ -56,6 +62,19 @@ router.post('/query', async (req, res, next) => {
 	res.json({
 		isSuccess: true,
 		result: pros
+	});
+})
+
+router.post('/delete', (req, res, next) => {
+	promanage.destroy({
+		where: {
+			id: req.body.proid
+		}
+	}).then((result) => {
+		res.json({
+			isSuccess: result,
+			result: result
+		});
 	});
 })
 

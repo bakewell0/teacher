@@ -72,4 +72,18 @@ router.post('/update', (req, res, next) => {
 	});
 })
 
+router.post('/delete', (req, res, next) => {
+	staff.destroy({
+		where: {
+			id: req.body.staffid
+		}
+	}).then((result) => {
+		res.json({
+			isSuccess: result?true:false,
+			result: result
+		});
+	});
+})
+
+
 module.exports = router;

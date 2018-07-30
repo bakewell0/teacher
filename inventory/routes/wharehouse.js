@@ -28,4 +28,17 @@ router.post('/query', (req, res, next) => {
 	});
 });
 
+router.post('/delete', (req, res, next) => {
+	wharehouse.destroy({
+		where: {
+			id: req.body.wharehouseid
+		}
+	}).then((result) => {
+		res.json({
+			isSuccess: result?true:false,
+			result: result
+		});
+	});
+})
+
 module.exports = router;

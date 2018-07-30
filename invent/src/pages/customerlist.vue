@@ -18,6 +18,14 @@
 				</el-table-column>
 				<el-table-column prop="property" label="属性">
 				</el-table-column>
+				<el-table-column label="操作">
+				      <template slot-scope="scope">
+				        <el-button
+				          size="mini"
+				          type="danger"
+				          @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+				      </template>
+			    	</el-table-column>
 			</el-table>
 		</div>
 		</div>
@@ -51,6 +59,17 @@
 					.catch(error => {
 						console.log(error)
 				})
+			},
+			handleDelete(index,row){
+				api.delcustomer({customerid:row.id})
+					.then(res => {
+						if(res.isSuccess) {
+							this.getcustomerlist();
+						}
+					})
+					.catch(error => {
+						console.log(error)
+					})			
 			}
 		},
 		created(){

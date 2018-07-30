@@ -8,16 +8,24 @@
 			<el-table :data="goodslist" style="width: 100%">
 				<el-table-column prop="name" label="商品名称" width="180">
 				</el-table-column>
-				<el-table-column prop="category" label="商品类别" width="180">
-				</el-table-column>
 				<el-table-column prop="brand" label="品牌">
 				</el-table-column>
 				<el-table-column prop="model" label="型号">
+				</el-table-column>
+				<el-table-column prop="buyprice" label="进价">
 				</el-table-column>
 				<el-table-column prop="specific" label="规格">
 				</el-table-column>
 				<el-table-column prop="supplier" label="供应商名称">
 				</el-table-column>
+				<el-table-column label="操作">
+				      <template slot-scope="scope">
+				        <el-button
+				          size="mini"
+				          type="danger"
+				          @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+				      </template>
+			    	</el-table-column>
 			</el-table>			
 		</div>
 		</div>
@@ -51,6 +59,17 @@
 					.catch(error => {
 						console.log(error)
 				})
+			},
+			handleDelete(index,row){
+				api.delgoods({goodsid:row.id})
+					.then(res => {
+						if(res.isSuccess) {
+							this.getgoodslist();
+						}
+					})
+					.catch(error => {
+						console.log(error)
+					})			
 			}
 		},
 		created(){

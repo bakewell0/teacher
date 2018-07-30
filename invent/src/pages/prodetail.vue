@@ -4,24 +4,16 @@
 		<div class="both">
 		<v-nav></v-nav>
 		<div class="content">
-			<v-breadcrumb path1="项目管理" path2="项目录入"></v-breadcrumb>
+			<v-breadcrumb path1="项目管理" path2="项目详情"></v-breadcrumb>
 			<div style="margin: 20px;"></div>
-			<el-form :label-position="labelPosition" label-width="100px" :model="formLabelAlign" :rules="rules" ref="formLabelAlign">
-				<el-form-item label="项目名称" prop="proname">
-					<el-input v-model="formLabelAlign.proname"></el-input>
+			<el-form :label-position="labelPosition" label-width="100px">
+				<el-form-item label="项目名称">
+					<el-input v-model="pro.proname" readonly></el-input>
 				</el-form-item>
-				<el-form-item label="客户名称" prop="custname">
-					<el-select v-model="formLabelAlign.custname" placeholder="请选择客户">
-						<el-option :label="customer.name" :value="customer.name" v-for="customer in formLabelAlign.customerlist"></el-option>
-					</el-select>
+				<el-form-item label="客户名称">
+					<el-input v-model="pro.custname" readonly></el-input>
 				</el-form-item>
-				<el-form-item label="添加货物">
-					<el-select v-model="formLabelAlign.curgoods" placeholder="请选择货物" @change="addgoods">
-						<el-option :label="goods.name" :value="goods.name" v-for="goods in formLabelAlign.goodslist"></el-option>
-					</el-select>
-				</el-form-item>
-
-				<el-form-item label="货物列表" prop="goodsCart">
+				<el-form-item label="货物列表">
 					<table border="0" cellspacing="0" cellpadding="0" class="goodsCart">
 						<tr>
 							<th>货物名称</th>
@@ -30,40 +22,28 @@
 							<th>售价</th>
 							<th>供应商</th>
 							<th>到货情况</th>
-							<th>操作</th>
 						</tr>
-						<tr v-if="formLabelAlign.goodsCart.length==0">
-							没有可显示的数据记录
-						</tr>
-						<tr v-for="(goods,index) in formLabelAlign.goodsCart">
+						<tr v-for="(goods,index) in pro.goodsCart">
 							<td>
-								<input type="text" :value="goods.name" />
+								<input type="text" :value="goods.name" readonly/>
 							</td>
 							<td>
-								<input type="text" v-model="goods.quantity" />
+								<input type="text" v-model="goods.quantity" readonly/>
 							</td>
 							<td>
-								<input type="text" v-model="goods.buyprice" />
+								<input type="text" v-model="goods.buyprice" readonly/>
 							</td>
 							<td>
-								<input type="text" v-model="goods.sellprice" />
+								<input type="text" v-model="goods.sellprice" readonly/>
 							</td>
 							<td>
-								<input type="text" v-model="goods.supplier" />
+								<input type="text" v-model="goods.supplier" readonly/>
 							</td>
 							<td>
-								<input type="text" v-model="goods.isget" />
-							</td>
-							<td>
-								<input type="button" value="删除" class="del" @click="del(index)"/>								
+								<input type="text" v-model="goods.isget" readonly/>
 							</td>
 						</tr>
 					</table>
-				</el-form-item>
-
-				<el-form-item>
-					<el-button type="primary" @click="submitForm('formLabelAlign')">提交</el-button>
-					<el-button>取消</el-button>
 				</el-form-item>
 			</el-form>
 		</div>
@@ -80,30 +60,8 @@
 		data() {
 			return {
 				labelPosition: 'right',
-				formLabelAlign: {
-					proname:"",//项目名称
-					custname:"",//所选客户名称
-					customerlist:[],//客户列表
-					curgoods: "",//所选商品
-					goodslist: [],//商品列表
-					goodsCart: []//货物清单
-				},
-				rules: {
-					proname: [{
-						required: true,
-						message: '请填写项目名称',
-						trigger: 'blur'
-					}],
-					custname: [{
-						required: true,
-						message: '请填写客户名称',
-						trigger: 'blur'
-					}],
-					goodsCart:[{
-						required: true,
-						message: '请添加货物',
-						trigger: 'blur'
-					}]
+				pro:{
+					goodsCart:[]
 				}
 			}
 		},
@@ -113,91 +71,20 @@
 			'v-breadcrumb':breadcrumb
 		},
 		methods: {
-			submitForm(formName) {
-				this.$refs[formName].validate((valid) => {
-					if(valid) {
-						this.submit();
-					} else {
-						console.log('error submit!!');
-						return false;
-					}
-				});
-			},
-			submit() {
-				var data = {
-					proname: this.formLabelAlign.proname,
-					custname: this.formLabelAlign.custname,
-					goodsCart: this.formLabelAlign.goodsCart
-				}
-				api.addprolist(data)
+			getprolist(){
+				api.getprolist({proid:this.$route.query.proid})
 					.then(res => {
-						console.log(res);
-					})
-					.catch(error => {
-						console.log(error)
-					})
-			},
-			getgoodslist() {
-				var that = this;
-				api.getgoodslist()
-					.then(res => {
-						if(res.isSuccess) {
-							that.formLabelAlign.goodslist = res.result;
+						if(res.isSuccess){
+							this.pro=res.result[0];
 						}
 					})
 					.catch(error => {
 						console.log(error)
-					})
-			},
-			getcustomerlist(){
-				var that = this;
-				api.getcustomerlist()
-					.then(res => {
-						if(res.isSuccess) {
-							that.formLabelAlign.customerlist = res.result;
-						}
-					})
-					.catch(error => {
-						console.log(error)
-					})
-			},
-			addgoods() {
-				if(!this.isrepeat()) {
-					var goodsitem={
-						name:this.formLabelAlign.curgoods,
-						supplier:this.getgoodsbyname(this.formLabelAlign.curgoods).supplier//供应商
-					};
-					this.formLabelAlign.goodsCart.push(goodsitem);
-				} else {
-					alert("此货物已添加");
-				}
-			},
-			getgoodsbyname(name){
-				var g={};
-				this.formLabelAlign.goodslist.forEach((goods)=>{
-					if(goods.name==name){
-						g=goods;
-					}
 				})
-				return g;
-			},
-			isrepeat() {
-				var isrepeat = false;
-				var that = this;
-				this.formLabelAlign.goodsCart.forEach((goods) => {
-					if(goods.name == that.formLabelAlign.curgoods) {
-						isrepeat = true;
-					}
-				})
-				return isrepeat;
-			},
-			del(index){
-				this.formLabelAlign.goodsCart.splice(index, 1)
 			}
 		},
 		created() {
-			this.getgoodslist();
-			this.getcustomerlist();
+			this.getprolist();
 		}
 	}
 </script>

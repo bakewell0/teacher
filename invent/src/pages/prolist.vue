@@ -6,10 +6,21 @@
 		<div class="content">
 			<v-breadcrumb path1="项目管理" path2="项目列表"></v-breadcrumb>
 			<el-table :data="prolist" style="width: 100%">
-				<el-table-column prop="proname" label="项目名称" width="180">
+				<el-table-column prop="proname" label="项目名称">
 				</el-table-column>
-				<el-table-column prop="custname" label="客户名称" width="180">
+				<el-table-column prop="custname" label="客户名称">
 				</el-table-column>
+				<el-table-column label="操作">
+			      <template slot-scope="scope">
+			      	<el-button
+			          size="mini"
+			          @click="handleLook(scope.$index, scope.row)">查看</el-button>
+			        <el-button
+			          size="mini"
+			          type="danger"
+			          @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+			      </template>
+			    </el-table-column>
 			</el-table>
 		</div>
 		</div>
@@ -43,6 +54,23 @@
 					.catch(error => {
 						console.log(error)
 				})
+			},
+			handleDelete(index,row){
+				api.delpro({proid:row.id})
+					.then(res => {
+						if(res.isSuccess) {
+							this.getprolist();
+						}
+					})
+					.catch(error => {
+						console.log(error)
+					})			
+			},
+			handleLook(index,row){
+				this.$router.push({ path: '/prodetail',query:{proid:row.id}});
+			},
+			handleEdit(index,row){
+				
 			}
 		},
 		created(){

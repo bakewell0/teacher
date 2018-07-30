@@ -6,11 +6,11 @@
 		<div class="content">
 			<v-breadcrumb path1="职员管理" path2="职员信息列表"></v-breadcrumb>
 			<el-table :data="stafflist">
-				<el-table-column prop="name" label="员工名称" width="180">
+				<el-table-column prop="name" label="员工名称">
 				</el-table-column>
-				<el-table-column prop="telephone" label="电话" width="180">
+				<el-table-column prop="telephone" label="电话">
 				</el-table-column>
-				<el-table-column prop="duty" label="岗位" width="180">
+				<el-table-column prop="duty" label="岗位">
 				</el-table-column>
 				<el-table-column prop="idcard" label="身份证">
 				</el-table-column>
@@ -23,7 +23,15 @@
 				<el-table-column prop="familyphone" label="家庭电话">
 				</el-table-column>
 				<el-table-column prop="familyaddr" label="家庭住址">
-				</el-table-column>				
+				</el-table-column>		
+				<el-table-column label="操作">
+				      <template slot-scope="scope">
+				        <el-button
+				          size="mini"
+				          type="danger"
+				          @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+				      </template>
+			    	</el-table-column>
 			</el-table>
 		</div>
 		</div>
@@ -61,7 +69,18 @@
 					.catch(error => {
 						console.log(error)
 				})
-			}
+			},
+			handleDelete(index,row){
+				api.delstaff({staffid:row.id})
+					.then(res => {
+						if(res.isSuccess) {
+							this.getstafflist();
+						}
+					})
+					.catch(error => {
+						console.log(error)
+					})			
+			},
 		},
 		created(){
 			this.getstafflist();
